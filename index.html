@@ -10,20 +10,20 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg: #0a0e1a;
-      --surface: #111827;
-      --surface-raised: #1a2332;
-      --border: #1f2d47;
-      --border-hover: #2d4a7a;
-      --text: #e2e8f0;
-      --text-dim: #6b7f99;
-      --text-muted: #8899b4;
-      --accent: #38bdf8;
-      --accent-dim: #0ea5e9;
-      --green: #4ade80;
-      --amber: #fbbf24;
-      --rose: #fb7185;
-      --purple: #a78bfa;
+      --bg: #f8fafc;
+      --surface: #ffffff;
+      --surface-raised: #f1f5f9;
+      --border: #e2e8f0;
+      --border-hover: #94a3b8;
+      --text: #0f172a;
+      --text-dim: #64748b;
+      --text-muted: #64748b;
+      --accent: #2563eb;
+      --accent-dim: #3b82f6;
+      --green: #16a34a;
+      --amber: #d97706;
+      --rose: #dc2626;
+      --purple: #7c3aed;
       --radius: 14px;
       --radius-sm: 10px;
       --max-w: 960px;
@@ -42,7 +42,7 @@
     /* ===== NAV ===== */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      background: rgba(10,14,26,0.82); backdrop-filter: blur(14px);
+      background: rgba(248,250,252,0.88); backdrop-filter: blur(14px);
       -webkit-backdrop-filter: blur(14px);
       border-bottom: 1px solid var(--border);
       padding: 0 28px; height: 60px;
@@ -57,7 +57,7 @@
     nav .nav-links a:hover { color: #fff; }
     nav .contact-btn {
       padding: 7px 18px; border-radius: 20px;
-      background: var(--accent); color: var(--bg) !important;
+      background: var(--accent); color: #fff !important;
       font-weight: 600; font-size: 0.82rem; transition: opacity 0.2s;
     }
     nav .contact-btn:hover { opacity: 0.85; color: var(--bg) !important; }
@@ -74,9 +74,9 @@
       border-radius: 20px;
       font-size: 0.75rem;
       font-weight: 600;
-      background: rgba(56,189,248,0.1);
+      background: rgba(37,99,235,0.08);
       color: var(--accent);
-      border: 1px solid rgba(56,189,248,0.15);
+      border: 1px solid rgba(37,99,235,0.15);
       margin-bottom: 14px;
     }
     .hero-left { flex: 1; min-width: 300px; }
@@ -87,7 +87,7 @@
       line-height: 1.15;
     }
     .hero-left h1 .highlight {
-      background: linear-gradient(135deg, var(--accent), var(--purple));
+      background: linear-gradient(135deg, #1d4ed8, #7c3aed);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
@@ -98,14 +98,13 @@
       color: var(--text-muted);
       line-height: 1.7;
     }
-    .hero-left .desc strong { color: var(--accent); font-weight: 600; }
-    .hero-right { flex-shrink: 0; }
+    .hero-left .desc strong { color: var(--accent); font-weight: 600; }    .hero-right { flex-shrink: 0; }
     .avatar {
       width: 110px; height: 110px; border-radius: 50%;
-      background: linear-gradient(135deg, var(--accent), var(--purple));
+      background: linear-gradient(135deg, #2563eb, #7c3aed);
       display: flex; align-items: center; justify-content: center;
       font-size: 2.4rem; font-weight: 700; color: #fff;
-      box-shadow: 0 0 50px rgba(56,189,248,0.12);
+      box-shadow: 0 0 40px rgba(37,99,235,0.15);
     }
 
     /* ===== STATS ===== */
@@ -126,7 +125,7 @@
     .stat-card:hover { border-color: var(--border-hover); }
     .stat-card .num {
       font-size: 1.6rem; font-weight: 700;
-      background: linear-gradient(135deg, var(--accent), var(--purple));
+      background: linear-gradient(135deg, #1d4ed8, #7c3aed);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
@@ -241,7 +240,7 @@
     .project-body p + p { margin-top: 8px; }
     .project-body ul { padding-left: 18px; }
     .project-body ul li { margin-bottom: 5px; }
-    .project-body strong { color: #fff; font-weight: 600; }
+    .project-body strong { color: var(--text); font-weight: 700; }
 
     /* Result grid */
     .result-grid {
@@ -265,10 +264,10 @@
 
     /* Quote block */
     .work-quote {
-      border-left: 3px solid var(--border);
+      border-left: 3px solid var(--accent-dim);
       padding: 12px 16px;
       margin-top: 10px;
-      background: rgba(255,255,255,0.015);
+      background: var(--surface-raised);
       border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
     }
     .work-quote p {
@@ -287,8 +286,8 @@
     }
     .tech-stack span {
       font-size: 0.73rem; padding: 3px 12px; border-radius: 14px;
-      background: rgba(56,189,248,0.06);
-      border: 1px solid rgba(56,189,248,0.1);
+      background: rgba(37,99,235,0.06);
+      border: 1px solid rgba(37,99,235,0.1);
       color: var(--accent);
     }
 
@@ -298,7 +297,7 @@
     }
     .sys-tags span {
       font-size: 0.73rem; padding: 3px 12px; border-radius: 10px;
-      background: var(--surface-raised); color: var(--text-muted);
+      background: var(--surface-raised); color: var(--text-dim);
       border: 1px solid var(--border);
     }
 
@@ -306,7 +305,7 @@
     .arch-diagram {
       margin-top: 12px;
       padding: 20px;
-      background: var(--surface-raised);
+      background: var(--bg);
       border-radius: var(--radius-sm);
       border: 1px solid var(--border);
       overflow-x: auto;
@@ -330,8 +329,8 @@
     .skill-card .chip {
       display: inline-block;
       font-size: 0.72rem; padding: 2px 10px; border-radius: 10px;
-      background: rgba(56,189,248,0.08); color: var(--accent);
-      border: 1px solid rgba(56,189,248,0.1);
+      background: rgba(37,99,235,0.06); color: var(--accent);
+      border: 1px solid rgba(37,99,235,0.1);
       margin: 2px 2px 0 0;
     }
 
@@ -400,7 +399,7 @@
       从需求到落地的全流程交付
     </h1>
     <p class="desc">
-      <strong>0 手写代码</strong> · 使用 AI 编程工具独立交付 <strong>5+ 生产级 Agent 系统</strong><br>
+      使用 AI 编程工具独立交付 <strong>5+ 生产级 Agent 系统</strong><br>
       2 年 AI 落地经验 · 覆盖 11+ 自动化项目 · 对接 8 个外部系统
     </p>
   </div>
@@ -413,7 +412,6 @@
   <div class="stat-card"><span class="num">5+</span><span class="label">生产级 Agent</span></div>
   <div class="stat-card"><span class="num">11+</span><span class="label">自动化项目</span></div>
   <div class="stat-card"><span class="num">8</span><span class="label">对接系统</span></div>
-  <div class="stat-card"><span class="num">0</span><span class="label">手写代码</span></div>
   <div class="stat-card"><span class="num">2年</span><span class="label">落地经验</span></div>
 </div>
 
@@ -449,43 +447,30 @@
         <div class="body-label"><span class="emoji">🏗️</span> 系统架构</div>
         <div class="arch-diagram">
           <svg viewBox="0 0 680 180" width="100%" style="max-width:680px; height:auto;">
-            <!-- 背景 -->
-            <rect x="0" y="0" width="680" height="180" fill="none"/>
-            <!-- 飞书 Base -->
-            <rect x="10" y="10" width="130" height="44" rx="8" fill="#1a2332" stroke="#2d4a7a" stroke-width="1.5"/>
-            <text x="75" y="36" text-anchor="middle" fill="#8899b4" font-size="12">📋 飞书 Base</text>
-            <!-- 分流引擎 -->
-            <rect x="180" y="10" width="130" height="44" rx="8" fill="#1a2332" stroke="#38bdf8" stroke-width="1.5"/>
-            <text x="245" y="36" text-anchor="middle" fill="#38bdf8" font-size="12">⚙️ 分流决策引擎</text>
-            <!-- 箭头 1→2 -->
-            <line x1="140" y1="32" x2="178" y2="32" stroke="#2d4a7a" stroke-width="1.5"/>
-            <polygon points="176,26 186,32 176,38" fill="#2d4a7a"/>
-            <!-- LLM -->
-            <rect x="350" y="10" width="130" height="44" rx="8" fill="#1a2332" stroke="#a78bfa" stroke-width="1.5"/>
-            <text x="415" y="36" text-anchor="middle" fill="#a78bfa" font-size="12">🤖 AI 邮件生成</text>
-            <!-- Intercom -->
-            <rect x="520" y="10" width="150" height="44" rx="8" fill="#1a2332" stroke="#4ade80" stroke-width="1.5"/>
-            <text x="595" y="36" text-anchor="middle" fill="#4ade80" font-size="12">✉️ Intercom 发送</text>
-            <!-- Shopify -->
-            <rect x="520" y="70" width="150" height="44" rx="8" fill="#1a2332" stroke="#fbbf24" stroke-width="1.5"/>
-            <text x="595" y="96" text-anchor="middle" fill="#fbbf24" font-size="12">🛍️ Shopify 查单</text>
-            <!-- 箭头 2→3 → 3→4 → 4→5 -->
-            <line x1="310" y1="32" x2="348" y2="32" stroke="#2d4a7a" stroke-width="1.5"/>
-            <polygon points="346,26 356,32 346,38" fill="#2d4a7a"/>
-            <line x1="480" y1="32" x2="518" y2="32" stroke="#2d4a7a" stroke-width="1.5"/>
-            <polygon points="516,26 526,32 516,38" fill="#2d4a7a"/>
-            <!-- 24h跟进 -->
-            <rect x="180" y="70" width="200" height="44" rx="8" fill="#1a2332" stroke="#fb7185" stroke-width="1.5"/>
-            <text x="280" y="96" text-anchor="middle" fill="#fb7185" font-size="12">🔄 24h 跟进检测</text>
-            <!-- 箭头 3→6 -->
-            <line x1="245" y1="54" x2="280" y2="68" stroke="#2d4a7a" stroke-width="1.5"/>
-            <polygon points="276,64 284,72 272,74" fill="#2d4a7a"/>
-            <!-- 审核流 -->
-            <rect x="180" y="128" width="200" height="44" rx="8" fill="#1a2332" stroke="#fbbf24" stroke-width="1.5"/>
-            <text x="280" y="154" text-anchor="middle" fill="#fbbf24" font-size="12">✅ 飞书审核 & 外包确认</text>
-            <!-- 箭头 3→审核、5→审核、6→审核 -->
-            <line x1="280" y1="114" x2="280" y2="126" stroke="#2d4a7a" stroke-width="1.5"/>
-            <polygon points="274,124 280,134 286,124" fill="#2d4a7a"/>
+            <rect x="10" y="10" width="130" height="44" rx="8" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1.5"/>
+            <text x="75" y="36" text-anchor="middle" fill="#64748b" font-size="12">📋 飞书 Base</text>
+            <rect x="180" y="10" width="130" height="44" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+            <text x="245" y="36" text-anchor="middle" fill="#2563eb" font-size="12">⚙️ 分流决策引擎</text>
+            <line x1="140" y1="32" x2="178" y2="32" stroke="#cbd5e1" stroke-width="1.5"/>
+            <polygon points="176,26 186,32 176,38" fill="#cbd5e1"/>
+            <rect x="350" y="10" width="130" height="44" rx="8" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1.5"/>
+            <text x="415" y="36" text-anchor="middle" fill="#7c3aed" font-size="12">🤖 AI 邮件生成</text>
+            <rect x="520" y="10" width="150" height="44" rx="8" fill="#f0fdf4" stroke="#16a34a" stroke-width="1.5"/>
+            <text x="595" y="36" text-anchor="middle" fill="#16a34a" font-size="12">✉️ Intercom 发送</text>
+            <rect x="520" y="70" width="150" height="44" rx="8" fill="#fffbeb" stroke="#d97706" stroke-width="1.5"/>
+            <text x="595" y="96" text-anchor="middle" fill="#d97706" font-size="12">🛍️ Shopify 查单</text>
+            <line x1="310" y1="32" x2="348" y2="32" stroke="#cbd5e1" stroke-width="1.5"/>
+            <polygon points="346,26 356,32 346,38" fill="#cbd5e1"/>
+            <line x1="480" y1="32" x2="518" y2="32" stroke="#cbd5e1" stroke-width="1.5"/>
+            <polygon points="516,26 526,32 516,38" fill="#cbd5e1"/>
+            <rect x="180" y="70" width="200" height="44" rx="8" fill="#fef2f2" stroke="#dc2626" stroke-width="1.5"/>
+            <text x="280" y="96" text-anchor="middle" fill="#dc2626" font-size="12">🔄 24h 跟进检测</text>
+            <line x1="245" y1="54" x2="280" y2="68" stroke="#cbd5e1" stroke-width="1.5"/>
+            <polygon points="276,64 284,72 272,74" fill="#cbd5e1"/>
+            <rect x="180" y="128" width="200" height="44" rx="8" fill="#fffbeb" stroke="#d97706" stroke-width="1.5"/>
+            <text x="280" y="154" text-anchor="middle" fill="#d97706" font-size="12">✅ 飞书审核 & 外包确认</text>
+            <line x1="280" y1="114" x2="280" y2="126" stroke="#cbd5e1" stroke-width="1.5"/>
+            <polygon points="274,124 280,134 286,124" fill="#cbd5e1"/>
           </svg>
         </div>
       </div>
@@ -564,24 +549,24 @@
         <div class="body-label"><span class="emoji">🏗️</span> 系统架构</div>
         <div class="arch-diagram">
           <svg viewBox="0 0 680 160" width="100%" style="max-width:680px;height:auto;">
-            <rect x="10" y="10" width="160" height="44" rx="8" fill="#1a2332" stroke="#4ade80" stroke-width="1.5"/>
-            <text x="90" y="36" text-anchor="middle" fill="#4ade80" font-size="11">🔍 实时巡检 Agent</text>
-            <rect x="210" y="10" width="160" height="44" rx="8" fill="#1a2332" stroke="#38bdf8" stroke-width="1.5"/>
-            <text x="290" y="36" text-anchor="middle" fill="#38bdf8" font-size="11">🧠 故障分类引擎</text>
-            <rect x="410" y="10" width="160" height="44" rx="8" fill="#1a2332" stroke="#fbbf24" stroke-width="1.5"/>
-            <text x="490" y="36" text-anchor="middle" fill="#fbbf24" font-size="11">🔄 自愈决策模块</text>
-            <rect x="210" y="70" width="160" height="44" rx="8" fill="#1a2332" stroke="#a78bfa" stroke-width="1.5"/>
-            <text x="290" y="96" text-anchor="middle" fill="#a78bfa" font-size="11">📊 Web 控制台</text>
-            <rect x="410" y="70" width="160" height="44" rx="8" fill="#1a2332" stroke="#fb7185" stroke-width="1.5"/>
-            <text x="490" y="96" text-anchor="middle" fill="#fb7185" font-size="11">💬 飞书告警</text>
-            <line x1="170" y1="32" x2="208" y2="32" stroke="#2d4a7a" stroke-width="1.5"/>
-            <polygon points="206,26 216,32 206,38" fill="#2d4a7a"/>
-            <line x1="370" y1="32" x2="408" y2="32" stroke="#2d4a7a" stroke-width="1.5"/>
-            <polygon points="406,26 416,32 406,38" fill="#2d4a7a"/>
-            <line x1="490" y1="54" x2="490" y2="68" stroke="#2d4a7a" stroke-width="1.5"/>
-            <polygon points="484,66 490,76 496,66" fill="#2d4a7a"/>
-            <line x1="290" y1="54" x2="290" y2="68" stroke="#2d4a7a" stroke-width="1.5"/>
-            <polygon points="284,66 290,76 296,66" fill="#2d4a7a"/>
+            <rect x="10" y="10" width="160" height="44" rx="8" fill="#f0fdf4" stroke="#16a34a" stroke-width="1.5"/>
+            <text x="90" y="36" text-anchor="middle" fill="#16a34a" font-size="11">🔍 实时巡检 Agent</text>
+            <rect x="210" y="10" width="160" height="44" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+            <text x="290" y="36" text-anchor="middle" fill="#2563eb" font-size="11">🧠 故障分类引擎</text>
+            <rect x="410" y="10" width="160" height="44" rx="8" fill="#fffbeb" stroke="#d97706" stroke-width="1.5"/>
+            <text x="490" y="36" text-anchor="middle" fill="#d97706" font-size="11">🔄 自愈决策模块</text>
+            <rect x="210" y="70" width="160" height="44" rx="8" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1.5"/>
+            <text x="290" y="96" text-anchor="middle" fill="#7c3aed" font-size="11">📊 Web 控制台</text>
+            <rect x="410" y="70" width="160" height="44" rx="8" fill="#fef2f2" stroke="#dc2626" stroke-width="1.5"/>
+            <text x="490" y="96" text-anchor="middle" fill="#dc2626" font-size="11">💬 飞书告警</text>
+            <line x1="170" y1="32" x2="208" y2="32" stroke="#cbd5e1" stroke-width="1.5"/>
+            <polygon points="206,26 216,32 206,38" fill="#cbd5e1"/>
+            <line x1="370" y1="32" x2="408" y2="32" stroke="#cbd5e1" stroke-width="1.5"/>
+            <polygon points="406,26 416,32 406,38" fill="#cbd5e1"/>
+            <line x1="490" y1="54" x2="490" y2="68" stroke="#cbd5e1" stroke-width="1.5"/>
+            <polygon points="484,66 490,76 496,66" fill="#cbd5e1"/>
+            <line x1="290" y1="54" x2="290" y2="68" stroke="#cbd5e1" stroke-width="1.5"/>
+            <polygon points="284,66 290,76 296,66" fill="#cbd5e1"/>
           </svg>
         </div>
       </div>
@@ -643,36 +628,28 @@
         <div class="body-label"><span class="emoji">🏗️</span> 系统架构</div>
         <div class="arch-diagram">
           <svg viewBox="0 0 700 240" width="100%" style="max-width:700px;height:auto;">
-            <!-- 7路采集 -->
-            <rect x="10" y="10" width="200" height="34" rx="6" fill="#1a2332" stroke="#38bdf8" stroke-width="1.2"/>
-            <text x="110" y="32" text-anchor="middle" fill="#38bdf8" font-size="10">📡 7路并行数据采集</text>
-            <!-- 硬规则 -->
-            <rect x="250" y="10" width="160" height="34" rx="6" fill="#1a2332" stroke="#4ade80" stroke-width="1.2"/>
-            <text x="330" y="32" text-anchor="middle" fill="#4ade80" font-size="10">⚡ 硬规则引擎</text>
-            <!-- 评分 -->
-            <rect x="10" y="60" width="160" height="34" rx="6" fill="#1a2332" stroke="#fbbf24" stroke-width="1.2"/>
-            <text x="90" y="82" text-anchor="middle" fill="#fbbf24" font-size="10">📊 10维评分模型</text>
-            <!-- LLM -->
-            <rect x="200" y="60" width="160" height="34" rx="6" fill="#1a2332" stroke="#a78bfa" stroke-width="1.2"/>
-            <text x="280" y="82" text-anchor="middle" fill="#a78bfa" font-size="10">🧠 LLM 深层研判</text>
-            <!-- Agent补查 -->
-            <rect x="400" y="60" width="180" height="34" rx="6" fill="#1a2332" stroke="#fb7185" stroke-width="1.2"/>
-            <text x="490" y="82" text-anchor="middle" fill="#fb7185" font-size="10">🤖 Agent 主动补查</text>
-            <!-- 决策融合 -->
-            <rect x="200" y="120" width="200" height="44" rx="8" fill="#1a2332" stroke="#38bdf8" stroke-width="1.8"/>
-            <text x="300" y="146" text-anchor="middle" fill="#38bdf8" font-size="11" font-weight="bold">🎯 三级决策融合</text>
-            <!-- 箭头 -->
-            <line x1="210" y1="27" x2="248" y2="27" stroke="#2d4a7a" stroke-width="1.2"/>
-            <polygon points="246,21 256,27 246,33" fill="#2d4a7a"/>
-            <line x1="170" y1="44" x2="90" y2="58" stroke="#2d4a7a" stroke-width="1.2"/>
-            <line x1="90" y1="94" x2="200" y2="128" stroke="#2d4a7a" stroke-width="1.2"/>
-            <line x1="280" y1="94" x2="270" y2="118" stroke="#2d4a7a" stroke-width="1.2"/>
-            <line x1="490" y1="94" x2="400" y2="128" stroke="#2d4a7a" stroke-width="1.2"/>
-            <!-- 输出 -->
-            <rect x="200" y="185" width="200" height="44" rx="8" fill="#1a2332" stroke="#4ade80" stroke-width="1.5"/>
-            <text x="300" y="211" text-anchor="middle" fill="#4ade80" font-size="11">📄 PASS / REVIEW / BLOCK</text>
-            <line x1="300" y1="164" x2="300" y2="183" stroke="#2d4a7a" stroke-width="1.5"/>
-            <polygon points="294,181 300,191 306,181" fill="#2d4a7a"/>
+            <rect x="10" y="10" width="200" height="34" rx="6" fill="#eff6ff" stroke="#2563eb" stroke-width="1.2"/>
+            <text x="110" y="32" text-anchor="middle" fill="#2563eb" font-size="10">📡 7路并行数据采集</text>
+            <rect x="250" y="10" width="160" height="34" rx="6" fill="#f0fdf4" stroke="#16a34a" stroke-width="1.2"/>
+            <text x="330" y="32" text-anchor="middle" fill="#16a34a" font-size="10">⚡ 硬规则引擎</text>
+            <rect x="10" y="60" width="160" height="34" rx="6" fill="#fffbeb" stroke="#d97706" stroke-width="1.2"/>
+            <text x="90" y="82" text-anchor="middle" fill="#d97706" font-size="10">📊 10维评分模型</text>
+            <rect x="200" y="60" width="160" height="34" rx="6" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1.2"/>
+            <text x="280" y="82" text-anchor="middle" fill="#7c3aed" font-size="10">🧠 LLM 深层研判</text>
+            <rect x="400" y="60" width="180" height="34" rx="6" fill="#fef2f2" stroke="#dc2626" stroke-width="1.2"/>
+            <text x="490" y="82" text-anchor="middle" fill="#dc2626" font-size="10">🤖 Agent 主动补查</text>
+            <rect x="200" y="120" width="200" height="44" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="1.8"/>
+            <text x="300" y="146" text-anchor="middle" fill="#2563eb" font-size="11" font-weight="bold">🎯 三级决策融合</text>
+            <line x1="210" y1="27" x2="248" y2="27" stroke="#cbd5e1" stroke-width="1.2"/>
+            <polygon points="246,21 256,27 246,33" fill="#cbd5e1"/>
+            <line x1="170" y1="44" x2="90" y2="58" stroke="#cbd5e1" stroke-width="1.2"/>
+            <line x1="90" y1="94" x2="200" y2="128" stroke="#cbd5e1" stroke-width="1.2"/>
+            <line x1="280" y1="94" x2="270" y2="118" stroke="#cbd5e1" stroke-width="1.2"/>
+            <line x1="490" y1="94" x2="400" y2="128" stroke="#cbd5e1" stroke-width="1.2"/>
+            <rect x="200" y="185" width="200" height="44" rx="8" fill="#f0fdf4" stroke="#16a34a" stroke-width="1.5"/>
+            <text x="300" y="211" text-anchor="middle" fill="#16a34a" font-size="11">📄 PASS / REVIEW / BLOCK</text>
+            <line x1="300" y1="164" x2="300" y2="183" stroke="#cbd5e1" stroke-width="1.5"/>
+            <polygon points="294,181 300,191 306,181" fill="#cbd5e1"/>
           </svg>
         </div>
       </div>
@@ -726,20 +703,20 @@
         <div class="body-label"><span class="emoji">⚙️</span> 实现逻辑</div>
         <div class="arch-diagram">
           <svg viewBox="0 0 660 100" width="100%" style="max-width:660px;height:auto;">
-            <rect x="10" y="10" width="160" height="44" rx="8" fill="#1a2332" stroke="#fb7185" stroke-width="1.5"/>
-            <text x="90" y="36" text-anchor="middle" fill="#fb7185" font-size="11">🔐 鉴权 bootstrap:auth</text>
-            <rect x="200" y="10" width="200" height="44" rx="8" fill="#1a2332" stroke="#38bdf8" stroke-width="1.5"/>
-            <text x="300" y="36" text-anchor="middle" fill="#38bdf8" font-size="11">📋 拆单计划 plan:inventory</text>
-            <rect x="430" y="10" width="200" height="44" rx="8" fill="#1a2332" stroke="#4ade80" stroke-width="1.5"/>
-            <text x="530" y="36" text-anchor="middle" fill="#4ade80" font-size="11">🤖 执行拆单 run:sheet-queue</text>
-            <line x1="170" y1="32" x2="198" y2="32" stroke="#2d4a7a" stroke-width="1.5"/>
-            <polygon points="196,26 206,32 196,38" fill="#2d4a7a"/>
-            <line x1="400" y1="32" x2="428" y2="32" stroke="#2d4a7a" stroke-width="1.5"/>
-            <polygon points="426,26 436,32 426,38" fill="#2d4a7a"/>
-            <rect x="200" y="72" width="300" height="24" rx="6" fill="#1a2332" stroke="#fbbf24" stroke-width="1" stroke-dasharray="4,3"/>
-            <text x="350" y="87" text-anchor="middle" fill="#fbbf24" font-size="10">📎 MySQL → 库存匹配 → 飞书表格回填</text>
-            <line x1="300" y1="54" x2="300" y2="70" stroke="#2d4a7a" stroke-width="1"/>
-            <polygon points="294,68 300,78 306,68" fill="#2d4a7a"/>
+            <rect x="10" y="10" width="160" height="44" rx="8" fill="#fef2f2" stroke="#dc2626" stroke-width="1.5"/>
+            <text x="90" y="36" text-anchor="middle" fill="#dc2626" font-size="11">🔐 鉴权 bootstrap:auth</text>
+            <rect x="200" y="10" width="200" height="44" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+            <text x="300" y="36" text-anchor="middle" fill="#2563eb" font-size="11">📋 拆单计划 plan:inventory</text>
+            <rect x="430" y="10" width="200" height="44" rx="8" fill="#f0fdf4" stroke="#16a34a" stroke-width="1.5"/>
+            <text x="530" y="36" text-anchor="middle" fill="#16a34a" font-size="11">🤖 执行拆单 run:sheet-queue</text>
+            <line x1="170" y1="32" x2="198" y2="32" stroke="#cbd5e1" stroke-width="1.5"/>
+            <polygon points="196,26 206,32 196,38" fill="#cbd5e1"/>
+            <line x1="400" y1="32" x2="428" y2="32" stroke="#cbd5e1" stroke-width="1.5"/>
+            <polygon points="426,26 436,32 426,38" fill="#cbd5e1"/>
+            <rect x="200" y="72" width="300" height="24" rx="6" fill="#fffbeb" stroke="#d97706" stroke-width="1" stroke-dasharray="4,3"/>
+            <text x="350" y="87" text-anchor="middle" fill="#d97706" font-size="10">📎 MySQL → 库存匹配 → 飞书表格回填</text>
+            <line x1="300" y1="54" x2="300" y2="70" stroke="#cbd5e1" stroke-width="1"/>
+            <polygon points="294,68 300,78 306,68" fill="#cbd5e1"/>
           </svg>
         </div>
       </div>
@@ -782,21 +759,21 @@
         <div class="body-label"><span class="emoji">🏗️</span> 双源排查架构</div>
         <div class="arch-diagram">
           <svg viewBox="0 0 660 130" width="100%" style="max-width:660px;height:auto;">
-            <rect x="10" y="10" width="150" height="44" rx="8" fill="#1a2332" stroke="#fbbf24" stroke-width="1.5"/>
-            <text x="85" y="36" text-anchor="middle" fill="#fbbf24" font-size="11">🟡 G+ 异常订单</text>
-            <rect x="200" y="10" width="150" height="44" rx="8" fill="#1a2332" stroke="#38bdf8" stroke-width="1.5"/>
-            <text x="275" y="36" text-anchor="middle" fill="#38bdf8" font-size="11">🔵 WMS 待发货</text>
-            <rect x="390" y="10" width="180" height="44" rx="8" fill="#1a2332" stroke="#4ade80" stroke-width="1.5"/>
-            <text x="480" y="30" text-anchor="middle" fill="#4ade80" font-size="11">🔍 库存匹配引擎</text>
-            <text x="480" y="44" text-anchor="middle" fill="#4ade80" font-size="10">美国≠非美国双重逻辑</text>
-            <rect x="10" y="72" width="560" height="48" rx="8" fill="#1a2332" stroke="#a78bfa" stroke-width="1.5"/>
-            <text x="290" y="92" text-anchor="middle" fill="#a78bfa" font-size="11">📊 飞书多维表格（自动高亮优先级 + 待处理/已处理状态维护）</text>
-            <text x="290" y="106" text-anchor="middle" fill="#a78bfa" font-size="10">📧 每天 09:00 / 14:00 / 17:00 邮件摘要通知</text>
-            <line x1="160" y1="32" x2="198" y2="32" stroke="#2d4a7a" stroke-width="1.5"/>
-            <polygon points="196,26 206,32 196,38" fill="#2d4a7a"/>
-            <line x1="350" y1="32" x2="388" y2="32" stroke="#2d4a7a" stroke-width="1.5"/>
-            <polygon points="386,26 396,32 386,38" fill="#2d4a7a"/>
-            <line x1="480" y1="54" x2="290" y2="70" stroke="#2d4a7a" stroke-width="1.5"/>
+            <rect x="10" y="10" width="150" height="44" rx="8" fill="#fffbeb" stroke="#d97706" stroke-width="1.5"/>
+            <text x="85" y="36" text-anchor="middle" fill="#d97706" font-size="11">🟡 G+ 异常订单</text>
+            <rect x="200" y="10" width="150" height="44" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+            <text x="275" y="36" text-anchor="middle" fill="#2563eb" font-size="11">🔵 WMS 待发货</text>
+            <rect x="390" y="10" width="180" height="44" rx="8" fill="#f0fdf4" stroke="#16a34a" stroke-width="1.5"/>
+            <text x="480" y="30" text-anchor="middle" fill="#16a34a" font-size="11">🔍 库存匹配引擎</text>
+            <text x="480" y="44" text-anchor="middle" fill="#16a34a" font-size="10">美国≠非美国双重逻辑</text>
+            <rect x="10" y="72" width="560" height="48" rx="8" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1.5"/>
+            <text x="290" y="92" text-anchor="middle" fill="#7c3aed" font-size="11">📊 飞书多维表格（自动高亮优先级 + 待处理/已处理状态维护）</text>
+            <text x="290" y="106" text-anchor="middle" fill="#7c3aed" font-size="10">📧 每天 09:00 / 14:00 / 17:00 邮件摘要通知</text>
+            <line x1="160" y1="32" x2="198" y2="32" stroke="#cbd5e1" stroke-width="1.5"/>
+            <polygon points="196,26 206,32 196,38" fill="#cbd5e1"/>
+            <line x1="350" y1="32" x2="388" y2="32" stroke="#cbd5e1" stroke-width="1.5"/>
+            <polygon points="386,26 396,32 386,38" fill="#cbd5e1"/>
+            <line x1="480" y1="54" x2="290" y2="70" stroke="#cbd5e1" stroke-width="1.5"/>
           </svg>
         </div>
       </div>
@@ -839,17 +816,17 @@
         <div class="body-label"><span class="emoji">⚙️</span> 三段 Pipeline</div>
         <div class="arch-diagram">
           <svg viewBox="0 0 660 100" width="100%" style="max-width:660px;height:auto;">
-            <rect x="10" y="10" width="150" height="44" rx="8" fill="#1a2332" stroke="#a78bfa" stroke-width="1.5"/>
-            <text x="85" y="36" text-anchor="middle" fill="#a78bfa" font-size="11">1️⃣ 分类 classify</text>
-            <rect x="200" y="10" width="150" height="44" rx="8" fill="#1a2332" stroke="#38bdf8" stroke-width="1.5"/>
-            <text x="275" y="36" text-anchor="middle" fill="#38bdf8" font-size="11">2️⃣ 首封 send</text>
-            <rect x="390" y="10" width="150" height="44" rx="8" fill="#1a2332" stroke="#fb7185" stroke-width="1.5"/>
-            <text x="465" y="36" text-anchor="middle" fill="#fb7185" font-size="11">3️⃣ 跟进 followup</text>
-            <line x1="160" y1="32" x2="198" y2="32" stroke="#2d4a7a" stroke-width="1.5"/>
-            <polygon points="196,26 206,32 196,38" fill="#2d4a7a"/>
-            <line x1="350" y1="32" x2="388" y2="32" stroke="#2d4a7a" stroke-width="1.5"/>
-            <polygon points="386,26 396,32 386,38" fill="#2d4a7a"/>
-            <text x="275" y="86" text-anchor="middle" fill="#8899b4" font-size="10">⏱ 每 90 分钟全自动执行</text>
+            <rect x="10" y="10" width="150" height="44" rx="8" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1.5"/>
+            <text x="85" y="36" text-anchor="middle" fill="#7c3aed" font-size="11">1️⃣ 分类 classify</text>
+            <rect x="200" y="10" width="150" height="44" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+            <text x="275" y="36" text-anchor="middle" fill="#2563eb" font-size="11">2️⃣ 首封 send</text>
+            <rect x="390" y="10" width="150" height="44" rx="8" fill="#fef2f2" stroke="#dc2626" stroke-width="1.5"/>
+            <text x="465" y="36" text-anchor="middle" fill="#dc2626" font-size="11">3️⃣ 跟进 followup</text>
+            <line x1="160" y1="32" x2="198" y2="32" stroke="#cbd5e1" stroke-width="1.5"/>
+            <polygon points="196,26 206,32 196,38" fill="#cbd5e1"/>
+            <line x1="350" y1="32" x2="388" y2="32" stroke="#cbd5e1" stroke-width="1.5"/>
+            <polygon points="386,26 396,32 386,38" fill="#cbd5e1"/>
+            <text x="275" y="86" text-anchor="middle" fill="#64748b" font-size="10">⏱ 每 90 分钟全自动执行</text>
           </svg>
         </div>
       </div>
@@ -892,17 +869,17 @@
         <div class="body-label"><span class="emoji">⚙️</span> 实现</div>
         <div class="arch-diagram">
           <svg viewBox="0 0 600 100" width="100%" style="max-width:600px;height:auto;">
-            <rect x="10" y="10" width="140" height="44" rx="8" fill="#1a2332" stroke="#4ade80" stroke-width="1.5"/>
-            <text x="80" y="36" text-anchor="middle" fill="#4ade80" font-size="11">📱 Meta Graph API</text>
-            <rect x="190" y="10" width="140" height="44" rx="8" fill="#1a2332" stroke="#a78bfa" stroke-width="1.5"/>
-            <text x="260" y="36" text-anchor="middle" fill="#a78bfa" font-size="11">🧠 AI 五级分类</text>
-            <rect x="370" y="10" width="180" height="44" rx="8" fill="#1a2332" stroke="#fbbf24" stroke-width="1.5"/>
-            <text x="460" y="36" text-anchor="middle" fill="#fbbf24" font-size="11">📋 飞书审核流 → 确认发出</text>
-            <line x1="150" y1="32" x2="188" y2="32" stroke="#2d4a7a" stroke-width="1.5"/>
-            <polygon points="186,26 196,32 186,38" fill="#2d4a7a"/>
-            <line x1="330" y1="32" x2="368" y2="32" stroke="#2d4a7a" stroke-width="1.5"/>
-            <polygon points="366,26 376,32 366,38" fill="#2d4a7a"/>
-            <text x="260" y="86" text-anchor="middle" fill="#8899b4" font-size="10">5-10 min → 30s</text>
+            <rect x="10" y="10" width="140" height="44" rx="8" fill="#f0fdf4" stroke="#16a34a" stroke-width="1.5"/>
+            <text x="80" y="36" text-anchor="middle" fill="#16a34a" font-size="11">📱 Meta Graph API</text>
+            <rect x="190" y="10" width="140" height="44" rx="8" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1.5"/>
+            <text x="260" y="36" text-anchor="middle" fill="#7c3aed" font-size="11">🧠 AI 五级分类</text>
+            <rect x="370" y="10" width="180" height="44" rx="8" fill="#fffbeb" stroke="#d97706" stroke-width="1.5"/>
+            <text x="460" y="36" text-anchor="middle" fill="#d97706" font-size="11">📋 飞书审核流 → 确认发出</text>
+            <line x1="150" y1="32" x2="188" y2="32" stroke="#cbd5e1" stroke-width="1.5"/>
+            <polygon points="186,26 196,32 186,38" fill="#cbd5e1"/>
+            <line x1="330" y1="32" x2="368" y2="32" stroke="#cbd5e1" stroke-width="1.5"/>
+            <polygon points="366,26 376,32 366,38" fill="#cbd5e1"/>
+            <text x="260" y="86" text-anchor="middle" fill="#64748b" font-size="10">5-10 min → 30s</text>
           </svg>
         </div>
       </div>
@@ -1016,7 +993,7 @@
 </section>
 
 <footer>
-  胡威 · 用 AI 编程工具搭建 · 0 手写代码 · 2026
+  胡威 · 用 AI 编程工具搭建 · 2026
 </footer>
 
 <script>
