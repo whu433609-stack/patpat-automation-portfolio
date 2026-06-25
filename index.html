@@ -3,29 +3,32 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PatPat 电商自动化体系 · 作品集</title>
+  <title>胡威 · AI 自动化落地作品集</title>
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
     /* ===== Reset & Base ===== */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     :root {
-      --bg: #0f172a;
-      --surface: #1e293b;
-      --surface-hover: #334155;
-      --border: #334155;
+      --bg: #0b1121;
+      --surface: #131c31;
+      --surface-raised: #182340;
+      --border: #1e2d4a;
+      --border-hover: #2d4a7a;
       --text: #e2e8f0;
-      --text-muted: #94a3b8;
+      --text-muted: #8899b4;
       --accent: #38bdf8;
-      --accent-dim: #0284c7;
+      --accent-glow: rgba(56,189,248,0.15);
       --green: #4ade80;
       --amber: #fbbf24;
       --rose: #fb7185;
+      --purple: #a78bfa;
       --radius: 12px;
-      --max-w: 960px;
+      --radius-sm: 8px;
+      --max-w: 1000px;
+      --card-shadow: 0 2px 12px rgba(0,0,0,0.3);
     }
-
     html { scroll-behavior: smooth; }
-
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans SC", "PingFang SC", sans-serif;
       background: var(--bg);
@@ -34,486 +37,755 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    /* ===== Hero ===== */
-    .hero {
-      text-align: center;
-      padding: 72px 24px 48px;
-      position: relative;
-      overflow: hidden;
-    }
-    .hero::before {
-      content: '';
-      position: absolute;
-      top: -40%;
-      left: 50%;
-      width: 600px;
-      height: 600px;
-      background: radial-gradient(circle, rgba(56,189,248,0.06) 0%, transparent 70%);
-      transform: translateX(-50%);
-      pointer-events: none;
-    }
-    .hero h1 {
-      font-size: 2.4rem;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      position: relative;
-    }
-    .hero h1 span { color: var(--accent); }
-    .hero .subtitle {
-      margin-top: 12px;
-      font-size: 1.1rem;
-      color: var(--text-muted);
-      max-width: 600px;
-      margin-inline: auto;
-      position: relative;
-    }
-    .hero .badge-row {
-      margin-top: 20px;
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-      justify-content: center;
-      position: relative;
-    }
-    .badge {
-      display: inline-block;
-      padding: 4px 14px;
-      border-radius: 20px;
-      font-size: 0.8rem;
-      font-weight: 500;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      color: var(--text-muted);
-    }
-    .badge.accent { background: rgba(56,189,248,0.12); border-color: rgba(56,189,248,0.2); color: var(--accent); }
-    .badge.green { background: rgba(74,222,128,0.12); border-color: rgba(74,222,128,0.2); color: var(--green); }
-    .badge.amber { background: rgba(251,191,36,0.12); border-color: rgba(251,191,36,0.2); color: var(--amber); }
-
-    .hero .highlight-box {
-      margin-top: 28px;
-      display: inline-block;
-      padding: 12px 24px;
-      background: linear-gradient(135deg, rgba(56,189,248,0.08), rgba(56,189,248,0.02));
-      border: 1px solid rgba(56,189,248,0.15);
-      border-radius: var(--radius);
-      font-size: 0.92rem;
-      color: var(--text-muted);
-      line-height: 1.6;
-      position: relative;
-    }
-    .hero .highlight-box strong { color: var(--accent); font-weight: 600; }
-
-    /* ===== Stats Strip ===== */
-    .stats-strip {
-      display: flex;
-      justify-content: center;
-      gap: 48px;
-      padding: 32px 24px;
-      border-top: 1px solid var(--border);
+    /* ===== Nav ===== */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      background: rgba(11,17,33,0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border);
-      flex-wrap: wrap;
-    }
-    .stat-item { text-align: center; }
-    .stat-item .num { font-size: 1.8rem; font-weight: 700; color: var(--accent); }
-    .stat-item .label { font-size: 0.82rem; color: var(--text-muted); margin-top: 2px; }
-
-    /* ===== Section ===== */
-    section { max-width: var(--max-w); margin: 0 auto; padding: 56px 24px; }
-    .section-title {
-      font-size: 1.4rem;
-      font-weight: 700;
-      margin-bottom: 8px;
+      padding: 0 24px;
+      height: 56px;
       display: flex;
       align-items: center;
-      gap: 10px;
+      justify-content: space-between;
     }
-    .section-title .icon { font-size: 1.4rem; }
+    nav .logo { font-size: 1rem; font-weight: 600; color: var(--accent); }
+    nav .nav-links { display: flex; gap: 20px; align-items: center; }
+    nav .nav-links a {
+      color: var(--text-muted); text-decoration: none; font-size: 0.85rem;
+      transition: color 0.2s;
+    }
+    nav .nav-links a:hover { color: var(--accent); }
+    nav .contact-btn {
+      padding: 6px 16px;
+      border-radius: 20px;
+      background: var(--accent);
+      color: var(--bg) !important;
+      font-weight: 600;
+      font-size: 0.82rem;
+      transition: opacity 0.2s;
+    }
+    nav .contact-btn:hover { opacity: 0.85; }
+
+    /* ===== Hero ===== */
+    .hero {
+      padding: 120px 24px 60px;
+      max-width: var(--max-w);
+      margin: 0 auto;
+      display: flex;
+      gap: 48px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .hero-left { flex: 1; min-width: 280px; }
+    .hero-left h1 {
+      font-size: 2.6rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+    }
+    .hero-left h1 span { color: var(--accent); }
+    .hero-left .headline {
+      margin-top: 16px;
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+    .hero-left .tagline {
+      margin-top: 20px;
+      display: inline-block;
+      padding: 10px 20px;
+      background: rgba(56,189,248,0.06);
+      border: 1px solid rgba(56,189,248,0.12);
+      border-radius: var(--radius);
+      font-size: 0.88rem;
+      color: var(--text-muted);
+    }
+    .hero-left .tagline strong { color: var(--accent); font-weight: 600; }
+
+    /* Avatar */
+    .hero-right { flex-shrink: 0; }
+    .avatar {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), var(--purple));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.8rem;
+      font-weight: 700;
+      color: #fff;
+      box-shadow: 0 0 40px rgba(56,189,248,0.15);
+    }
+
+    /* ===== Quick Info ===== */
+    .quick-info {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 24px 40px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+    }
+    .qi-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 16px;
+      text-align: center;
+    }
+    .qi-card .num { font-size: 1.5rem; font-weight: 700; color: var(--accent); display: block; }
+    .qi-card .label { font-size: 0.8rem; color: var(--text-muted); margin-top: 2px; display: block; }
+
+    /* ===== Section ===== */
+    section {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 48px 24px;
+    }
+    .section-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
     .section-desc {
       color: var(--text-muted);
       font-size: 0.92rem;
-      margin-bottom: 28px;
+      margin-bottom: 32px;
     }
 
-    /* ===== Project Card ===== */
-    .project-card {
+    /* ===== Project Card (collapsible) ===== */
+    .project {
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: var(--radius);
-      padding: 28px;
-      margin-bottom: 20px;
-      transition: border-color 0.2s, box-shadow 0.2s;
+      margin-bottom: 14px;
+      overflow: hidden;
+      transition: border-color 0.2s;
+      cursor: pointer;
     }
-    .project-card:hover {
-      border-color: rgba(56,189,248,0.25);
-      box-shadow: 0 4px 24px rgba(56,189,248,0.04);
-    }
-    .project-card h3 {
-      font-size: 1.1rem;
-      font-weight: 600;
+    .project:hover { border-color: var(--border-hover); }
+    .project.expanded { border-color: rgba(56,189,248,0.3); }
+
+    .project-header {
+      padding: 20px 24px;
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 16px;
+      position: relative;
     }
-    .project-card .meta {
+    .project-header .icon-box {
+      width: 42px; height: 42px;
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+    .project-header .icon-box.blue { background: rgba(56,189,248,0.12); }
+    .project-header .icon-box.green { background: rgba(74,222,128,0.12); }
+    .project-header .icon-box.amber { background: rgba(251,191,36,0.12); }
+    .project-header .icon-box.rose { background: rgba(251,113,133,0.12); }
+    .project-header .icon-box.purple { background: rgba(167,139,250,0.12); }
+
+    .project-header .info { flex: 1; }
+    .project-header .info h3 { font-size: 1rem; font-weight: 600; }
+    .project-header .info .sub-meta {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-top: 2px;
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .project-header .info .sub-meta .dot {
+      display: inline-block;
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      margin-right: 4px;
+    }
+    .project-header .info .sub-meta .dot.green { background: var(--green); }
+    .project-header .info .sub-meta .dot.amber { background: var(--amber); }
+    .project-header .info .sub-meta .dot.blue { background: var(--accent); }
+
+    .project-header .expand-icon {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      transition: transform 0.25s ease;
+    }
+    .project.expanded .expand-icon { transform: rotate(180deg); }
+
+    /* ===== Project Body ===== */
+    .project-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease, padding 0.3s ease;
+      padding: 0 24px;
+    }
+    .project.expanded .project-body {
+      max-height: 3000px;
+      padding: 0 24px 24px;
+    }
+    .project-body .body-section {
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+    }
+    .project-body .body-section:first-child { border-top: none; margin-top: 0; padding-top: 0; }
+    .project-body .body-label {
+      font-size: 0.78rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--accent-dim, var(--accent));
+      margin-bottom: 6px;
+    }
+    .project-body p, .project-body li {
+      font-size: 0.88rem;
+      color: var(--text);
+      line-height: 1.7;
+    }
+    .project-body ul { padding-left: 18px; }
+    .project-body ul li { margin-bottom: 4px; }
+    .project-body .result-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 10px;
       margin-top: 8px;
+    }
+    .project-body .result-item {
+      background: var(--surface-raised);
+      border-radius: var(--radius-sm);
+      padding: 12px 14px;
+      text-align: center;
+    }
+    .project-body .result-item .r-num {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--accent);
+      display: block;
+    }
+    .project-body .result-item .r-label {
+      font-size: 0.76rem;
+      color: var(--text-muted);
+    }
+    .project-body .tech-stack {
       display: flex;
       flex-wrap: wrap;
       gap: 6px;
+      margin-top: 8px;
     }
-    .project-card .meta .tag {
-      font-size: 0.75rem;
-      padding: 2px 10px;
+    .project-body .tech-stack span {
+      font-size: 0.76rem;
+      padding: 3px 12px;
       border-radius: 12px;
       background: rgba(56,189,248,0.08);
-      color: var(--accent-dim);
       border: 1px solid rgba(56,189,248,0.12);
-    }
-    .project-card .meta .tag.green { background: rgba(74,222,128,0.08); color: var(--green); border-color: rgba(74,222,128,0.12); }
-    .project-card .meta .tag.amber { background: rgba(251,191,36,0.08); color: var(--amber); border-color: rgba(251,191,36,0.12); }
-    .project-card .meta .tag.rose { background: rgba(251,113,133,0.08); color: var(--rose); border-color: rgba(251,113,133,0.12); }
-
-    .project-card .problem { margin-top: 12px; font-size: 0.9rem; color: var(--text-muted); }
-    .project-card .solution { margin-top: 6px; font-size: 0.9rem; color: var(--text); }
-    .project-card .systems { margin-top: 10px; display: flex; flex-wrap: wrap; gap: 6px; }
-    .project-card .systems .sys-tag {
-      font-size: 0.75rem;
-      padding: 2px 10px;
-      border-radius: 12px;
-      background: var(--bg);
-      color: var(--text-muted);
-      border: 1px solid var(--border);
+      color: var(--accent);
     }
 
-    /* ===== "How" Section ===== */
-    .how-grid {
+    /* ===== Skills ===== */
+    .skill-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 16px;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 14px;
     }
-    .how-card {
+    .skill-card {
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: var(--radius);
-      padding: 24px;
-      text-align: center;
+      padding: 20px;
     }
-    .how-card .emoji-icon { font-size: 2rem; margin-bottom: 8px; display: block; }
-    .how-card h4 { font-size: 0.95rem; font-weight: 600; }
-    .how-card p { font-size: 0.85rem; color: var(--text-muted); margin-top: 6px; }
+    .skill-card h4 { font-size: 0.9rem; font-weight: 600; margin-bottom: 6px; }
+    .skill-card p { font-size: 0.82rem; color: var(--text-muted); line-height: 1.6; }
+
+    /* ===== Bottom CTA ===== */
+    .bottom-cta {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 40px;
+      text-align: center;
+      margin-top: 32px;
+    }
+    .bottom-cta h3 { font-size: 1.2rem; font-weight: 700; }
+    .bottom-cta p { color: var(--text-muted); margin-top: 8px; font-size: 0.9rem; }
+    .bottom-cta .btns { margin-top: 20px; display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .bottom-cta .btns a {
+      display: inline-block;
+      padding: 10px 24px;
+      border-radius: 24px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.88rem;
+      transition: opacity 0.2s;
+    }
+    .bottom-cta .btns a.primary { background: var(--accent); color: var(--bg); }
+    .bottom-cta .btns a.outline { border: 1px solid var(--border); color: var(--text); }
+    .bottom-cta .btns a:hover { opacity: 0.8; }
 
     /* ===== Footer ===== */
     footer {
+      max-width: var(--max-w);
+      margin: 0 auto;
       text-align: center;
-      padding: 40px 24px;
-      border-top: 1px solid var(--border);
+      padding: 32px 24px;
       color: var(--text-muted);
-      font-size: 0.85rem;
+      font-size: 0.8rem;
+      border-top: 1px solid var(--border);
     }
-    footer a { color: var(--accent); text-decoration: none; }
-    footer a:hover { text-decoration: underline; }
 
     /* ===== Responsive ===== */
     @media (max-width: 640px) {
-      .hero h1 { font-size: 1.6rem; }
-      .stats-strip { gap: 24px; }
-      .stat-item .num { font-size: 1.4rem; }
-      .hero .highlight-box { font-size: 0.85rem; padding: 10px 16px; }
+      .hero { padding-top: 80px; }
+      .hero-left h1 { font-size: 1.7rem; }
+      .hero-right { display: none; }
+      .project-header { padding: 16px; }
+      .project.expanded .project-body { padding: 0 16px 16px; }
+      .bottom-cta { padding: 24px; }
     }
   </style>
 </head>
 <body>
 
-<!-- ==================== HERO ==================== -->
-<header class="hero">
-  <h1>电商自动化体系 · <span>作品集</span></h1>
-  <p class="subtitle">
-    用 AI 编程工具从零搭建，覆盖订单、库存、客服、社媒、风控的<br>跨境电商全链路自动化
-  </p>
-  <div class="badge-row">
-    <span class="badge accent">📦 11+ 自动化系统</span>
-    <span class="badge green">⚡ 全链路覆盖</span>
-    <span class="badge">🤖 0 代码 · AI 编程</span>
-    <span class="badge amber">🕐 7×24 运行</span>
+<!-- ===== NAV ===== -->
+<nav>
+  <div class="logo">胡威 · Portfolio</div>
+  <div class="nav-links">
+    <a href="#projects">项目</a>
+    <a href="#about">关于我</a>
+    <a href="#contact" class="contact-btn">联系我</a>
   </div>
-  <div class="highlight-box">
-    <strong>不会写代码</strong> · 全部通过自然语言对话让 AI 编程工具生成并维护
-  </div>
-</header>
+</nav>
 
-<!-- ==================== STATS ==================== -->
-<div class="stats-strip">
-  <div class="stat-item"><div class="num">11+</div><div class="label">自动化系统</div></div>
-  <div class="stat-item"><div class="num">5 min</div><div class="label">最短巡检间隔</div></div>
-  <div class="stat-item"><div class="num">8</div><div class="label">对接外部系统</div></div>
-  <div class="stat-item"><div class="num">0</div><div class="label">手写代码</div></div>
+<!-- ===== HERO ===== -->
+<div class="hero">
+  <div class="hero-left">
+    <h1>用 AI <span>落地自动化</span></h1>
+    <p class="headline">
+      2 年 AI 自动化落地经验 · 独立交付 5+ 生产级 Agent 系统<br>
+      <span style="color:var(--accent);font-weight:600;">0 手写代码</span> · 全部通过 AI 编程工具完成
+    </p>
+    <div class="tagline">
+      <strong>求职意向：</strong>AI 落地工程师 / AI Agent 工程师
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="avatar">HW</div>
+  </div>
 </div>
 
-<!-- ==================== PROJECTS ==================== -->
-<section>
-  <h2 class="section-title"><span class="icon">📋</span> 自动化项目总览</h2>
-  <p class="section-desc">以下所有系统均在 PatPat.com 电商业务中实际运行，使用 AI 编程工具完成。</p>
+<!-- ===== QUICK INFO ===== -->
+<div class="quick-info">
+  <div class="qi-card"><span class="num">5+</span><span class="label">生产级 Agent 系统</span></div>
+  <div class="qi-card"><span class="num">11+</span><span class="label">自动化项目</span></div>
+  <div class="qi-card"><span class="num">8</span><span class="label">对接外部系统</span></div>
+  <div class="qi-card"><span class="num">0</span><span class="label">手写代码</span></div>
+  <div class="qi-card"><span class="num">2年</span><span class="label">AI 落地经验</span></div>
+</div>
 
-  <!-- 1. 拆单自动化 -->
-  <div class="project-card">
-    <h3>🗂️ 1. G+ 拆单自动化</h3>
-    <div class="meta">
-      <span class="tag">Node.js</span>
-      <span class="tag">Playwright</span>
-      <span class="tag green">⏱ 定时运行</span>
+<!-- ===== PROJECTS ===== -->
+<section id="projects">
+  <h2 class="section-title">📋 核心项目</h2>
+  <p class="section-desc">点击项目展开查看完整内容 — 成果数据、实现逻辑、工作记录</p>
+
+  <!-- 项目 1: AI邮件自动生成 -->
+  <div class="project" onclick="toggleProject(this)">
+    <div class="project-header">
+      <div class="icon-box blue"><i class="fas fa-envelope-open-text"></i></div>
+      <div class="info">
+        <h3>AI 邮件自动生成与智能跟进系统</h3>
+        <div class="sub-meta">
+          <span><span class="dot green"></span>已上线运行</span>
+          <span>2026.04 - 2026.05</span>
+          <span>Python · Intercom · Shopify · 飞书Base</span>
+        </div>
+      </div>
+      <span class="expand-icon"><i class="fas fa-chevron-down"></i></span>
     </div>
-    <div class="problem">❓ 之前：G+ 异常订单需要人工判断是否拆单、手动操作拆单流程，耗时且易出错。</div>
-    <div class="solution">✅ 之后：自动从数据库拉取异常订单 → 库存匹配运算 → 生成拆单方案 → 自动打开浏览器执行拆单 → 结果回填飞书表格。</div>
-    <div class="systems">
-      <span class="sys-tag">G+ 平台</span>
-      <span class="sys-tag">MySQL</span>
-      <span class="sys-tag">飞书表格</span>
-      <span class="sys-tag">Playwright</span>
+    <div class="project-body">
+
+      <div class="body-section">
+        <div class="body-label">🎯 业务背景 & 痛点</div>
+        <p>跨境电商平台每日产生大量物流异常订单（海关查验、运输延误、地址异常等），原流程需外包客服逐条登录 Intercom 手动编写英文邮件发送给客户，再回填 Case ID 至飞书表格。每单约 15-20 分钟，日处理量约 15 单，存在漏跟、晚跟、回复质量不一致等问题，人力成本高。</p>
+      </div>
+
+      <div class="body-section">
+        <div class="body-label">⚙️ 我是怎么实现的</div>
+        <ul>
+          <li><strong>业务规则数字化：</strong>将人工客服决策链路（Solution 状态分流、Intercom 去重、敏感词审核、退款拦截）拆解为结构化决策树，通过 Prompt 引导 AI 生成精确的分流代码</li>
+          <li><strong>两级 Prompt 设计：</strong>第一级从 Solution 中强制提取客户可见事实，过滤内部指令；第二级套用历史客服模板润色，确保信息准确且语气专业，支持英/法/西/德四语自适应</li>
+          <li><strong>跨系统集成：</strong>飞书 Base 数据读写、Shopify Admin GraphQL 订单查询、Intercom REST API 邮件发送——三个系统数据无缝流转</li>
+          <li><strong>灰度上线四层门控：</strong>dry-run → 测试环境 → 测试发送 → 正式上线，所有自动化项目上线零事故</li>
+        </ul>
+      </div>
+
+      <div class="body-section">
+        <div class="body-label">📊 成果</div>
+        <div class="result-grid">
+          <div class="result-item"><span class="r-num">15→0</span><span class="r-label">人工处理/单</span></div>
+          <div class="result-item"><span class="r-num">30%</span><span class="r-label">释放人力</span></div>
+          <div class="result-item"><span class="r-num">10+</span><span class="r-label">物流场景覆盖</span></div>
+          <div class="result-item"><span class="r-num">4</span><span class="r-label">语言自动适配</span></div>
+        </div>
+      </div>
+
+      <div class="body-section">
+        <div class="body-label">📝 工作记录摘录</div>
+        <p style="color:var(--text-muted); font-size:0.85rem; border-left:3px solid var(--border); padding-left:14px; margin-top:4px;">
+          "用户提出总体需求：做一个总 Agent，分为两部分……围绕第一部分，明确了基础业务背景：物流异常订单会进入表格，物流团队填写 Issues，客服填写 Solution……过去由外包人员根据 Solution 通过 Intercom 写邮件给客户……用户希望用 AI 实现这部分自动化"<br>
+          <span style="font-size:0.78rem;">— work_log.md, 2026-05-07</span>
+        </p>
+      </div>
+
     </div>
   </div>
 
-  <!-- 2. 缺货订单自动化排查 -->
-  <div class="project-card">
-    <h3>📦 2. 缺货订单自动化排查</h3>
-    <div class="meta">
-      <span class="tag">Python</span>
-      <span class="tag amber">⏱ 每天 09:00 / 14:00 / 17:00</span>
+  <!-- 项目 2: 自动化巡检Agent -->
+  <div class="project" onclick="toggleProject(this)">
+    <div class="project-header">
+      <div class="icon-box green"><i class="fas fa-robot"></i></div>
+      <div class="info">
+        <h3>自动化巡检与飞书预警智能 Agent</h3>
+        <div class="sub-meta">
+          <span><span class="dot green"></span>已上线运行</span>
+          <span>2026.05 - 至今</span>
+          <span>Python · 飞书 · launchd · Web 控制台</span>
+        </div>
+      </div>
+      <span class="expand-icon"><i class="fas fa-chevron-down"></i></span>
     </div>
-    <div class="problem">❓ 之前：客服每天人工查两个系统的缺货订单，整理 Excel、手动发邮件、容易漏单。</div>
-    <div class="solution">✅ 之后：自动从 G+ 异常订单和 WMS 待发货订单识别<strong>真正缺货</strong>的订单（区分中美库存逻辑），同步飞书，自动高亮优先级，定时邮件通知。</div>
-    <div class="systems">
-      <span class="sys-tag">G+ 平台</span>
-      <span class="sys-tag">WMS 仓储</span>
-      <span class="sys-tag">飞书多维表格</span>
-      <span class="sys-tag">邮件</span>
+    <div class="project-body">
+
+      <div class="body-section">
+        <div class="body-label">🎯 业务背景 & 痛点</div>
+        <p>随着业务自动化项目持续增多，各类自动化任务独立运行、无统一监控入口，任务故障、停运问题无法及时感知——自动化"跑起来"但"没人盯着"，长期存在运维盲区。</p>
+      </div>
+
+      <div class="body-section">
+        <div class="body-label">⚙️ 我是怎么实现的</div>
+        <ul>
+          <li><strong>智能巡检核心：</strong>基于 macOS launchd 搭建常驻巡检 Agent，每 5 分钟扫描全量自动化日志，智能校验执行状态（成功/失败/未运行）</li>
+          <li><strong>故障智能分类：</strong>Agent 自主识别网络超时、权限过期、第三方接口异常、脚本语法错误等故障类型，匹配对应标准化处理方案</li>
+          <li><strong>自愈机制：</strong>对可自愈的失败类型自动触发补跑，结果回报飞书；不可自愈的即时告警</li>
+          <li><strong>飞书联动：</strong>自动汇总数据写入飞书"自动化巡检"表格，18:30 推送日报，支持自然语言交互查询和补跑指令</li>
+          <li><strong>Web 控制台：</strong>搭建本地仪表盘，展示所有自动化任务运行详情和资产台账，运维状态透明</li>
+        </ul>
+      </div>
+
+      <div class="body-section">
+        <div class="body-label">📊 成果</div>
+        <div class="result-grid">
+          <div class="result-item"><span class="r-num">5 min</span><span class="r-label">巡检间隔</span></div>
+          <div class="result-item"><span class="r-num">数天→实时</span><span class="r-label">故障发现周期</span></div>
+          <div class="result-item"><span class="r-num">17</span><span class="r-label">纳管任务数</span></div>
+          <div class="result-item"><span class="r-num">0</span><span class="r-label">手写代码</span></div>
+        </div>
+      </div>
+
+      <div class="body-section">
+        <div class="body-label">📝 工作记录</div>
+        <p style="color:var(--text-muted); font-size:0.85rem; border-left:3px solid var(--border); padding-left:14px; margin-top:4px;">
+          系统日志已积累 6400+ 行运行记录，注册表中 17 个自动化任务处于统一管控中，Web 控制台页面可查看每个任务的 plist 配置、PID、退出状态、日志路径等信息。
+        </p>
+      </div>
+
     </div>
   </div>
 
-  <!-- 3. CS Task 缺货自动跟进 -->
-  <div class="project-card">
-    <h3>💬 3. CS Task 缺货自动跟进</h3>
-    <div class="meta">
-      <span class="tag">Python</span>
-      <span class="tag amber">⏱ 每 90 分钟</span>
+  <!-- 项目 3: 风控判定引擎 -->
+  <div class="project" onclick="toggleProject(this)">
+    <div class="project-header">
+      <div class="icon-box amber"><i class="fas fa-shield-halved"></i></div>
+      <div class="info">
+        <h3>Shopify 订单风控判定引擎</h3>
+        <div class="sub-meta">
+          <span><span class="dot green"></span>已上线运行</span>
+          <span>2026.03 - 2026.06</span>
+          <span>Python · LLM · Shopify · Playwright</span>
+        </div>
+      </div>
+      <span class="expand-icon"><i class="fas fa-chevron-down"></i></span>
     </div>
-    <div class="problem">❓ 之前：客服工单中的缺货问题需要人工分类、查库存、写邮件回复客户，流程繁琐。</div>
-    <div class="solution">✅ 之后：自动分类识别缺货工单 → 查 Shopify 客户信息 → 自动生成并发送 Intercom 邮件 → 24h 检测回复 → 未回复二次跟进或转人工。每小时刷新存量状态。</div>
-    <div class="systems">
-      <span class="sys-tag">飞书 Base</span>
-      <span class="sys-tag">Shopify</span>
-      <span class="sys-tag">Intercom</span>
-      <span class="sys-tag">值班表</span>
+    <div class="project-body">
+
+      <div class="body-section">
+        <div class="body-label">🎯 业务背景 & 痛点</div>
+        <p>跨境电商 DTC 场景中，信用卡盗刷、转运仓批量下单、身份伪造等欺诈行为频发。原风控流程依赖运营人员逐单登录 Shopify 后台查看风险等级、手动核查地址和 IP 信息，每单 10-15 分钟，判断标准不统一，漏判时有发生。</p>
+      </div>
+
+      <div class="body-section">
+        <div class="body-label">⚙️ 我是怎么实现的</div>
+        <ul>
+          <li><strong>7 路并行数据采集：</strong>Shopify 订单 / IP 地理定位 / 邮箱信誉与社交档案 / 地址地理编码与深查 / 身份交叉验证 / 电话验证——任一采集失败不影响整体判定，15-30 秒输出结论</li>
+          <li><strong>硬规则引擎：</strong>业务风控策略代码化为确定性规则——历史欺诈关联订单直接拦截、Shopify high risk 自动拦截、$0 订单+多件商品拦截</li>
+          <li><strong>10 维评分模型：</strong>价格异常、历史欺诈、身份弱信号、地址异常、IP 风险、商品结构、支付验证、行为特征、排重关联、综合信号——输出 0-100 风险分</li>
+          <li><strong>LLM 深层研判：</strong>识别"一次性邮箱+转运仓地址+首单+高价值"等多信号组合，区分 VPN 出差等误报与真实欺诈</li>
+          <li><strong>Agent 主动补查：</strong>中高风险自动触发 Google 街景验证和身份搜索，采集实景证据辅助判断</li>
+          <li><strong>三级决策融合：</strong>硬规则 > LLM 研判 > 评分模型，支持 PASS/REVIEW/REVIEW_BLOCK/BLOCK 四档决策</li>
+        </ul>
+      </div>
+
+      <div class="body-section">
+        <div class="body-label">📊 成果</div>
+        <div class="result-grid">
+          <div class="result-item"><span class="r-num">95%</span><span class="r-label">效率提升</span></div>
+          <div class="result-item"><span class="r-num">15-30s</span><span class="r-label">单笔判定</span></div>
+          <div class="result-item"><span class="r-num">10</span><span class="r-label">判定维度</span></div>
+          <div class="result-item"><span class="r-num">7路</span><span class="r-label">并行数据源</span></div>
+        </div>
+      </div>
+
     </div>
   </div>
 
-  <!-- 4. 异常订单 AI 邮件自动跟进 -->
-  <div class="project-card">
-    <h3>✉️ 4. 异常订单 AI 邮件自动跟进</h3>
-    <div class="meta">
-      <span class="tag">Python</span>
-      <span class="tag">AI 生成</span>
-      <span class="tag amber">⏱ 每小时</span>
+  <!-- 项目 4: G+ 拆单自动化 -->
+  <div class="project" onclick="toggleProject(this)">
+    <div class="project-header">
+      <div class="icon-box rose"><i class="fas fa-scissors"></i></div>
+      <div class="info">
+        <h3>G+ 拆单自动化</h3>
+        <div class="sub-meta">
+          <span><span class="dot green"></span>已上线运行</span>
+          <span>2026.06</span>
+          <span>Node.js · Playwright · MySQL · 飞书</span>
+        </div>
+      </div>
+      <span class="expand-icon"><i class="fas fa-chevron-down"></i></span>
     </div>
-    <div class="problem">❓ 之前：异常订单需要客服手动编写、审核、发送邮件，漏跟延跟频繁。</div>
-    <div class="solution">✅ 之后：飞书 Base 读取异常订单 → 自动分流 → Intercom 搜索客服记录 → AI 自动生成邮件草稿 → 审核后自动发送 → 24h 检测回复状态 → 未回复二次跟进。</div>
-    <div class="systems">
-      <span class="sys-tag">飞书 Base</span>
-      <span class="sys-tag">Intercom</span>
-      <span class="sys-tag">Shopify</span>
-      <span class="sys-tag">AI 模型</span>
+    <div class="project-body">
+
+      <div class="body-section">
+        <div class="body-label">🎯 业务背景 & 痛点</div>
+        <p>G+ 平台异常订单需要人工判断是否拆单，再手动在浏览器中操作拆单——步骤繁琐、耗时长、容易出错。</p>
+      </div>
+
+      <div class="body-section">
+        <div class="body-label">⚙️ 我是怎么实现的</div>
+        <ul>
+          <li><strong>接口层鉴权：</strong>自动登录 G+ 并缓存接口鉴权凭证，无需人工维护</li>
+          <li><strong>拆单计划引擎：</strong>自动从 MySQL 拉取异常订单 → 库存匹配运算 → 生成拆单方案 →写入飞书表格</li>
+          <li><strong>Playwright 自动化执行：</strong>自动打开浏览器，对状态为"待拆"的订单执行拆单操作</li>
+          <li><strong>结果回填：</strong>拆单成功/失败/原因自动写回飞书，可追溯可审计</li>
+          <li><strong>三阶段链路：</strong>bootstrap:auth（鉴权）→ plan:inventory（计划）→ run:sheet-queue（执行）</li>
+        </ul>
+      </div>
+
     </div>
   </div>
 
-  <!-- 5. Meta 评论 AI 回复 -->
-  <div class="project-card">
-    <h3>📱 5. Meta 评论 AI 回复自动化</h3>
-    <div class="meta">
-      <span class="tag">Python</span>
-      <span class="tag">Meta Graph API</span>
-      <span class="tag">AI 分类</span>
+  <!-- 项目 5: 缺货订单自动化 -->
+  <div class="project" onclick="toggleProject(this)">
+    <div class="project-header">
+      <div class="icon-box blue"><i class="fas fa-box-open"></i></div>
+      <div class="info">
+        <h3>缺货订单自动化双源排查系统</h3>
+        <div class="sub-meta">
+          <span><span class="dot green"></span>已上线运行</span>
+          <span>2026.04 - 至今</span>
+          <span>Python · G+ · WMS · 飞书 · Excel</span>
+        </div>
+      </div>
+      <span class="expand-icon"><i class="fas fa-chevron-down"></i></span>
     </div>
-    <div class="problem">❓ 之前：Facebook/Instagram 客户评论人工一条条看、一条条回复，效率极低。</div>
-    <div class="solution">✅ 之后：通过 Meta Graph API 自动拉取评论 → AI 理解并分类（咨询/投诉/好评等） → 生成建议回复 → 写入飞书 → 人工确认后发出。</div>
-    <div class="systems">
-      <span class="sys-tag">Meta Graph API</span>
-      <span class="sys-tag">飞书多维表格</span>
-      <span class="sys-tag">AI 模型</span>
-      <span class="sys-tag">Webhook</span>
+    <div class="project-body">
+
+      <div class="body-section">
+        <div class="body-label">🎯 业务背景 & 痛点</div>
+        <p>G+ 里会出现异常订单，但并非每个异常订单都真的缺货，需要人工再查库存。WMS 里也有待发货/分拣中的异常缺货单，没有统一到一个流程。人工每天反复查系统、整理 Excel、发邮件、回填飞书，效率低且容易漏。</p>
+      </div>
+
+      <div class="body-section">
+        <div class="body-label">⚙️ 我是怎么实现的</div>
+        <ul>
+          <li><strong>G+ 缺货识别：</strong>从 G+ 异常订单抓取候选订单和 SKU 明细 → 查真实库存 → 按收货国家区分缺货逻辑（美国/非美国不同规则）</li>
+          <li><strong>WMS 补充排查：</strong>从 WMS 筛出待发货/分拣中订单 → 找预锁定库存为 0 的 SKU → 补充 G+ 平台订单号等信息</li>
+          <li><strong>二次复核：</strong>"异常单"不等于"缺货单"，双重逻辑过滤减少误报</li>
+          <li><strong>飞书同步：</strong>自动写入飞书多维表格，高亮优先级，维护待处理/已处理状态</li>
+          <li><strong>定时调度：</strong>每天 09:00 / 14:00 / 17:00 自动运行，邮件摘要通知</li>
+        </ul>
+      </div>
+
+      <div class="body-section">
+        <div class="body-label">📊 成果</div>
+        <div class="result-grid">
+          <div class="result-item"><span class="r-num">3次/天</span><span class="r-label">自动运行</span></div>
+          <div class="result-item"><span class="r-num">90%</span><span class="r-label">人力节省</span></div>
+          <div class="result-item"><span class="r-num">双源</span><span class="r-label">G+ & WMS</span></div>
+          <div class="result-item"><span class="r-num">2层</span><span class="r-label">误报过滤</span></div>
+        </div>
+      </div>
+
     </div>
   </div>
 
-  <!-- 6. 标发失败检测 -->
-  <div class="project-card">
-    <h3>🏷️ 6. 标发失败检测（Mark Ship Alert）</h3>
-    <div class="meta">
-      <span class="tag">Python</span>
-      <span class="tag amber">⏱ 每天 09:00 / 17:00</span>
+  <!-- 项目 6: CS Task 缺货自动跟进 -->
+  <div class="project" onclick="toggleProject(this)">
+    <div class="project-header">
+      <div class="icon-box purple"><i class="fas fa-message"></i></div>
+      <div class="info">
+        <h3>CS Task 缺货自动跟进系统</h3>
+        <div class="sub-meta">
+          <span><span class="dot green"></span>已上线运行</span>
+          <span>2026.05 - 至今</span>
+          <span>Python · Intercom · Shopify · 飞书Base</span>
+        </div>
+      </div>
+      <span class="expand-icon"><i class="fas fa-chevron-down"></i></span>
     </div>
-    <div class="problem">❓ 之前：标发失败的订单需要人工逐个排查，跨系统比对，容易遗漏。</div>
-    <div class="solution">✅ 之后：自动查询 G+ 数据库标发失败订单 → 交叉比对 Shopify 发货状态 → 过滤真正需要处理的订单 → 发送预警邮件。支持 PatPat + Mamazing 双店铺。支持健康检查、日志查询。</div>
-    <div class="systems">
-      <span class="sys-tag">G+ 数据库</span>
-      <span class="sys-tag">Shopify</span>
-      <span class="sys-tag">邮件</span>
+    <div class="project-body">
+
+      <div class="body-section">
+        <div class="body-label">🎯 业务背景 & 痛点</div>
+        <p>客服工单中的缺货问题需要人工分类、查库存、写邮件回复客户，流程繁琐且效率低。</p>
+      </div>
+
+      <div class="body-section">
+        <div class="body-label">⚙️ 我是怎么实现的</div>
+        <ul>
+          <li><strong>三段 Pipeline：</strong>分类（classify）→ 首封发送（send）→ 跟进（followup），每小时全自动执行</li>
+          <li><strong>自动分类：</strong>识别缺货工单 vs 非缺货，非缺货直接分配值班人员</li>
+          <li><strong>邮件生成与发送：</strong>查 Shopify 获取客户邮箱 → 自动生成邮件 → 通过 Intercom 发送</li>
+          <li><strong>24h 跟进检测：</strong>检测客户是否回复，未回复则二次跟进或转人工</li>
+          <li><strong>安全机制：</strong>正式/测试环境独立 state，硬性时间闸门（2026-05-27 前创建的任务不处理），正式写表/发信独立开关控制</li>
+        </ul>
+      </div>
+
     </div>
   </div>
 
-  <!-- 7. Shopify 退款率周报 -->
-  <div class="project-card">
-    <h3>📊 7. Shopify 退款率周报自动化</h3>
-    <div class="meta">
-      <span class="tag">Python</span>
-      <span class="tag green">⏱ 每周</span>
+  <!-- 项目 7: Meta 评论 AI 回复 -->
+  <div class="project" onclick="toggleProject(this)">
+    <div class="project-header">
+      <div class="icon-box green"><i class="fas fa-comments"></i></div>
+      <div class="info">
+        <h3>Meta 社媒评论 AI 回复系统</h3>
+        <div class="sub-meta">
+          <span><span class="dot green"></span>已上线运行</span>
+          <span>2026.06</span>
+          <span>Python · Meta Graph API · 飞书 · LLM</span>
+        </div>
+      </div>
+      <span class="expand-icon"><i class="fas fa-chevron-down"></i></span>
     </div>
-    <div class="problem">❓ 之前：每周需要手工拉取 Shopify 订单数据做退款率分析，耗时且口径不统一。</div>
-    <div class="solution">✅ 之后：自动按退款发生周统计退款金额率，两周对比分析，生成完整 Excel 报表（含退款原因分类、取消原因分类、事件明细），支持权限不足时自动降级。</div>
-    <div class="systems">
-      <span class="sys-tag">Shopify GraphQL API</span>
-      <span class="sys-tag">Excel 报表</span>
+    <div class="project-body">
+
+      <div class="body-section">
+        <div class="body-label">🎯 业务背景 & 痛点</div>
+        <p>Facebook/Instagram 客户评论人工一条条看、一条条回复，效率极低（每单 5-10 分钟），容易漏回。</p>
+      </div>
+
+      <div class="body-section">
+        <div class="body-label">⚙️ 我是怎么实现的</div>
+        <ul>
+          <li><strong>Meta Graph API 评论拉取：</strong>支持 Facebook 和 Instagram 双渠道，按时间范围导出</li>
+          <li><strong>五级语义分类：</strong>AI 自动分类为咨询/投诉/好评/退换货/其他</li>
+          <li><strong>商品检索推荐：</strong>自动搜索 PatPat 商品库，匹配相关商品推荐</li>
+          <li><strong>飞书审核流：</strong>建议回复写入飞书多维表格 → 人工确认后发出，不向 Meta 客户直接发送</li>
+          <li><strong>效率：</strong>人工 5-10 分钟 → AI 30 秒生成建议</li>
+        </ul>
+      </div>
+
     </div>
   </div>
 
-  <!-- 8. 飞书 DeepSeek AI 机器人 -->
-  <div class="project-card">
-    <h3>🤖 8. 飞书 DeepSeek AI 机器人</h3>
-    <div class="meta">
-      <span class="tag">Python</span>
-      <span class="tag">DeepSeek</span>
-      <span class="tag">WebSocket</span>
-      <span class="tag">SQLite</span>
-      <span class="tag green">⏱ 每天 10:00 / 14:00</span>
+  <!-- 项目 8: 其他 -->
+  <div class="project" onclick="toggleProject(this)">
+    <div class="project-header">
+      <div class="icon-box amber"><i class="fas fa-gears"></i></div>
+      <div class="info">
+        <h3>其他已上线项目</h3>
+        <div class="sub-meta">
+          <span><span class="dot green"></span>均已上线运行</span>
+          <span>Python / Shell</span>
+        </div>
+      </div>
+      <span class="expand-icon"><i class="fas fa-chevron-down"></i></span>
     </div>
-    <div class="problem">❓ 之前：运营数据分散在多个系统，同事查询订单信息需要切换多个后台。</div>
-    <div class="solution">✅ 之后：飞书 IM 机器人，支持 DeepSeek 对话、订单查询、多 Agent 调度、定时关心消息。与巡检系统联动——飞书问"今天自动化情况"立即汇总；说"补跑一下缺货自动化"即可执行。</div>
-    <div class="systems">
-      <span class="sys-tag">飞书 IM</span>
-      <span class="sys-tag">DeepSeek API</span>
-      <span class="sys-tag">WebSocket</span>
-      <span class="sys-tag">SQLite</span>
-    </div>
-  </div>
+    <div class="project-body">
 
-  <!-- 9. 自动化巡检与告警 -->
-  <div class="project-card">
-    <h3>🔍 9. 自动化巡检与告警系统</h3>
-    <div class="meta">
-      <span class="tag">Python</span>
-      <span class="tag">launchd</span>
-      <span class="tag amber">⏱ 每 5 分钟 / 每天 18:30</span>
-    </div>
-    <div class="problem">❓ 之前：多套自动化跑起来后，没人盯着——运行失败、没跑、挂了没人知道。</div>
-    <div class="solution">✅ 之后：每 5 分钟实时检测所有自动化，发现失败立即飞书告警。自动分类失败原因（网络/权限/第三方接口/脚本异常），可自愈的自动补跑。每天 18:30 汇总日报。支持飞书即时查询和补跑指令。</div>
-    <div class="systems">
-      <span class="sys-tag">飞书</span>
-      <span class="sys-tag">launchd</span>
-      <span class="sys-tag">日志分析</span>
-      <span class="sys-tag">Web 管理页面</span>
-    </div>
-  </div>
+      <div class="body-section">
+        <div class="body-label">🏷️ 标发失败检测（Mark Ship Alert）</div>
+        <p>自动查询 G+ 数据库标发失败订单 → 交叉比对 Shopify 发货状态 → 过滤出真正需要手动处理的订单 → 发送预警邮件。支持 PatPat + Mamazing 双店铺，每天 09:00 / 17:00 定时运行，支持健康检查、日志查询。</p>
+        <div class="tech-stack"><span>Python</span><span>G+ 数据库</span><span>Shopify</span><span>邮件</span></div>
+      </div>
 
-  <!-- 10. 电商数据爬虫 -->
-  <div class="project-card">
-    <h3>📈 10. 电商数据爬虫与分析</h3>
-    <div class="meta">
-      <span class="tag">Python</span>
-      <span class="tag">Selenium</span>
-      <span class="tag">Pandas</span>
-    </div>
-    <div class="problem">❓ 之前：竞品销量和价格数据手工收集，无法批量对比分析。</div>
-    <div class="solution">✅ 之后：自动爬取商品数据（多关键词搜索、自动滚动、反爬处理） → 自动生成分析报告和可视化图表。</div>
-    <div class="systems">
-      <span class="sys-tag">Selenium</span>
-      <span class="sys-tag">Pandas</span>
-      <span class="sys-tag">Matplotlib</span>
-      <span class="sys-tag">CSV/Excel</span>
-    </div>
-  </div>
+      <div class="body-section">
+        <div class="body-label">📊 Shopify 退款率周报自动化</div>
+        <p>按退款发生周输出退款金额率，两周对比分析，生成完整 Excel 报表（含退款原因分类、取消原因分类、事件明细），支持权限降级回退。</p>
+        <div class="tech-stack"><span>Python</span><span>Shopify GraphQL</span><span>Excel</span></div>
+      </div>
 
-  <!-- 11. Intercom 配套 -->
-  <div class="project-card">
-    <h3>🔗 11. 其他配套自动化</h3>
-    <div class="meta">
-      <span class="tag rose">Intercom 数据同步</span>
-      <span class="tag rose">Mamazing 到货提醒</span>
-      <span class="tag rose">缺货便携安装包</span>
-    </div>
-    <div class="solution">✅ Intercom 客服数据自动同步到飞书多维表格 · Mamazing 品牌到货提醒自动拉取并邮件报告 · 缺货自动化整包为标准 skill，其他电脑一键安装运行。</div>
-    <div class="systems">
-      <span class="sys-tag">Intercom</span>
-      <span class="sys-tag">飞书</span>
-      <span class="sys-tag">邮件</span>
+      <div class="body-section">
+        <div class="body-label">🤖 飞书 DeepSeek AI 机器人</div>
+        <p>飞书 IM 机器人集成 DeepSeek 对话、订单查询、多 Agent 调度、定时关心消息。与巡检系统联动——飞书问"今天自动化情况"立即汇总；说"补跑一下"即可执行。</p>
+        <div class="tech-stack"><span>Python</span><span>飞书 IM</span><span>DeepSeek</span><span>WebSocket</span><span>SQLite</span></div>
+      </div>
+
+      <div class="body-section">
+        <div class="body-label">📈 电商数据爬虫与分析</div>
+        <p>自动爬取 PatPat 商品数据 → 统计分析 → CSV / Excel / 可视化图表多格式输出。</p>
+        <div class="tech-stack"><span>Python</span><span>Selenium</span><span>Pandas</span><span>Matplotlib</span></div>
+      </div>
+
     </div>
   </div>
 
 </section>
 
-<!-- ==================== SYSTEMS ==================== -->
-<section>
-  <h2 class="section-title"><span class="icon">🔌</span> 对接的外部系统</h2>
-  <p class="section-desc">这些自动化系统之间的数据流动和协作关系。</p>
+<!-- ===== ABOUT ===== -->
+<section id="about">
+  <h2 class="section-title">👤 关于我</h2>
+  <p class="section-desc">胡威 · 23 岁 · 湖南衡阳 · 19075348957 · 3422432910@qq.com</p>
 
-  <div style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: center;">
-    <span class="badge accent" style="font-size:0.88rem; padding:6px 18px;">Shopify</span>
-    <span class="badge accent" style="font-size:0.88rem; padding:6px 18px;">Intercom</span>
-    <span class="badge accent" style="font-size:0.88rem; padding:6px 18px;">飞书 Base</span>
-    <span class="badge accent" style="font-size:0.88rem; padding:6px 18px;">飞书 IM</span>
-    <span class="badge accent" style="font-size:0.88rem; padding:6px 18px;">飞书多维表格</span>
-    <span class="badge accent" style="font-size:0.88rem; padding:6px 18px;">G+ 平台</span>
-    <span class="badge accent" style="font-size:0.88rem; padding:6px 18px;">WMS 仓储</span>
-    <span class="badge accent" style="font-size:0.88rem; padding:6px 18px;">Meta Graph API</span>
-    <span class="badge accent" style="font-size:0.88rem; padding:6px 18px;">MySQL</span>
-    <span class="badge accent" style="font-size:0.88rem; padding:6px 18px;">DeepSeek API</span>
-    <span class="badge accent" style="font-size:0.88rem; padding:6px 18px;">SMTP 邮件</span>
+  <div class="skill-grid">
+    <div class="skill-card">
+      <h4>🎓 教育</h4>
+      <p>湖南科技学院 · 国际经济与贸易（本科）<br>2020.10 - 2024.06</p>
+    </div>
+    <div class="skill-card">
+      <h4>💼 工作经历</h4>
+      <p>
+        <strong>深圳盈富斯（PatPat）</strong> · AI 训练师<br>2025.06 - 至今<br><br>
+        <strong>深圳智汇创想</strong> · AI 训练师<br>2024.06 - 2025.04
+      </p>
+    </div>
+    <div class="skill-card">
+      <h4>🛠️ 核心技能</h4>
+      <p>Claude Code / Codex / Cursor（AI 驱动开发）· 自动化脚本与工作流 · Prompt Engineering · RAG 知识库 · Agent 工作流设计 · 飞书 Base 与机器人开发 · 主流大模型 API 调用与选型 · Intercom 搭建</p>
+    </div>
+    <div class="skill-card">
+      <h4>🎯 求职方向</h4>
+      <p>AI 落地工程师 / AI Agent 工程师<br>具备从需求识别到方案设计、开发落地、上线运营的全流程独立交付能力。</p>
+    </div>
   </div>
-</section>
 
-<!-- ==================== HOW ==================== -->
-<section>
-  <h2 class="section-title"><span class="icon">🛠️</span> 我是怎么做的</h2>
-  <p class="section-desc">一个"不会写代码的人"如何交付这些自动化系统。</p>
-
-  <div class="how-grid">
-    <div class="how-card">
-      <span class="emoji-icon">🗣️</span>
-      <h4>自然语言编程</h4>
-      <p>用中文描述需求，AI 生成完整代码。我不写一行代码。</p>
-    </div>
-    <div class="how-card">
-      <span class="emoji-icon">🧩</span>
-      <h4>渐进式搭建</h4>
-      <p>先跑通最小闭环 → 逐步加规则 → 加定时 → 加巡检告警。</p>
-    </div>
-    <div class="how-card">
-      <span class="emoji-icon">🔗</span>
-      <h4>多系统编排</h4>
-      <p>每个自动化对接 2-5 个外部系统，形成完整数据链路。</p>
-    </div>
-    <div class="how-card">
-      <span class="emoji-icon">🔄</span>
-      <h4>自愈与监控</h4>
-      <p>失败自动分类、自动补跑、飞书实时告警——自动化管自动化。</p>
+  <!-- CTA -->
+  <div class="bottom-cta" id="contact">
+    <h3>📬 联系我</h3>
+    <p>如果您对我的作品感兴趣，欢迎随时联系</p>
+    <div class="btns">
+      <a href="tel:19075348957" class="primary"><i class="fas fa-phone"></i> 190-7534-8957</a>
+      <a href="mailto:3422432910@qq.com" class="outline"><i class="fas fa-envelope"></i> 3422432910@qq.com</a>
+      <a href="https://github.com/whu433609-stack" target="_blank" class="outline"><i class="fab fa-github"></i> GitHub</a>
     </div>
   </div>
 </section>
 
-<!-- ==================== SUMMARY ==================== -->
-<section>
-  <h2 class="section-title"><span class="icon">🎯</span> 一句话总结</h2>
-  <div class="project-card" style="text-align:center; padding:36px 28px;">
-    <p style="font-size:1rem; color:var(--text); line-height:1.8;">
-      在 <strong style="color:var(--accent);">PatPat.com</strong> 使用 AI 编程工具，<br>
-      从 0 到 1 搭建了覆盖
-      <strong style="color:var(--accent);">拆单 → 缺货检测 → 客服跟进 → 异常邮件 → 社媒回复 → 风控预警 → 退款分析 → 巡检告警 → AI 机器人</strong><br>
-      的电商全链路自动化体系，<br>
-      <strong style="color:var(--green);">11+ 套系统 7×24 运行</strong>，每天为运营和客服团队节省大量人工时间。
-    </p>
-  </div>
-</section>
-
-<!-- ==================== FOOTER ==================== -->
 <footer>
-  <p>用 AI 编程工具搭建 · 0 手写代码</p>
-  <p style="margin-top:4px;">部署于 <a href="https://pages.github.com/" target="_blank">GitHub Pages</a></p>
+  <p>胡威 · 用 AI 编程工具搭建 · 0 手写代码 · 2026</p>
 </footer>
+
+<script>
+  function toggleProject(el) {
+    el.classList.toggle('expanded');
+  }
+</script>
 
 </body>
 </html>
