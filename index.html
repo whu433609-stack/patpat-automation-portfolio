@@ -1054,14 +1054,22 @@
 </div>
 
 <script>
-  document.querySelectorAll('.project').forEach(p => {
-    p.addEventListener('click', function(e) {
-      document.querySelectorAll('.project.open').forEach(op => {
-        if (op !== this) op.classList.remove('open');
-      });
-      this.classList.toggle('open');
-    });
-  });
+(function() {
+  var projects = document.querySelectorAll('.project');
+  for (var i = 0; i < projects.length; i++) {
+    (function(proj) {
+      proj.onclick = function() {
+        var open = document.querySelectorAll('.project.open');
+        for (var j = 0; j < open.length; j++) {
+          if (open[j] !== this) {
+            open[j].classList.remove('open');
+          }
+        }
+        this.classList.toggle('open');
+      };
+    })(projects[i]);
+  }
+})();
 </script>
 </body>
 </html>
