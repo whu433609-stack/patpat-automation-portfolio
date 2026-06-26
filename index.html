@@ -1054,7 +1054,13 @@
 </div>
 
 <script>
-  function t(el) { el.classList.toggle("open"); }
+  function t(el) {
+    // 关闭所有其他项目
+    document.querySelectorAll('.project.open').forEach(p => {
+      if (p !== el) p.classList.remove('open');
+    });
+    el.classList.toggle('open');
+  }
 </script>
 </body>
 </html>
