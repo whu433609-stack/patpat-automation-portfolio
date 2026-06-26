@@ -344,14 +344,6 @@
 </div>
         </div>
         <div class="blk">
-          <div class="label">面试高频 Q&A</div>
-          <div class="wq"><p><strong>Q1：</strong>如果 G+ 和 WMS 数据不一致时，你们以哪个为准？</p>
-<p><strong>A1：</strong>以 WMS 实际库存为准。G+ 的"异常"可能是系统延迟，我们设计的原则是：G+ 负责筛选"候选单"，WMS 负责"确认缺货"。只有两个系统同时标记的才算真正缺货。</p></div>
-<div class="wq"><p><strong>Q2：</strong>二次复核的误报率能降到多低？如何验证？</p>
-<p><strong>A2：</strong>上线初期做了 2 周人工对照测试——每天手动核对 50 单，误报率约 5%。后续通过飞书审核视图收集客服的"误报反馈"不断调整库存阈值和过滤规则。</p></div>
-<div class="wq"><p><strong>Q3：</strong>缺货数据同步到飞书后，下游团队如何使用？</p>
-<p><strong>A3：</strong>飞书多维表格会自动按优先级排序（超时 &gt; 72h 标红），采购团队直接按表格补货，客服团队在飞书视图中标注处理状态。每天 3 次的定时邮件摘要同步给相关负责人。</p></div>
-        </div>
       </div>
     </div>
   </div>
@@ -414,14 +406,6 @@
 </div>
         </div>
         <div class="blk">
-          <div class="label">面试高频 Q&A</div>
-          <div class="wq"><p><strong>Q1：</strong>分类策略为什么不用纯 LLM，而要用规则预筛？</p>
-<p><strong>A1：</strong>成本和延时考虑。约 70% 的工单可以通过关键词规则秒级分类，只有 30% 的模糊案例才需要 LLM。这样既控制了 API 成本（减少 70% 的 LLM 调用），又保证了 200ms 内的处理速度。</p></div>
-<div class="wq"><p><strong>Q2：</strong>跟进检测的"24 小时"时间窗口是固定的吗？能否根据不同场景调整？</p>
-<p><strong>A2：</strong>设计上是参数化的。默认 24h，但配置中心里可以按场景调整——高优先级订单可缩短到 12h，周末可延长到 48h。目前正常运行在 24h 窗口。</p></div>
-<div class="wq"><p><strong>Q3：</strong>缺货工单最终需要人工处理的比例是多少？</p>
-<p><strong>A3：</strong>全自动闭环率约 60%（客户收到邮件后确认等待/取消退款的）。剩余 40% 通过 Intercom 的对话流转给人工客服处理。系统会附带邮件上下文，客服不需要重新查单。</p></div>
-        </div>
       </div>
     </div>
   </div>
@@ -485,14 +469,6 @@
 </div>
         </div>
         <div class="blk">
-          <div class="label">面试高频 Q&A</div>
-          <div class="wq"><p><strong>Q1：</strong>为什么选择每天跑两次而不是实时检测？</p>
-<p><strong>A1：</strong>标发失败不是高频事件，每天 100+ 量级。实时检测的边际收益不高，而两次/天的频率完全满足运营的响应时效要求（最晚 2h 内发现）。同时避免了对 G+ 数据库和 Shopify API 的频繁查询。</p></div>
-<div class="wq"><p><strong>Q2：</strong>"系统延迟"的误报率 70%，这个数据是怎么跟踪的？</p>
-<p><strong>A2：</strong>每次检测会记录每笔订单的状态变迁——G+ 标发时间、Shopify 查询时间、Shopify 发货状态。如果 G+ 标记失败但 Shopify 已发货，就计为"系统延迟"。每周汇总统计这个比例，目前稳定在 65-75%。</p></div>
-<div class="wq"><p><strong>Q3：</strong>什么情况下 G+ 标记失败但 Shopify 发货成功的？</p>
-<p><strong>A3：</strong>主要是两个系统之间的数据同步延迟。包裹可能已经在仓库扫描出库了，但 G+ 的状态还没来得及更新。30 分钟的缓冲窗口对大部分情况都够用，极少数需要更长时间的会在下一次检测中被识别。</p></div>
-        </div>
       </div>
     </div>
   </div>
@@ -556,14 +532,6 @@
 </div>
         </div>
         <div class="blk">
-          <div class="label">面试高频 Q&A</div>
-          <div class="wq"><p><strong>Q1：</strong>报表中做了哪些维度的对比分析？</p>
-<p><strong>A1：</strong>主要有三层：① 本周 vs 上周的环比；② 本月 vs 上月的月度对比；③ 退款原因分类占比（取消/退货/换货/其他），方便管理层一眼看到异常波动。</p></div>
-<div class="wq"><p><strong>Q2：</strong>权限不足时降级是怎么实现的？</p>
-<p><strong>A2：</strong>先尝试拉取全量数据，如果 API 返回 403，转为只读取 Shopify 后台的"已导出报告"数据——虽然维度少一点（只有退款率，没有原因分类），但主流程不会中断。这个机制避免了因权限变更导致报表停摆。</p></div>
-<div class="wq"><p><strong>Q3：</strong>这个系统用了多久？每周的运行成功率如何？</p>
-<p><strong>A3：</strong>已上线运行约 2 个月，运行成功率 99%+。唯一的失败案例是 Shopify API 临时维护导致的拉取失败，系统自动重试并在恢复后补跑成功。</p></div>
-        </div>
       </div>
     </div>
   </div>
@@ -637,14 +605,6 @@
 </div>
         </div>
         <div class="blk">
-          <div class="label">面试高频 Q&A</div>
-          <div class="wq"><p><strong>Q1：</strong>两级生成策略具体是怎么实现的？为什么不用一次生成？</p>
-<p><strong>A1：</strong>一级 Prompt 负责从飞书工单的杂乱文本中提取客户可见的事实信息（如"包裹编号""异常原因""预计处理时间"等），输出结构化 JSON。二级 Prompt 把这些 JSON 填入目标语言的邮件模板。拆开的好处是：事实抽取是语言无关的，只有润色部分需要语言能力，维护和调试都更方便。</p></div>
-<div class="wq"><p><strong>Q2：</strong>四层安全机制听起来很有工程意识，你们遇到过真正的事故吗？</p>
-<p><strong>A2：</strong>这正是为什么需要四层。有一次因为飞书 Base 的字段 ID 变更，dry-run 阶段就发现数据映射异常，没有进入正式发送。如果没有 dry-run，可能会导致邮件内容乱码。这个机制在上线初期至少拦截了 3 次潜在问题。</p></div>
-<div class="wq"><p><strong>Q3：</strong>外包同事在飞书审核视图中的操作流程是怎样的？</p>
-<p><strong>A3：</strong>飞书 Base 有一个"待审核"视图，只展示需要人工确认的草稿。同事在视图中打开每条记录，点击"确认发送"按钮（通过飞书 Base 的自动化流程触发 webhook），系统收到确认后才调用 Intercom API 发送。不做确认的不发。</p></div>
-        </div>
       </div>
     </div>
   </div>
@@ -707,14 +667,6 @@
 </div>
         </div>
         <div class="blk">
-          <div class="label">面试高频 Q&A</div>
-          <div class="wq"><p><strong>Q1：</strong>Playwright 执行拆单时，如果网络中断了怎么办？</p>
-<p><strong>A1：</strong>有重试机制。每次操作会记录执行到的步骤，中断后重启从断点继续。如果重试 3 次仍然失败，回滚已执行的操作并标记失败原因，通过飞书通知人工介入。</p></div>
-<div class="wq"><p><strong>Q2：</strong>库存匹配的方案是如何生成的？会不会出现不合理的拆分？</p>
-<p><strong>A2：</strong>规则驱动。约束包括：① 拆单后每个子订单的 SKU 数 >= 最小拆单数；② 按可用库存量分配，先满足发货时间最早的 SKU；③ 若无法完全满足，标记"部分可拆"供人工决策。方案会在飞书表格中展示每步的决策逻辑。</p></div>
-<div class="wq"><p><strong>Q3：</strong>方案的准确率 95%+ 是怎么统计的？</p>
-<p><strong>A3：</strong>人工确认时的"驳回率"。在飞书审核视图中，运营如果觉得方案不合理，就点"驳回"并附原因。每周汇总驳回的案例，分析是规则问题还是特殊情况，不断优化匹配算法。</p></div>
-        </div>
       </div>
     </div>
   </div>
@@ -777,14 +729,6 @@
 </div>
         </div>
         <div class="blk">
-          <div class="label">面试高频 Q&A</div>
-          <div class="wq"><p><strong>Q1：</strong>AI 生成的回复建议，人工采用率是多少？</p>
-<p><strong>A1：</strong>目前约 70% 的回复建议被直接采用或微调后采用。投诉类建议的采用率较低（约 50%），因为投诉需要更谨慎的措辞。好评类建议的采用率超过 90%。</p></div>
-<div class="wq"><p><strong>Q2：</strong>为什么好评要自动回复，投诉要人工审核？</p>
-<p><strong>A2：</strong>风险控制。好评回复错了只是"不够热情"，投诉回复错了可能激化矛盾。让 AI 负责效率型的场景（好评、一般咨询），人工专注于高风险场景（投诉、退换货纠纷）。</p></div>
-<div class="wq"><p><strong>Q3：</strong>Meta 的 API 令牌续期是自动的还是手动的？</p>
-<p><strong>A3：</strong>目前是手动续期——Meta 的长期令牌最长 60 天，到期前 7 天飞书会推送提醒。令牌一旦过期，系统会进入降级模式：不影响已有评论的分类结果展示，只是暂停拉取新评论，不中断核心服务。</p></div>
-        </div>
       </div>
     </div>
   </div>
@@ -857,14 +801,6 @@
 </div>
         </div>
         <div class="blk">
-          <div class="label">面试高频 Q&A</div>
-          <div class="wq"><p><strong>Q1：</strong>10 维评分具体是哪 10 个维度？每个维度的权重怎么定的？</p>
-<p><strong>A1：</strong>包括：订单价格异常、地址真实性、IP 风险评级、邮箱信誉、支付验证结果、历史关联风险、登录设备指纹、收货地址与 IP 地理位置匹配度、商品组合合理性、客户账号年龄。权重根据历史 2000+ 单的数据统计分析得到，例如"地址与 IP 不匹配"权重高于"订单价格异常"。</p></div>
-<div class="wq"><p><strong>Q2：</strong>LLM 判定和硬规则冲突时，为什么取更严格的？</p>
-<p><strong>A2：</strong>风控场景下"误放"的成本远高于"误拦"（误拦了客户会申诉，误放了就是实际损失）。我们设计的"保守优先"原则。如果运营觉得某个 BLOCK 不合理，可以在飞书审核视图中申诉，系统会自动学习优化。</p></div>
-<div class="wq"><p><strong>Q3：</strong>这个引擎覆盖了全部订单吗？</p>
-<p><strong>A3：</strong>目前覆盖 DTC 场景中的中高风险订单（基于 Shopify 风险等级+自定义规则预筛），约占总订单量的 30%。低风险订单直接放行不做判定，集中算力处理真正需要关注的订单。</p></div>
-        </div>
       </div>
     </div>
   </div>
@@ -929,14 +865,6 @@
 </div>
         </div>
         <div class="blk">
-          <div class="label">面试高频 Q&A</div>
-          <div class="wq"><p><strong>Q1：</strong>自愈成功和失败的判断标准是什么？</p>
-<p><strong>A1：</strong>自愈后重新执行一遍该任务，如果执行成功就是"自愈成功"。如果失败则判断是否可重试（累计不超过 3 次），超过 3 次标记为"自愈失败"，升级为人工告警。每次自愈的结果都会写入运行日志。</p></div>
-<div class="wq"><p><strong>Q2：</strong>17 个任务的监控有没有优先级？会不会高频误报？</p>
-<p><strong>A2：</strong>分三个优先级：P0（核心交易链路，直接飞书电话告警）、P1（辅助流程，飞书消息告警，15 分钟内需响应）、P2（日常任务，纳入日报，无需即时响应）。误报通过自愈机制消化——系统能自己解决的就不打扰人。</p></div>
-<div class="wq"><p><strong>Q3：</strong>自然语言交互是如何实现的？</p>
-<p><strong>A3：</strong>飞书机器人接收消息 → 正则匹配高频指令（"补跑""状态""故障"等）→ 匹配到的直接执行 → 没有匹配的走 LLM 意图识别。6 个核心指令（状态、补跑、故障查询、任务启停、日志查看、手动触发）覆盖了 95% 的实际使用场景。</p></div>
-        </div>
       </div>
     </div>
   </div>
@@ -999,14 +927,6 @@
 </div>
         </div>
         <div class="blk">
-          <div class="label">面试高频 Q&A</div>
-          <div class="wq"><p><strong>Q1：</strong>为什么选 DeepSeek 而不是 GPT？</p>
-<p><strong>A1：</strong>成本和中文能力综合考量。DeepSeek 的中文理解能力基本能满足需求，API 成本比 GPT 低一个数量级。日调用量约 200-300 次，月度成本在几十元。</p></div>
-<div class="wq"><p><strong>Q2：</strong>机器人的安全性怎么保障？会不会执行危险指令？</p>
-<p><strong>A2：</strong>工具调用做了两层限制：① 只有白名单群聊中的消息才会被处理；② 高危操作（补跑、任务启停）需要二次确认——"确认要补跑缺货系统吗？"而且巡检 Agent 有兜底，就算误操作也能 5 分钟内发现异常。</p></div>
-<div class="wq"><p><strong>Q3：</strong>机器人实现的是"对话"还是"命令"式交互？</p>
-<p><strong>A3：</strong>两者兼有。6 个核心指令走自然语言理解（"帮我看看缺货系统今天的状态"），但后台是对应到具体的工具调用。日常 95% 的使用是这 6 个指令的变体。无法识别的意图用 LLM 兜底，但这种情况占比不到 5%。</p></div>
-        </div>
       </div>
     </div>
   </div>
