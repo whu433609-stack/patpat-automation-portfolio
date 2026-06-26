@@ -317,7 +317,7 @@
 
   <!-- === 基础层 === -->
   <p class="tier-header">⚡ 基础层 · 数据自动化</p>
-  <div class="project" onclick="t(this)">
+  <div class="project">
     <div class="project-header">
       <div class="icon">📦</div>
       <div class="info">
@@ -380,7 +380,7 @@
       </div>
     </div>
   </div>
-  <div class="project" onclick="t(this)">
+  <div class="project">
     <div class="project-header">
       <div class="icon">💬</div>
       <div class="info">
@@ -442,7 +442,7 @@
       </div>
     </div>
   </div>
-  <div class="project" onclick="t(this)">
+  <div class="project">
     <div class="project-header">
       <div class="icon">🏷️</div>
       <div class="info">
@@ -505,7 +505,7 @@
       </div>
     </div>
   </div>
-  <div class="project" onclick="t(this)">
+  <div class="project">
     <div class="project-header">
       <div class="icon">📊</div>
       <div class="info">
@@ -571,7 +571,7 @@
 
   <!-- === 进阶层 === -->
   <p class="tier-header" style="margin-top:0;">🔗 进阶层 · 跨系统联动</p>
-  <div class="project" onclick="t(this)">
+  <div class="project">
     <div class="project-header">
       <div class="icon">✉️</div>
       <div class="info">
@@ -641,7 +641,7 @@
       </div>
     </div>
   </div>
-  <div class="project" onclick="t(this)">
+  <div class="project">
     <div class="project-header">
       <div class="icon">✂️</div>
       <div class="info">
@@ -703,7 +703,7 @@
       </div>
     </div>
   </div>
-  <div class="project" onclick="t(this)">
+  <div class="project">
     <div class="project-header">
       <div class="icon">💬</div>
       <div class="info">
@@ -768,7 +768,7 @@
 
   <!-- === 高阶层 === -->
   <p class="tier-header" style="margin-top:0;">🧠 高阶层 · LLM Agent / 智能体</p>
-  <div class="project" onclick="t(this)">
+  <div class="project">
     <div class="project-header">
       <div class="icon">🛡️</div>
       <div class="info">
@@ -837,7 +837,7 @@
       </div>
     </div>
   </div>
-  <div class="project" onclick="t(this)">
+  <div class="project">
     <div class="project-header">
       <div class="icon">🔍</div>
       <div class="info">
@@ -901,7 +901,7 @@
       </div>
     </div>
   </div>
-  <div class="project" onclick="t(this)">
+  <div class="project">
     <div class="project-header">
       <div class="icon">🤖</div>
       <div class="info">
@@ -1054,13 +1054,14 @@
 </div>
 
 <script>
-  function t(el) {
-    // 关闭所有其他项目
-    document.querySelectorAll('.project.open').forEach(p => {
-      if (p !== el) p.classList.remove('open');
+  document.querySelectorAll('.project').forEach(p => {
+    p.addEventListener('click', function(e) {
+      document.querySelectorAll('.project.open').forEach(op => {
+        if (op !== this) op.classList.remove('open');
+      });
+      this.classList.toggle('open');
     });
-    el.classList.toggle('open');
-  }
+  });
 </script>
 </body>
 </html>
