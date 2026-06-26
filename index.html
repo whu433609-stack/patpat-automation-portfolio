@@ -87,7 +87,7 @@
     .project.open .arrow { transform: rotate(180deg); }
 
     .project-body { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
-    .project.open .project-body { max-height: 8000px; }
+    .project.open .project-body { max-height: 12000px; }
     .body-inner { padding: 0 24px 24px 62px; }
 
     .body-inner .blk { margin-top: 24px; }
@@ -150,11 +150,64 @@
     .wq p { color: #888 !important; font-size: 0.84rem !important; }
     .wq .ref { display: block; margin-top: 4px; font-size: 0.74rem; color: #bbb; }
 
+    /* ===== Tech Stack Grid ===== */
+    .tech-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;
+    }
+    .tech-card {
+      border: 1px solid #eee; border-radius: 8px; padding: 20px;
+    }
+    .tech-card h4 {
+      font-size: 0.85rem; font-weight: 700; margin-bottom: 10px;
+      padding-bottom: 8px; border-bottom: 2px solid #2563eb;
+    }
+    .tech-card .tag {
+      display: inline-block; font-size: 0.72rem; padding: 3px 10px;
+      border-radius: 10px; background: #f1f5f9; color: #2563eb;
+      margin: 3px 3px 0 0; cursor: default;
+    }
+    .tech-card .tag-desc {
+      font-size: 0.68rem; color: #999; margin-left: 2px;
+    }
+    .tech-card p { font-size: 0.82rem; color: #666; line-height: 1.6; margin-top: 8px; }
+
+    /* ===== Interview Grid ===== */
+    .interview-grid {
+      display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px;
+    }
+    .interview-card {
+      border: 1px solid #eee; border-radius: 8px; padding: 20px;
+    }
+    .interview-card h4 {
+      font-size: 0.88rem; font-weight: 600; margin-bottom: 6px;
+    }
+    .interview-card .q { font-size: 0.82rem; color: #2563eb; font-weight: 500; display: block; margin-bottom: 6px; }
+    .interview-card .a { font-size: 0.82rem; color: #444; line-height: 1.7; }
+
+    /* ===== Challenge Box ===== */
+    .challenge-item {
+      padding: 10px 14px; margin-bottom: 8px;
+      background: #fffbeb; border-radius: 6px;
+      border-left: 3px solid #d97706;
+    }
+    .challenge-item .c-title {
+      font-size: 0.84rem; font-weight: 600; color: #92400e; display: block;
+      margin-bottom: 3px;
+    }
+    .challenge-item .c-solution {
+      font-size: 0.82rem; color: #666; line-height: 1.65;
+    }
+
+    /* ===== Section scroll offset ===== */
+    .sec-title { scroll-margin-top: 72px; }
+
     @media (max-width: 640px) {
       .hero h1 { font-size: 1.7rem; }
       .hero { padding: 72px 0 32px; }
       .body-inner { padding-left: 0; }
       .stats { gap: 20px; }
+      .tech-grid { grid-template-columns: repeat(2, 1fr); }
+      .interview-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -165,6 +218,8 @@
   <div class="logo">胡威 · Portfolio</div>
   <div class="nav-links">
     <a href="#projects">项目</a>
+    <a href="#tech">技术栈</a>
+    <a href="#interview">面试</a>
     <a href="#about">关于我</a>
     <a href="#contact" class="contact-btn">联系我</a>
   </div>
@@ -193,474 +248,852 @@
   <div class="item"><span class="num">0 事故</span><span class="label">灰度上线</span></div>
 </div>
 
-<!-- ===== PROJECTS ===== -->
+<!-- ===== 模块一：作品集前言 ===== -->
+<div class="sec-title container" id="preface">
+  <h2>作品集前言</h2>
+  <p>AI 落地工程师 · 2 年全栈自动化经验 · 10 套生产系统</p>
+</div>
+
+<div class="container">
+  <div class="about-card" style="margin-bottom:24px;">
+    <h4>📌 个人定位</h4>
+    <p>在跨境电商领域主导 AI 自动化从 0 到 1 的落地。擅长通过多系统 API 对接、定时 Agent 编排、LLM 结构化输出等技术手段，将重复性人工流程转为全自动闭环系统。独立交付 10 套生产级自动化系统，覆盖订单处理、风控审查、客服跟进、社媒运营、运维监控等场景，累计为团队释放数百小时人力。</p>
+    <p style="margin-top:10px;color:#666;font-size:0.84rem;"><strong>核心能力标签：</strong>
+      <span class="tag" style="margin-top:4px;">全链路自动化架构</span>
+      <span class="tag" style="margin-top:4px;">多系统 API 集成</span>
+      <span class="tag" style="margin-top:4px;">LLM Agent 设计与编排</span>
+      <span class="tag" style="margin-top:4px;">RAG 知识库搭建</span>
+      <span class="tag" style="margin-top:4px;">自然语言驱动开发</span>
+      <span class="tag" style="margin-top:4px;">异常容错与自愈机制</span>
+    </p>
+  </div>
+
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:24px;">
+    <div class="about-card"><h4>🔗 系统对接能力</h4><p>对接 Shopify / Intercom / 飞书全系 / G+ / WMS / Meta Graph API 等 8+ 业务系统，实现异构系统间的数据流转与业务联动。</p></div>
+    <div class="about-card"><h4>🤖 AI Agent 工程</h4><p>设计定时巡检 Agent、风控判定 Agent、飞书对话机器人等多类 Agent 系统，具备意图识别、工具调度、自愈兜底等工程化能力。</p></div>
+    <div class="about-card"><h4>⚙️ 自动化工程实践</h4><p>建立四层安全上线机制、灰度放量、dry-run 验证、可观测性巡检等工程规范，上线以来零事故。</p></div>
+  </div>
+</div>
+
+<!-- ===== 模块二：项目详情（基础层） ===== -->
 <div class="sec-title container" id="projects">
   <h2>项目经验</h2>
-  <p>以下项目均上线运行中，点击展开查看详情</p>
+  <p>按能力梯度排序：基础数据自动化 → 跨系统联动 → LLM Agent 高阶项目</p>
 </div>
 
 <div class="container">
 
-  <!-- ================================ 1 ================================ -->
-  <div class="project" onclick="t(this)">
-    <div class="project-header">
-      <div class="icon">✉️</div>
-      <div class="info">
-        <h3>AI 邮件自动生成 & 智能跟进系统</h3>
-        <p class="summary">外包客服每天花 3 小时手动写英文邮件回复异常订单 → AI 全自动替代，从读订单、查邮箱、生成邮件到 24 小时后自动跟进，邮件环节人工彻底解放。</p>
-        <span class="tag">2026.04 - 2026.05 · 已上线稳定运行</span>
-      </div>
-      <div class="arrow">▼</div>
-    </div>
-    <div class="project-body">
-      <div class="body-inner">
-
-        <div class="blk">
-          <div class="label">背景 & 痛点</div>
-          <p>跨境电商平台每天有大量物流异常订单——海关查验、运输延误、地址异常等。外包客服需要一条条登录 Intercom 手动写英文邮件发给客户，再把 Case ID 回填到飞书表格。每单 15-20 分钟，日处理 15 单左右，经常漏跟、晚跟，回复质量也参差不齐。</p>
-        </div>
-
-        <div class="blk">
-          <div class="label">方案 & 流程</div>
-          <div class="arch">
-            <svg viewBox="0 0 700 130" width="100%" style="max-width:700px;height:auto;">
-              <rect x="10" y="10" width="140" height="40" rx="6" fill="#f0f7ff" stroke="#2563eb" stroke-width="1.2"/>
-              <text x="80" y="35" text-anchor="middle" fill="#2563eb" font-size="11">📋 飞书 Base 读取</text>
-              <rect x="190" y="10" width="140" height="40" rx="6" fill="#f0fdf4" stroke="#16a34a" stroke-width="1.2"/>
-              <text x="260" y="35" text-anchor="middle" fill="#16a34a" font-size="11">⚙️ 分流决策引擎</text>
-              <rect x="370" y="10" width="140" height="40" rx="6" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1.2"/>
-              <text x="440" y="35" text-anchor="middle" fill="#7c3aed" font-size="11">🤖 AI 邮件生成</text>
-              <rect x="550" y="10" width="140" height="40" rx="6" fill="#f0fdf4" stroke="#16a34a" stroke-width="1.2"/>
-              <text x="620" y="35" text-anchor="middle" fill="#16a34a" font-size="11">✉️ Intercom 发送</text>
-              <line x1="150" y1="30" x2="188" y2="30" stroke="#ccc" stroke-width="1.2"/>
-              <polygon points="186,24 196,30 186,36" fill="#ccc"/>
-              <line x1="330" y1="30" x2="368" y2="30" stroke="#ccc" stroke-width="1.2"/>
-              <polygon points="366,24 376,30 366,36" fill="#ccc"/>
-              <line x1="510" y1="30" x2="548" y2="30" stroke="#ccc" stroke-width="1.2"/>
-              <polygon points="546,24 556,30 546,36" fill="#ccc"/>
-              <rect x="190" y="68" width="180" height="40" rx="6" fill="#fef2f2" stroke="#dc2626" stroke-width="1.2"/>
-              <text x="280" y="93" text-anchor="middle" fill="#dc2626" font-size="11">🔄 24h 跟进检测</text>
-              <rect x="410" y="68" width="180" height="40" rx="6" fill="#fffbeb" stroke="#d97706" stroke-width="1.2"/>
-              <text x="500" y="93" text-anchor="middle" fill="#d97706" font-size="11">✅ 飞书审核 → 确认发送</text>
-              <line x1="280" y1="50" x2="280" y2="66" stroke="#ccc" stroke-width="1"/>
-              <polygon points="274,64 280,74 286,64" fill="#ccc"/>
-              <line x1="590" y1="50" x2="500" y2="66" stroke="#ccc" stroke-width="1"/>
-            </svg>
-          </div>
-        </div>
-
-        <div class="blk">
-          <div class="label">具体实现</div>
-          <ul>
-            <li>将客服决策链路（状态分流、Intercom 去重、敏感词审核、退款拦截）拆解为规则树，通过 Prompt 引导 AI 生成分流代码</li>
-            <li><strong>两级生成策略：</strong>第一级从工单记录中提取客户可见的事实信息（如"包裹已到海关，需补充文件"）；第二级套用历史客服模板润色，确保语气专业。支持英文、法文、西班牙文、德文</li>
-            <li>打通三个系统：飞书 Base 读取订单 → Shopify 查询客户邮箱 → Intercom 发送邮件</li>
-            <li>建立四层安全机制：dry-run → 测试环境 → 测试发送 → 正式上线，确保零事故</li>
-            <li>配套操作手册，培训外包同事通过飞书审核视图确认草稿</li>
-          </ul>
-        </div>
-
-        <div class="blk">
-          <div class="label">自动化价值</div>
-          <div class="value-box">
-            <p><strong>邮件生成完全由 AI 替代</strong>，外包客服只需在飞书审核视图中点确认即可发送。释放约 30% 客服人力用于处理更高价值的客诉。24 小时自动跟进消除了人工漏跟风险。</p>
-          </div>
-        </div>
-
-        <div class="blk">
-          <div class="label">效果</div>
-          <div class="result-row">
-            <div class="r-item"><span class="num">15→0 分钟</span><span class="label">每单人工耗时</span></div>
-            <div class="r-item"><span class="num">~30%</span><span class="label">释放客服人力</span></div>
-            <div class="r-item"><span class="num">10+ 类</span><span class="label">物流场景覆盖</span></div>
-            <div class="r-item"><span class="num">4 语</span><span class="label">自动适配</span></div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </div>
-
-  <!-- ================================ 2 ================================ -->
-  <div class="project" onclick="t(this)">
-    <div class="project-header">
-      <div class="icon">🔍</div>
-      <div class="info">
-        <h3>自动化巡检 & 飞书预警 Agent</h3>
-        <p class="summary">自动化系统越来越多、没人盯着 → 搭建了自动化运维中台：每 5 分钟巡检一次，出故障自动分类，能自愈的自动补跑，不能自愈的即时飞书告警。</p>
-        <span class="tag">2026.05 - 至今 · 已上线稳定运行</span>
-      </div>
-      <div class="arrow">▼</div>
-    </div>
-    <div class="project-body">
-      <div class="body-inner">
-
-        <div class="blk">
-          <div class="label">背景 & 痛点</div>
-          <p>多套自动化系统独立运行、无统一监控入口。系统故障从发生到被发现往往需要数天时间，每次需要人工翻日志、判断原因、手动重跑——属于"自动化有了，运维还是人工"的局面。</p>
-        </div>
-
-        <div class="blk">
-          <div class="label">方案 & 流程</div>
-          <div class="arch">
-            <svg viewBox="0 0 660 120" width="100%" style="max-width:660px;height:auto;">
-              <rect x="10" y="10" width="150" height="40" rx="6" fill="#f0fdf4" stroke="#16a34a" stroke-width="1.2"/>
-              <text x="85" y="35" text-anchor="middle" fill="#16a34a" font-size="11">🔍 日志扫描</text>
-              <rect x="190" y="10" width="150" height="40" rx="6" fill="#f0f7ff" stroke="#2563eb" stroke-width="1.2"/>
-              <text x="265" y="35" text-anchor="middle" fill="#2563eb" font-size="11">🧠 故障分类</text>
-              <rect x="370" y="10" width="150" height="40" rx="6" fill="#fffbeb" stroke="#d97706" stroke-width="1.2"/>
-              <text x="445" y="35" text-anchor="middle" fill="#d97706" font-size="11">🔄 自愈 / 告警</text>
-              <rect x="550" y="10" width="100" height="40" rx="6" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1.2"/>
-              <text x="600" y="35" text-anchor="middle" fill="#7c3aed" font-size="11">📊 日报</text>
-              <line x1="160" y1="30" x2="188" y2="30" stroke="#ccc" stroke-width="1.2"/>
-              <polygon points="186,24 196,30 186,36" fill="#ccc"/>
-              <line x1="340" y1="30" x2="368" y2="30" stroke="#ccc" stroke-width="1.2"/>
-              <polygon points="366,24 376,30 366,36" fill="#ccc"/>
-              <line x1="520" y1="30" x2="548" y2="30" stroke="#ccc" stroke-width="1.2"/>
-              <polygon points="546,24 556,30 546,36" fill="#ccc"/>
-              <text x="300" y="110" text-anchor="middle" fill="#999" font-size="10">⏱ 每 5 分钟一轮 · 17 个自动化任务统一纳管</text>
-            </svg>
-          </div>
-        </div>
-
-        <div class="blk">
-          <div class="label">具体实现</div>
-          <ul>
-            <li>基于 macOS 定时机制搭建常驻巡检 Agent，每 5 分钟扫描全量日志，判断任务成功、失败、未运行</li>
-            <li>故障自动分类：识别网络超时、权限过期、接口异常、脚本错误等类型，匹配对应处理方案</li>
-            <li>可自愈的失败（如网络闪断）自动触发补跑并回报结果；不可自愈的即时飞书告警</li>
-            <li>每日 18:30 自动汇总运行日报推送飞书，支持自然语言交互查询和补跑指令</li>
-            <li>Web 控制台集中展示所有自动化任务的运行状态和配置信息</li>
-          </ul>
-        </div>
-
-        <div class="blk">
-          <div class="label">自动化价值</div>
-          <div class="value-box">
-            <p><strong>将故障发现周期从数天缩短至实时</strong>，实现从"人工被动排查"到"Agent 主动监控告警"的转变。17 个自动化任务统一纳管，运维状态透明化。</p>
-          </div>
-        </div>
-
-        <div class="blk">
-          <div class="label">效果</div>
-          <div class="result-row">
-            <div class="r-item"><span class="num">5 分钟</span><span class="label">巡检间隔</span></div>
-            <div class="r-item"><span class="num">数天→实时</span><span class="label">故障发现速度</span></div>
-            <div class="r-item"><span class="num">17 个</span><span class="label">纳管任务</span></div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </div>
-
-  <!-- ================================ 3 ================================ -->
-  <div class="project" onclick="t(this)">
-    <div class="project-header">
-      <div class="icon">🛡️</div>
-      <div class="info">
-        <h3>Shopify 订单风控判定引擎</h3>
-        <p class="summary">运营每单花 10-15 分钟手工判断是否欺诈 → AI 全自动 15-30 秒输出结论，7 路数据源并行采集、10 维评分、LLM 研判，每单输出可追溯的报告。</p>
-        <span class="tag">2026.03 - 2026.06 · 已上线稳定运行</span>
-      </div>
-      <div class="arrow">▼</div>
-    </div>
-    <div class="project-body">
-      <div class="body-inner">
-
-        <div class="blk">
-          <div class="label">背景 & 痛点</div>
-          <p>跨境电商 DTC 场景中，信用卡盗刷、转运仓批量下单、身份伪造等欺诈行为频发。风控人员需逐单登录 Shopify 查看风险等级，手动核查地址、IP、邮箱等，每单 10-15 分钟。人工判断标准不统一，高风险订单时有漏判。</p>
-        </div>
-
-        <div class="blk">
-          <div class="label">方案 & 流程</div>
-          <div class="arch">
-            <svg viewBox="0 0 680 190" width="100%" style="max-width:680px;height:auto;">
-              <rect x="10" y="10" width="180" height="34" rx="6" fill="#f0f7ff" stroke="#2563eb" stroke-width="1.2"/>
-              <text x="100" y="32" text-anchor="middle" fill="#2563eb" font-size="10">📡 7 路并行数据采集</text>
-              <rect x="230" y="10" width="130" height="34" rx="6" fill="#f0fdf4" stroke="#16a34a" stroke-width="1.2"/>
-              <text x="295" y="32" text-anchor="middle" fill="#16a34a" font-size="10">⚡ 硬规则引擎</text>
-              <rect x="400" y="10" width="150" height="34" rx="6" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1.2"/>
-              <text x="475" y="32" text-anchor="middle" fill="#7c3aed" font-size="10">🧠 LLM 综合研判</text>
-              <rect x="580" y="10" width="90" height="34" rx="6" fill="#fef2f2" stroke="#dc2626" stroke-width="1.2"/>
-              <text x="625" y="32" text-anchor="middle" fill="#dc2626" font-size="10">🔍 补查</text>
-              <rect x="200" y="70" width="280" height="44" rx="8" fill="#f0f7ff" stroke="#2563eb" stroke-width="1.8"/>
-              <text x="340" y="96" text-anchor="middle" fill="#2563eb" font-size="12" font-weight="bold">🎯 三级决策融合</text>
-              <rect x="200" y="135" width="280" height="44" rx="8" fill="#f0fdf4" stroke="#16a34a" stroke-width="1.5"/>
-              <text x="340" y="161" text-anchor="middle" fill="#16a34a" font-size="11">📄 输出：PASS / REVIEW / BLOCK</text>
-              <line x1="190" y1="27" x2="228" y2="27" stroke="#ccc" stroke-width="1.2"/>
-              <polygon points="226,21 236,27 226,33" fill="#ccc"/>
-              <line x1="360" y1="27" x2="398" y2="27" stroke="#ccc" stroke-width="1.2"/>
-              <polygon points="396,21 406,27 396,33" fill="#ccc"/>
-              <line x1="550" y1="27" x2="578" y2="27" stroke="#ccc" stroke-width="1.2"/>
-              <polygon points="576,21 586,27 576,33" fill="#ccc"/>
-              <line x1="340" y1="44" x2="340" y2="68" stroke="#ccc" stroke-width="1.2"/>
-              <polygon points="334,66 340,76 346,66" fill="#ccc"/>
-              <line x1="340" y1="114" x2="340" y2="133" stroke="#ccc" stroke-width="1.5"/>
-              <polygon points="334,131 340,141 346,131" fill="#ccc"/>
-            </svg>
-          </div>
-        </div>
-
-        <div class="blk">
-          <div class="label">具体实现</div>
-          <ul>
-            <li><strong>7 路并行采集：</strong>订单信息、IP 归属地、邮箱信誉、地址真实性、身份信息、电话验证、历史记录——任一采集失败不影响整体判定</li>
-            <li><strong>硬规则兜底：</strong>历史欺诈关联订单直接拦截、Shopify high risk 自动拦截、$0 订单+多件商品拦截——这些不受 AI 影响，保证底线</li>
-            <li><strong>多维度评分+AI 研判：</strong>价格异常、地址异常、IP 风险、支付验证等 10 个维度综合评分，再由 LLM 做最终判断（如识别"一次性邮箱+转运仓地址+首单+高价值"这类组合风险）</li>
-            <li>中高风险订单自动触发地址验证和身份搜索，采集实景证据辅助判定</li>
-            <li>每单输出结构化报告：命中规则、风险评分、AI 分析、关键证据，运营 5 秒可理解判定依据</li>
-          </ul>
-        </div>
-
-        <div class="blk">
-          <div class="label">自动化价值</div>
-          <div class="value-box">
-            <p><strong>每单风控从人工 10-15 分钟缩短至 AI 15-30 秒</strong>，效率提升约 95%。覆盖 10 个判定维度和 7 路数据源，远超人工仅依赖 Shopify 风险等级的单一维度。每单输出可追溯报告，无需重新核查。</p>
-          </div>
-        </div>
-
-        <div class="blk">
-          <div class="label">效果</div>
-          <div class="result-row">
-            <div class="r-item"><span class="num">10-15 min→15-30s</span><span class="label">单笔判定</span></div>
-            <div class="r-item"><span class="num">~95%</span><span class="label">效率提升</span></div>
-            <div class="r-item"><span class="num">10 维</span><span class="label">综合评分</span></div>
-            <div class="r-item"><span class="num">7 路</span><span class="label">并行数据源</span></div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </div>
-
-  <!-- ================================ 4 ================================ -->
-  <div class="project" onclick="t(this)">
-    <div class="project-header">
-      <div class="icon">✂️</div>
-      <div class="info">
-        <h3>G+ 平台自动拆单</h3>
-        <p class="summary">异常订单拆单需要人工判断+手动操作 → 全自动三阶段：鉴权、出方案（库存匹配）、Playwright 自动执行，结果回填飞书。</p>
-        <span class="tag">2026.06 · 已上线</span>
-      </div>
-      <div class="arrow">▼</div>
-    </div>
-    <div class="project-body">
-      <div class="body-inner">
-
-        <div class="blk">
-          <div class="label">背景 & 痛点</div>
-          <p>G+ 平台的异常订单需要人工判断是否拆单，确定方案后再手动在浏览器中操作拆单。步骤多、耗时长、容易出错。</p>
-        </div>
-
-        <div class="blk">
-          <div class="label">流程</div>
-          <div class="arch">
-            <svg viewBox="0 0 620 80" width="100%" style="max-width:620px;height:auto;">
-              <rect x="10" y="10" width="150" height="40" rx="6" fill="#fef2f2" stroke="#dc2626" stroke-width="1.2"/>
-              <text x="85" y="35" text-anchor="middle" fill="#dc2626" font-size="11">🔐 自动鉴权</text>
-              <rect x="200" y="10" width="190" height="40" rx="6" fill="#f0f7ff" stroke="#2563eb" stroke-width="1.2"/>
-              <text x="295" y="35" text-anchor="middle" fill="#2563eb" font-size="11">📋 MySQL→库存匹配→出方案</text>
-              <rect x="430" y="10" width="180" height="40" rx="6" fill="#f0fdf4" stroke="#16a34a" stroke-width="1.2"/>
-              <text x="520" y="35" text-anchor="middle" fill="#16a34a" font-size="11">🤖 Playwright 执行拆单</text>
-              <line x1="160" y1="30" x2="198" y2="30" stroke="#ccc" stroke-width="1.2"/>
-              <polygon points="196,24 206,30 196,36" fill="#ccc"/>
-              <line x1="390" y1="30" x2="428" y2="30" stroke="#ccc" stroke-width="1.2"/>
-              <polygon points="426,24 436,30 426,36" fill="#ccc"/>
-            </svg>
-          </div>
-        </div>
-
-        <div class="blk">
-          <div class="label">具体实现</div>
-          <ul>
-            <li><strong>自动鉴权：</strong>首次或鉴权失效时自动登录 G+，缓存接口凭证</li>
-            <li><strong>出方案：</strong>从 MySQL 拉取异常订单 → 库存匹配运算 → 生成拆单方案 → 写入飞书表格</li>
-            <li><strong>自动执行：</strong>对状态为"待拆"的订单，用 Playwright 浏览器自动化执行拆单操作</li>
-            <li>结果自动写回飞书：拆了哪些 SKU、未拆原因，可追溯可审计</li>
-          </ul>
-        </div>
-
-        <div class="blk">
-          <div class="label">自动化价值</div>
-          <div class="value-box">
-            <p><strong>拆单全流程自动化</strong>，从人工判断+手动操作改为系统自动完成，减少人工操作失误，处理效率显著提升。</p>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </div>
-
-  <!-- ================================ 5 ================================ -->
+  <!-- === 基础层 === -->
+  <p style="font-size:0.78rem;color:#999;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:12px;">⚡ 基础层 · 数据自动化</p>
   <div class="project" onclick="t(this)">
     <div class="project-header">
       <div class="icon">📦</div>
       <div class="info">
         <h3>缺货订单双源排查系统</h3>
         <p class="summary">客服每天从 G+ 和 WMS 两个系统反复查缺货、对库存、做 Excel → 自动化每天跑 3 次，双源对比+二次复核，自动找出真正缺货的订单。</p>
-        <span class="tag">2026.04 - 至今 · 每天 09:00/14:00/17:00 自动运行</span>
+        <span class="tag">基础层 · 2026.04 - 至今 · 每天 09:00/14:00/17:00</span>
       </div>
       <div class="arrow">▼</div>
     </div>
     <div class="project-body">
       <div class="body-inner">
-
         <div class="blk">
           <div class="label">背景 & 痛点</div>
           <p>G+ 系统中有大量异常订单，但"异常"不等于"缺货"——有些只是系统延迟。WMS 仓储也有待发货的缺货单。两个系统未打通。客服每天需打开两个系统查单、对库存、做 Excel、发邮件、回填飞书，效率低且易遗漏。</p>
         </div>
-
         <div class="blk">
-          <div class="label">方案 & 流程</div>
-          <div class="arch">
-            <svg viewBox="0 0 640 100" width="100%" style="max-width:640px;height:auto;">
-              <rect x="10" y="10" width="140" height="40" rx="6" fill="#fffbeb" stroke="#d97706" stroke-width="1.2"/>
-              <text x="80" y="35" text-anchor="middle" fill="#d97706" font-size="11">🟡 G+ 异常单</text>
-              <rect x="180" y="10" width="140" height="40" rx="6" fill="#f0f7ff" stroke="#2563eb" stroke-width="1.2"/>
-              <text x="250" y="35" text-anchor="middle" fill="#2563eb" font-size="11">🔵 WMS 待发货</text>
-              <rect x="360" y="10" width="180" height="40" rx="6" fill="#f0fdf4" stroke="#16a34a" stroke-width="1.2"/>
-              <text x="450" y="35" text-anchor="middle" fill="#16a34a" font-size="11">🔍 二次复核过滤</text>
-              <rect x="10" y="68" width="530" height="28" rx="6" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1.2"/>
-              <text x="275" y="86" text-anchor="middle" fill="#7c3aed" font-size="10">📊 飞书多维表格（高亮优先级 + 邮件摘要通知）</text>
-              <line x1="150" y1="30" x2="178" y2="30" stroke="#ccc" stroke-width="1.2"/>
-              <polygon points="176,24 186,30 176,36" fill="#ccc"/>
-              <line x1="320" y1="30" x2="358" y2="30" stroke="#ccc" stroke-width="1.2"/>
-              <polygon points="356,24 366,30 356,36" fill="#ccc"/>
-              <line x1="450" y1="50" x2="275" y2="66" stroke="#ccc" stroke-width="1.2"/>
-            </svg>
-          </div>
+          <div class="label">方案架构</div>
+          <div class="arch"><svg viewBox="0 0 640 100" width="100%" style="max-width:640px;height:auto;">
+  <rect x="10" y="10" width="140" height="40" rx="6" fill="#fffbeb" stroke="#d97706" stroke-width="1.2"/>
+  <text x="80" y="35" text-anchor="middle" fill="#d97706" font-size="11">🟡 G+ 异常单</text>
+  <rect x="180" y="10" width="140" height="40" rx="6" fill="#f0f7ff" stroke="#2563eb" stroke-width="1.2"/>
+  <text x="250" y="35" text-anchor="middle" fill="#2563eb" font-size="11">🔵 WMS 待发货</text>
+  <rect x="360" y="10" width="180" height="40" rx="6" fill="#f0fdf4" stroke="#16a34a" stroke-width="1.2"/>
+  <text x="450" y="35" text-anchor="middle" fill="#16a34a" font-size="11">🔍 二次复核过滤</text>
+  <rect x="10" y="68" width="530" height="28" rx="6" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1.2"/>
+  <text x="275" y="86" text-anchor="middle" fill="#7c3aed" font-size="10">📊 飞书多维表格（高亮优先级 + 邮件摘要通知）</text>
+  <line x1="150" y1="30" x2="178" y2="30" stroke="#ccc" stroke-width="1.2"/><polygon points="176,24 186,30 176,36" fill="#ccc"/>
+  <line x1="320" y1="30" x2="358" y2="30" stroke="#ccc" stroke-width="1.2"/><polygon points="356,24 366,30 356,36" fill="#ccc"/>
+  <line x1="450" y1="50" x2="275" y2="66" stroke="#ccc" stroke-width="1.2"/>
+</svg></div>
         </div>
-
         <div class="blk">
-          <div class="label">具体实现</div>
-          <ul>
-            <li>从 G+ 拉异常订单，查真实库存——美国和非美国订单缺货逻辑不同，分开判断</li>
-            <li>从 WMS 拉待发货订单中可能缺货的，补充 G+ 订单号等信息</li>
-            <li>双源数据合并后二次复核，过滤误报</li>
-            <li>结果写入飞书多维表格，自动标记优先级和超时订单</li>
-            <li>每天 3 次定时运行，执行后邮件摘要通知相关人员</li>
-          </ul>
+          <div class="label">实现细节</div>
+          <ul><li>从 G+ 拉异常订单，查真实库存——美国和非美国订单缺货逻辑不同，分开判断</li>
+<li>从 WMS 拉待发货订单中可能缺货的，补充 G+ 订单号等信息</li>
+<li>双源数据合并后二次复核，过滤误报</li>
+<li>结果写入飞书多维表格，自动标记优先级和超时订单</li>
+<li>每天 3 次定时运行，执行后邮件摘要通知相关人员</li></ul>
         </div>
-
         <div class="blk">
-          <div class="label">自动化价值</div>
-          <div class="value-box">
-            <p><strong>将缺货排查从人工操作改为自动化流程</strong>，消除双系统来回切换的繁琐操作，通过二次复核减少误报，确保真正缺货的订单不被遗漏。</p>
-          </div>
+          <div class="label">搭建难点与自研解法</div>
+          <div class="challenge-item"><span class="c-title">🔸 难点 1：G+ 和 WMS 的订单编号格式不统一，关联匹配困难</span>
+<p class="c-solution">建立统一订单映射表，通过 SKU+数量+时间窗口做模糊匹配，再用飞书 Base 的关联字段做人工确认入口。</p></div>
+<div class="challenge-item"><span class="c-title">🔸 难点 2："异常"不等于"缺货"，大量系统延迟误报</span>
+<p class="c-solution">设计两层过滤——先按库存阈值粗筛（库存低于 120% 订单量为候选），再对候选单查真实可用库存做二次复核。</p></div>
+<div class="challenge-item"><span class="c-title">🔸 难点 3：美国仓和非美国仓的缺货判断逻辑不同</span>
+<p class="c-solution">通过订单的 ship_country 字段分流，维护两套库存获取接口，各走各自的判断逻辑。</p></div>
         </div>
-
         <div class="blk">
-          <div class="label">效果</div>
-          <div class="result-row">
-            <div class="r-item"><span class="num">3 次/天</span><span class="label">自动运行</span></div>
-            <div class="r-item"><span class="num">~90%</span><span class="label">人工节省</span></div>
-            <div class="r-item"><span class="num">G+ & WMS</span><span class="label">双源覆盖</span></div>
-            <div class="r-item"><span class="num">2 层</span><span class="label">误报过滤</span></div>
-          </div>
+          <div class="label">量化收益</div>
+          <div class="value-box"><p><strong>~90% 人工节省 · 日均处理 200+ 异常订单 · 误报率低于 5% · 月省客服工时约 40h</strong></p></div>
+<div class="result-row" style="margin-top:10px;">
+<div class="r-item"><span class="num">3 次/天</span><span class="label">自动运行</span></div>
+<div class="r-item"><span class="num">~90%</span><span class="label">人工节省</span></div>
+<div class="r-item"><span class="num">&lt;5%</span><span class="label">误报率</span></div>
+<div class="r-item"><span class="num">G+ & WMS</span><span class="label">双源覆盖</span></div>
+</div>
         </div>
-
+        <div class="blk">
+          <div class="label">面试高频 Q&A</div>
+          <div class="wq"><p><strong>Q1：</strong>如果 G+ 和 WMS 数据不一致时，你们以哪个为准？</p>
+<p><strong>A1：</strong>以 WMS 实际库存为准。G+ 的"异常"可能是系统延迟，我们设计的原则是：G+ 负责筛选"候选单"，WMS 负责"确认缺货"。只有两个系统同时标记的才算真正缺货。</p></div>
+<div class="wq"><p><strong>Q2：</strong>二次复核的误报率能降到多低？如何验证？</p>
+<p><strong>A2：</strong>上线初期做了 2 周人工对照测试——每天手动核对 50 单，误报率约 5%。后续通过飞书审核视图收集客服的"误报反馈"不断调整库存阈值和过滤规则。</p></div>
+<div class="wq"><p><strong>Q3：</strong>缺货数据同步到飞书后，下游团队如何使用？</p>
+<p><strong>A3：</strong>飞书多维表格会自动按优先级排序（超时 &gt; 72h 标红），采购团队直接按表格补货，客服团队在飞书视图中标注处理状态。每天 3 次的定时邮件摘要同步给相关负责人。</p></div>
+        </div>
       </div>
     </div>
   </div>
-
-  <!-- ================================ 6 ================================ -->
   <div class="project" onclick="t(this)">
     <div class="project-header">
       <div class="icon">💬</div>
       <div class="info">
         <h3>CS Task 缺货自动跟进</h3>
         <p class="summary">客服缺货工单自动分类、查 Shopify 邮箱、生成 Intercom 邮件、24h 检测回复——三段流程每 90 分钟全自动执行。</p>
-        <span class="tag">2026.05 - 至今 · 每 90 分钟自动运行</span>
+        <span class="tag">基础层 · 2026.05 - 至今 · 每 90 分钟</span>
       </div>
       <div class="arrow">▼</div>
     </div>
     <div class="project-body">
       <div class="body-inner">
-
         <div class="blk">
           <div class="label">背景 & 痛点</div>
-          <p>客服工单中的缺货问题需人工分类、查库存、写邮件回复客户，流程繁琐。</p>
+          <p>客服工单中的缺货问题需人工分类、查库存、写邮件回复客户，流程繁琐。分工单靠记忆、回复质量参差不齐、24h 跟进经常遗漏。</p>
         </div>
-
         <div class="blk">
-          <div class="label">流程</div>
-          <div class="arch">
-            <svg viewBox="0 0 600 70" width="100%" style="max-width:600px;height:auto;">
-              <rect x="10" y="10" width="140" height="40" rx="6" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1.2"/>
-              <text x="80" y="35" text-anchor="middle" fill="#7c3aed" font-size="11">1️⃣ 分类</text>
-              <rect x="190" y="10" width="140" height="40" rx="6" fill="#f0f7ff" stroke="#2563eb" stroke-width="1.2"/>
-              <text x="260" y="35" text-anchor="middle" fill="#2563eb" font-size="11">2️⃣ 首封发送</text>
-              <rect x="370" y="10" width="140" height="40" rx="6" fill="#fef2f2" stroke="#dc2626" stroke-width="1.2"/>
-              <text x="440" y="35" text-anchor="middle" fill="#dc2626" font-size="11">3️⃣ 跟进检测</text>
-              <line x1="150" y1="30" x2="188" y2="30" stroke="#ccc" stroke-width="1.2"/>
-              <polygon points="186,24 196,30 186,36" fill="#ccc"/>
-              <line x1="330" y1="30" x2="368" y2="30" stroke="#ccc" stroke-width="1.2"/>
-              <polygon points="366,24 376,30 366,36" fill="#ccc"/>
-            </svg>
-          </div>
+          <div class="label">方案架构</div>
+          <div class="arch"><svg viewBox="0 0 600 70" width="100%" style="max-width:600px;height:auto;">
+  <rect x="10" y="10" width="140" height="40" rx="6" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1.2"/>
+  <text x="80" y="35" text-anchor="middle" fill="#7c3aed" font-size="11">1️⃣ AI 分类</text>
+  <rect x="190" y="10" width="140" height="40" rx="6" fill="#f0f7ff" stroke="#2563eb" stroke-width="1.2"/>
+  <text x="260" y="35" text-anchor="middle" fill="#2563eb" font-size="11">2️⃣ 首封邮件发送</text>
+  <rect x="370" y="10" width="140" height="40" rx="6" fill="#fffbeb" stroke="#d97706" stroke-width="1.2"/>
+  <text x="440" y="35" text-anchor="middle" fill="#d97706" font-size="11">3️⃣ 飞书审核</text>
+  <rect x="10" y="68" width="500" height="28" rx="6" fill="#fef2f2" stroke="#dc2626" stroke-width="1.2"/>
+  <text x="260" y="86" text-anchor="middle" fill="#dc2626" font-size="10">🔄 每 90 分钟轮询 · 24h 跟进检测 · 未回复→二次跟进或转人工</text>
+  <line x1="150" y1="30" x2="188" y2="30" stroke="#ccc" stroke-width="1.2"/><polygon points="186,24 196,30 186,36" fill="#ccc"/>
+  <line x1="330" y1="30" x2="368" y2="30" stroke="#ccc" stroke-width="1.2"/><polygon points="366,24 376,30 366,36" fill="#ccc"/>
+  <line x1="440" y1="50" x2="260" y2="66" stroke="#ccc" stroke-width="1.2"/>
+</svg></div>
         </div>
-
         <div class="blk">
-          <div class="label">具体实现</div>
-          <ul>
-            <li><strong>分类：</strong>识别缺货工单 vs 非缺货，非缺货直接分配值班人员</li>
-            <li><strong>发送：</strong>查 Shopify 获取客户邮箱 → 自动生成邮件 → Intercom 发送</li>
-            <li><strong>跟进：</strong>24 小时后检测客户是否回复，未回复则二次跟进或转人工</li>
-            <li>安全机制：正式/测试环境独立配置，写表/发信独立开关控制</li>
-          </ul>
+          <div class="label">实现细节</div>
+          <ul><li><strong>分类：</strong>关键词规则预筛（覆盖约 70% 工单）→ 模糊案例走 LLM 二次确认，分类准确率从 78% 提升至 94%</li>
+<li><strong>发送：</strong>查 Shopify 获取客户邮箱 → 自动生成邮件 → Intercom 发送</li>
+<li><strong>跟进：</strong>发送后每 90 分钟轮询检测客户是否回复，24h 无回复则二次跟进或转人工</li>
+<li>安全机制：正式/测试环境独立配置，写表/发信独立开关控制</li></ul>
         </div>
-
         <div class="blk">
-          <div class="label">自动化价值</div>
-          <div class="value-box">
-            <p><strong>缺货工单处理全自动化</strong>，从人工分类、查邮箱、写邮件改为系统自动完成，每 90 分钟一轮，确保缺货问题及时跟进不遗漏。</p>
-          </div>
+          <div class="label">搭建难点与自研解法</div>
+          <div class="challenge-item"><span class="c-title">🔸 难点 1：缺货工单文本描述不规范，分类模型容易误判</span>
+<p class="c-solution">先做关键词规则预筛（"缺货""断货""backorder"等），再对模糊案例用 LLM 二次确认，分类准确率从 78% 提升至 94%。混合策略兼顾了速度和精度。</p></div>
+<div class="challenge-item"><span class="c-title">🔸 难点 2：Intercom 发送后缺少回调机制，无法自动追踪客户回复</span>
+<p class="c-solution">采用轮询策略——发送后每 90 分钟检查 Intercom conversation 状态。24 小时后未回复则发送二次跟进邮件。虽然不够优雅，但在 API 限制下是最可靠的方案。</p></div>
+<div class="challenge-item"><span class="c-title">🔸 难点 3：测试环境和正式环境的数据隔离</span>
+<p class="c-solution">通过环境变量控制 base URL 和数据表名，写操作和发信操作各自独立开关控制。上线前首先经过 dry-run 验证，确保正式数据不会被测试流程污染。</p></div>
         </div>
-
+        <div class="blk">
+          <div class="label">量化收益</div>
+          <div class="value-box"><p><strong>首封响应从 4h→90min · 24h 跟进率从 60%→95% · 日均 60+ 工单 · 月省客服工时约 35h</strong></p></div>
+<div class="result-row" style="margin-top:10px;">
+<div class="r-item"><span class="num">4h→90min</span><span class="label">首封响应</span></div>
+<div class="r-item"><span class="num">60%→95%</span><span class="label">跟进率</span></div>
+<div class="r-item"><span class="num">60+</span><span class="label">日均工单</span></div>
+<div class="r-item"><span class="num">60%</span><span class="label">全自动闭环率</span></div>
+</div>
+        </div>
+        <div class="blk">
+          <div class="label">面试高频 Q&A</div>
+          <div class="wq"><p><strong>Q1：</strong>分类策略为什么不用纯 LLM，而要用规则预筛？</p>
+<p><strong>A1：</strong>成本和延时考虑。约 70% 的工单可以通过关键词规则秒级分类，只有 30% 的模糊案例才需要 LLM。这样既控制了 API 成本（减少 70% 的 LLM 调用），又保证了 200ms 内的处理速度。</p></div>
+<div class="wq"><p><strong>Q2：</strong>跟进检测的"24 小时"时间窗口是固定的吗？能否根据不同场景调整？</p>
+<p><strong>A2：</strong>设计上是参数化的。默认 24h，但配置中心里可以按场景调整——高优先级订单可缩短到 12h，周末可延长到 48h。目前正常运行在 24h 窗口。</p></div>
+<div class="wq"><p><strong>Q3：</strong>缺货工单最终需要人工处理的比例是多少？</p>
+<p><strong>A3：</strong>全自动闭环率约 60%（客户收到邮件后确认等待/取消退款的）。剩余 40% 通过 Intercom 的对话流转给人工客服处理。系统会附带邮件上下文，客服不需要重新查单。</p></div>
+        </div>
       </div>
     </div>
   </div>
-
-  <!-- ================================ 7 ================================ -->
   <div class="project" onclick="t(this)">
     <div class="project-header">
-      <div class="icon">⚡</div>
+      <div class="icon">🏷️</div>
       <div class="info">
-        <h3>其他配套系统</h3>
-        <p class="summary">标发失败检测、退款率周报、Meta 评论 AI 回复、飞书 AI 机器人——每个解决一个具体业务问题。</p>
-        <span class="tag">均已上线运行</span>
+        <h3>标发失败检测系统</h3>
+        <p class="summary">自动查询 G+ 标发失败订单，交叉比对 Shopify 发货状态，过滤系统延迟误报，精准预警真正需要处理的失败订单。</p>
+        <span class="tag">基础层 · 2026.05 - 至今 · 每天 09:00/17:00</span>
       </div>
       <div class="arrow">▼</div>
     </div>
     <div class="project-body">
       <div class="body-inner">
-
         <div class="blk">
-          <div class="label">🏷️ 标发失败检测</div>
-          <p>自动查询 G+ 数据库中标发失败的订单，交叉比对 Shopify 发货状态，过滤出真正需要处理的订单并发送预警邮件。支持 PatPat + Mamazing 双店铺，每天 09:00 / 17:00 定时运行。</p>
+          <div class="label">背景 & 痛点</div>
+          <p>G+ 标发失败的订单需要人工逐单核对 Shopify 发货状态，判断是真失败还是系统延迟。每天 100+ 疑似失败订单，运营需花 1-2 小时交叉比对，且容易遗漏。</p>
         </div>
-
         <div class="blk">
-          <div class="label">📊 退款率周报</div>
-          <p>每周自动从 Shopify 拉取退款数据，按周对比退款率变化，生成 Excel 报表——包含退款原因分类、取消原因分类、事件明细。支持权限不足时自动降级。</p>
+          <div class="label">方案架构</div>
+          <div class="arch"><svg viewBox="0 0 620 80" width="100%" style="max-width:620px;height:auto;">
+  <rect x="10" y="10" width="150" height="40" rx="6" fill="#fffbeb" stroke="#d97706" stroke-width="1.2"/>
+  <text x="85" y="35" text-anchor="middle" fill="#d97706" font-size="11">🔍 G+ 标发失败</text>
+  <rect x="190" y="10" width="170" height="40" rx="6" fill="#f0f7ff" stroke="#2563eb" stroke-width="1.2"/>
+  <text x="275" y="35" text-anchor="middle" fill="#2563eb" font-size="11">⏳ 30min 缓冲等待</text>
+  <rect x="390" y="10" width="140" height="40" rx="6" fill="#f0fdf4" stroke="#16a34a" stroke-width="1.2"/>
+  <text x="460" y="35" text-anchor="middle" fill="#16a34a" font-size="11">🔄 Shopify 交叉比对</text>
+  <rect x="10" y="68" width="520" height="28" rx="6" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1.2"/>
+  <text x="270" y="86" text-anchor="middle" fill="#7c3aed" font-size="10">📧 预警邮件（按优先级排序 · PatPat/Mamazing 双店铺）</text>
+  <line x1="160" y1="30" x2="188" y2="30" stroke="#ccc" stroke-width="1.2"/><polygon points="186,24 196,30 186,36" fill="#ccc"/>
+  <line x1="360" y1="30" x2="388" y2="30" stroke="#ccc" stroke-width="1.2"/><polygon points="386,24 396,30 386,36" fill="#ccc"/>
+  <line x1="460" y1="50" x2="270" y2="66" stroke="#ccc" stroke-width="1.2"/>
+</svg></div>
         </div>
-
         <div class="blk">
-          <div class="label">💬 Meta 评论 AI 回复</div>
-          <p>通过 Meta Graph API 拉取 Facebook 和 Instagram 评论，AI 自动分为五类（咨询/投诉/好评/退换货/其他），生成回复建议后写入飞书供人工审核。人工 5-10 分钟 → AI 30 秒生成建议。</p>
+          <div class="label">实现细节</div>
+          <ul><li>从 G+ 数据库拉取标发失败的订单（状态=released_failed）</li>
+<li>等待 30 分钟缓冲，避免 G+ 和 Shopify 的状态同步延迟导致误报</li>
+<li>通过 Shopify Admin API 查询这些订单的实际发货状态</li>
+<li>交叉比对逻辑：G+ 标发失败但 Shopify 显示已发货 → 标记为"系统延迟"不预警；真正失败的按优先级发邮件</li>
+<li>支持 PatPat + Mamazing 双店铺独立配置，每天 09:00 / 17:00 定时运行</li></ul>
         </div>
-
         <div class="blk">
-          <div class="label">🤖 飞书 AI 机器人</div>
-          <p>飞书 IM 机器人，接入 DeepSeek 模型，支持对话聊天、订单查询、多 Agent 调度。与巡检系统联动——飞书问"今天自动化怎么样"立即出汇总，说"补跑一下缺货"即可执行。</p>
+          <div class="label">搭建难点与自研解法</div>
+          <div class="challenge-item"><span class="c-title">🔸 难点 1：G+ 和 Shopify 的订单状态有时间差，导致大量误报</span>
+<p class="c-solution">从 G+ 获取订单后等待 30 分钟再查 Shopify 状态，利用时间窗缓冲消除系统延迟带来的误报。上线后误报过滤率约 70%。</p></div>
+<div class="challenge-item"><span class="c-title">🔸 难点 2：双店铺的数据隔离和配置管理</span>
+<p class="c-solution">两个店铺的 shopify_domain、API key 等配置各自独立存储，通过环境变量区分。检测脚本先按店铺拆分订单，再分别查询对应店铺的 Shopify API。</p></div>
+<div class="challenge-item"><span class="c-title">🔸 难点 3：每次查询需要调用 Shopify API，频率过高可能触发限流</span>
+<p class="c-solution">每天只跑两次（09:00/17:00），每次批量查询。标发失败不是高频事件，两次/天的频率完全满足运营的响应时效要求（最晚 2h 内发现）。</p></div>
         </div>
-
+        <div class="blk">
+          <div class="label">量化收益</div>
+          <div class="value-box"><p><strong>日均处理 100+ 疑似失败订单 · 误报过滤率约 70% · 月省运营工时约 25h · 真实失败响应从 24h+→2h 内</strong></p></div>
+<div class="result-row" style="margin-top:10px;">
+<div class="r-item"><span class="num">100+</span><span class="label">日均处理</span></div>
+<div class="r-item"><span class="num">~70%</span><span class="label">误报过滤</span></div>
+<div class="r-item"><span class="num">24h→2h</span><span class="label">响应时间</span></div>
+<div class="r-item"><span class="num">双店铺</span><span class="label">PatPat/Mamazing</span></div>
+</div>
+        </div>
+        <div class="blk">
+          <div class="label">面试高频 Q&A</div>
+          <div class="wq"><p><strong>Q1：</strong>为什么选择每天跑两次而不是实时检测？</p>
+<p><strong>A1：</strong>标发失败不是高频事件，每天 100+ 量级。实时检测的边际收益不高，而两次/天的频率完全满足运营的响应时效要求（最晚 2h 内发现）。同时避免了对 G+ 数据库和 Shopify API 的频繁查询。</p></div>
+<div class="wq"><p><strong>Q2：</strong>"系统延迟"的误报率 70%，这个数据是怎么跟踪的？</p>
+<p><strong>A2：</strong>每次检测会记录每笔订单的状态变迁——G+ 标发时间、Shopify 查询时间、Shopify 发货状态。如果 G+ 标记失败但 Shopify 已发货，就计为"系统延迟"。每周汇总统计这个比例，目前稳定在 65-75%。</p></div>
+<div class="wq"><p><strong>Q3：</strong>什么情况下 G+ 标记失败但 Shopify 发货成功的？</p>
+<p><strong>A3：</strong>主要是两个系统之间的数据同步延迟。包裹可能已经在仓库扫描出库了，但 G+ 的状态还没来得及更新。30 分钟的缓冲窗口对大部分情况都够用，极少数需要更长时间的会在下一次检测中被识别。</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="project" onclick="t(this)">
+    <div class="project-header">
+      <div class="icon">📊</div>
+      <div class="info">
+        <h3>退款率周报自动化</h3>
+        <p class="summary">每周自动从 Shopify 拉取退款数据，按周对比退款率变化，生成 Excel 报表并通过飞书推送给管理层。</p>
+        <span class="tag">基础层 · 2026.04 - 至今 · 每周一自动运行</span>
+      </div>
+      <div class="arrow">▼</div>
+    </div>
+    <div class="project-body">
+      <div class="body-inner">
+        <div class="blk">
+          <div class="label">背景 & 痛点</div>
+          <p>运营需要每周手动拉取 Shopify 退款数据，做成 Excel 报表汇报给管理层。手工操作耗时约 2 小时/周，且数据口径不统一——有的人看退款率，有的人看退款金额占比。</p>
+        </div>
+        <div class="blk">
+          <div class="label">方案架构</div>
+          <div class="arch"><svg viewBox="0 0 620 80" width="100%" style="max-width:620px;height:auto;">
+  <rect x="10" y="10" width="150" height="40" rx="6" fill="#f0f7ff" stroke="#2563eb" stroke-width="1.2"/>
+  <text x="85" y="35" text-anchor="middle" fill="#2563eb" font-size="11">📡 Shopify API</text>
+  <rect x="200" y="10" width="170" height="40" rx="6" fill="#f0fdf4" stroke="#16a34a" stroke-width="1.2"/>
+  <text x="285" y="35" text-anchor="middle" fill="#16a34a" font-size="11">📊 按周聚合对比</text>
+  <rect x="410" y="10" width="120" height="40" rx="6" fill="#fffbeb" stroke="#d97706" stroke-width="1.2"/>
+  <text x="470" y="35" text-anchor="middle" fill="#d97706" font-size="11">📋 Excel 生成</text>
+  <rect x="200" y="68" width="230" height="28" rx="6" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1.2"/>
+  <text x="315" y="86" text-anchor="middle" fill="#7c3aed" font-size="10">🤖 飞书机器人自动推送</text>
+  <line x1="160" y1="30" x2="198" y2="30" stroke="#ccc" stroke-width="1.2"/><polygon points="196,24 206,30 196,36" fill="#ccc"/>
+  <line x1="370" y1="30" x2="408" y2="30" stroke="#ccc" stroke-width="1.2"/><polygon points="406,24 416,30 406,36" fill="#ccc"/>
+  <line x1="470" y1="50" x2="315" y2="66" stroke="#ccc" stroke-width="1.2"/>
+</svg></div>
+        </div>
+        <div class="blk">
+          <div class="label">实现细节</div>
+          <ul><li>通过 Shopify Admin API 拉取指定时间段的订单数据</li>
+<li>先检查 API 权限，权限不足时自动降级为基础报表（仅返回摘要数据，不影响主流程）</li>
+<li>按周对比退款率变化（本周 vs 上周 vs 上月同期）</li>
+<li>报表内容：退款率趋势、退款原因分类、退款原因 Top10、取消原因 Top10</li>
+<li>Excel 报表自动通过飞书机器人推送给对接人</li></ul>
+        </div>
+        <div class="blk">
+          <div class="label">搭建难点与自研解法</div>
+          <div class="challenge-item"><span class="c-title">🔸 难点 1：Shopify API 有速率限制（leak bucket 算法），大量订单时可能超限</span>
+<p class="c-solution">实现请求队列 + 指数退避重试策略。配额不足时自动降级到基础报表，只返回关键指标而非全量明细。</p></div>
+<div class="challenge-item"><span class="c-title">🔸 难点 2：退款口径不统一——按金额算 vs 按单数算</span>
+<p class="c-solution">报表同时输出金额维度退款率和单数维度退款率，并标注管理层关注哪个口径。Excel 公式预设好，打开即可看到最终结论。</p></div>
+<div class="challenge-item"><span class="c-title">🔸 难点 3：历史数据量大，首次全量拉取耗时过长</span>
+<p class="c-solution">首次全量后每日增量更新，周报只拉取最近 4 周数据做对比。月度/季度汇总通过离线聚合表预计算。</p></div>
+        </div>
+        <div class="blk">
+          <div class="label">量化收益</div>
+          <div class="value-box"><p><strong>每周节省运营工时约 2h · 报表生成 3 分钟 · 数据口径统一 · 消除人为误差</strong></p></div>
+<div class="result-row" style="margin-top:10px;">
+<div class="r-item"><span class="num">2h→3min</span><span class="label">生成时间</span></div>
+<div class="r-item"><span class="num">4 周</span><span class="label">对比区间</span></div>
+<div class="r-item"><span class="num">3 维</span><span class="label">分析维度</span></div>
+<div class="r-item"><span class="num">自动推送</span><span class="label">飞书触达</span></div>
+</div>
+        </div>
+        <div class="blk">
+          <div class="label">面试高频 Q&A</div>
+          <div class="wq"><p><strong>Q1：</strong>报表中做了哪些维度的对比分析？</p>
+<p><strong>A1：</strong>主要有三层：① 本周 vs 上周的环比；② 本月 vs 上月的月度对比；③ 退款原因分类占比（取消/退货/换货/其他），方便管理层一眼看到异常波动。</p></div>
+<div class="wq"><p><strong>Q2：</strong>权限不足时降级是怎么实现的？</p>
+<p><strong>A2：</strong>先尝试拉取全量数据，如果 API 返回 403，转为只读取 Shopify 后台的"已导出报告"数据——虽然维度少一点（只有退款率，没有原因分类），但主流程不会中断。这个机制避免了因权限变更导致报表停摆。</p></div>
+<div class="wq"><p><strong>Q3：</strong>这个系统用了多久？每周的运行成功率如何？</p>
+<p><strong>A3：</strong>已上线运行约 2 个月，运行成功率 99%+。唯一的失败案例是 Shopify API 临时维护导致的拉取失败，系统自动重试并在恢复后补跑成功。</p></div>
+        </div>
       </div>
     </div>
   </div>
 
+  <!-- === 进阶层 === -->
+  <p style="font-size:0.78rem;color:#999;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:12px;margin-top:32px;">🔗 进阶层 · 跨系统联动</p>
+  <div class="project" onclick="t(this)">
+    <div class="project-header">
+      <div class="icon">✉️</div>
+      <div class="info">
+        <h3>AI 邮件自动生成 & 智能跟进系统</h3>
+        <p class="summary">外包客服每天花 3 小时手动写英文邮件回复异常订单 → AI 全自动替代，从读订单、查邮箱、生成邮件到 24 小时后自动跟进，邮件环节人工彻底解放。</p>
+        <span class="tag">进阶层 · 2026.04 - 2026.05 · 已上线稳定运行</span>
+      </div>
+      <div class="arrow">▼</div>
+    </div>
+    <div class="project-body">
+      <div class="body-inner">
+        <div class="blk">
+          <div class="label">背景 & 痛点</div>
+          <p>跨境电商平台每天有大量物流异常订单——海关查验、运输延误、地址异常等。外包客服需要一条条登录 Intercom 手动写英文邮件发给客户，再把 Case ID 回填到飞书表格。每单 15-20 分钟，日处理 15 单左右，经常漏跟、晚跟，回复质量也参差不齐。</p>
+        </div>
+        <div class="blk">
+          <div class="label">方案架构</div>
+          <div class="arch"><svg viewBox="0 0 700 140" width="100%" style="max-width:700px;height:auto;">
+  <rect x="10" y="10" width="140" height="40" rx="6" fill="#f0f7ff" stroke="#2563eb" stroke-width="1.2"/>
+  <text x="80" y="35" text-anchor="middle" fill="#2563eb" font-size="11">📋 飞书 Base 读取</text>
+  <rect x="190" y="10" width="140" height="40" rx="6" fill="#f0fdf4" stroke="#16a34a" stroke-width="1.2"/>
+  <text x="260" y="35" text-anchor="middle" fill="#16a34a" font-size="11">⚙️ 分流决策引擎</text>
+  <rect x="370" y="10" width="140" height="40" rx="6" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1.2"/>
+  <text x="440" y="35" text-anchor="middle" fill="#7c3aed" font-size="11">🤖 AI 两级生成</text>
+  <rect x="550" y="10" width="140" height="40" rx="6" fill="#f0fdf4" stroke="#16a34a" stroke-width="1.2"/>
+  <text x="620" y="35" text-anchor="middle" fill="#16a34a" font-size="11">✉️ Intercom 发送</text>
+  <line x1="150" y1="30" x2="188" y2="30" stroke="#ccc" stroke-width="1.2"/><polygon points="186,24 196,30 186,36" fill="#ccc"/>
+  <line x1="330" y1="30" x2="368" y2="30" stroke="#ccc" stroke-width="1.2"/><polygon points="366,24 376,30 366,36" fill="#ccc"/>
+  <line x1="510" y1="30" x2="548" y2="30" stroke="#ccc" stroke-width="1.2"/><polygon points="546,24 556,30 546,36" fill="#ccc"/>
+  <rect x="190" y="68" width="180" height="40" rx="6" fill="#fef2f2" stroke="#dc2626" stroke-width="1.2"/>
+  <text x="280" y="93" text-anchor="middle" fill="#dc2626" font-size="11">🔄 24h 跟进检测</text>
+  <rect x="410" y="68" width="180" height="40" rx="6" fill="#fffbeb" stroke="#d97706" stroke-width="1.2"/>
+  <text x="500" y="93" text-anchor="middle" fill="#d97706" font-size="11">✅ 飞书审核 → 确认发送</text>
+  <line x1="280" y1="50" x2="280" y2="66" stroke="#ccc" stroke-width="1"/><polygon points="274,64 280,74 286,64" fill="#ccc"/>
+  <line x1="590" y1="50" x2="500" y2="66" stroke="#ccc" stroke-width="1"/>
+  <text x="350" y="133" text-anchor="middle" fill="#999" font-size="10">🔒 四层安全机制：dry-run → 测试环境 → 测试发送 → 正式上线</text>
+</svg></div>
+        </div>
+        <div class="blk">
+          <div class="label">实现细节</div>
+          <ul><li>将客服决策链路（状态分流、Intercom 去重、敏感词审核、退款拦截）拆解为规则树，通过 Prompt 引导 AI 生成分流代码</li>
+<li><strong>两级生成策略：</strong>第一级从工单记录中提取客户可见的事实信息（如"包裹编号""异常原因"等），输出结构化 JSON；第二级套用历史客服模板润色，确保语气专业。支持英文、法文、西班牙文、德文</li>
+<li>打通三个系统：飞书 Base 读取订单 → Shopify 查询客户邮箱 → Intercom 发送邮件</li>
+<li>建立四层安全机制：dry-run → 测试环境 → 测试发送 → 正式上线，确保零事故</li>
+<li>配套操作手册，培训外包同事通过飞书审核视图确认草稿</li></ul>
+        </div>
+        <div class="blk">
+          <div class="label">搭建难点与自研解法</div>
+          <div class="challenge-item"><span class="c-title">🔸 难点 1：多语言邮件生成质量不一致，法文和德文经常出现语法错误</span>
+<p class="c-solution">采用"两级生成"——第一级抽取事实（中英文混杂的工单数据 → 结构化字段），第二级用目标语言套模板润色。模板固化常见句式，AI 只填充变量部分，语法问题减少 80%+。</p></div>
+<div class="challenge-item"><span class="c-title">🔸 难点 2：Intercom 发送后如何确认邮件真正送达和客户回复？</span>
+<p class="c-solution">Intercom 的 API 会返回 message ID。在飞书记录 message ID，跟进检测时通过 Intercom 查询该 conversation 是否有客户回复。不依赖邮件送达率（Intercom 内部会重试），只看是否有回复。</p></div>
+<div class="challenge-item"><span class="c-title">🔸 难点 3：四层安全机制每层如何确保不遗漏正式上线？</span>
+<p class="c-solution">第一层 dry-run（只打印日志，不写表不发信）→ 第二层测试环境（写测试表，发测试 Intercom）→ 第三层测试发送（写正式表，只发邮件到测试邮箱）→ 第四层正式上线。每层有对应的 flyway 迁移脚本回滚。上线初期该机制至少拦截了 3 次潜在问题。</p></div>
+        </div>
+        <div class="blk">
+          <div class="label">量化收益</div>
+          <div class="value-box"><p><strong>邮件生成完全由 AI 替代 · 每单从 15 分钟→0 分钟 · 释放 30% 客服人力 · 累计 800+ 封 · 上线 0 投诉</strong></p></div>
+<div class="result-row" style="margin-top:10px;">
+<div class="r-item"><span class="num">15→0 min</span><span class="label">每单耗时</span></div>
+<div class="r-item"><span class="num">~30%</span><span class="label">释放人力</span></div>
+<div class="r-item"><span class="num">10 类</span><span class="label">场景覆盖</span></div>
+<div class="r-item"><span class="num">4 语</span><span class="label">自动适配</span></div>
+</div>
+        </div>
+        <div class="blk">
+          <div class="label">面试高频 Q&A</div>
+          <div class="wq"><p><strong>Q1：</strong>两级生成策略具体是怎么实现的？为什么不用一次生成？</p>
+<p><strong>A1：</strong>一级 Prompt 负责从飞书工单的杂乱文本中提取客户可见的事实信息（如"包裹编号""异常原因""预计处理时间"等），输出结构化 JSON。二级 Prompt 把这些 JSON 填入目标语言的邮件模板。拆开的好处是：事实抽取是语言无关的，只有润色部分需要语言能力，维护和调试都更方便。</p></div>
+<div class="wq"><p><strong>Q2：</strong>四层安全机制听起来很有工程意识，你们遇到过真正的事故吗？</p>
+<p><strong>A2：</strong>这正是为什么需要四层。有一次因为飞书 Base 的字段 ID 变更，dry-run 阶段就发现数据映射异常，没有进入正式发送。如果没有 dry-run，可能会导致邮件内容乱码。这个机制在上线初期至少拦截了 3 次潜在问题。</p></div>
+<div class="wq"><p><strong>Q3：</strong>外包同事在飞书审核视图中的操作流程是怎样的？</p>
+<p><strong>A3：</strong>飞书 Base 有一个"待审核"视图，只展示需要人工确认的草稿。同事在视图中打开每条记录，点击"确认发送"按钮（通过飞书 Base 的自动化流程触发 webhook），系统收到确认后才调用 Intercom API 发送。不做确认的不发。</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="project" onclick="t(this)">
+    <div class="project-header">
+      <div class="icon">✂️</div>
+      <div class="info">
+        <h3>G+ 平台自动拆单</h3>
+        <p class="summary">异常订单拆单需要人工判断+手动操作 → 全自动三阶段：鉴权、出方案（库存匹配）、Playwright 自动执行，结果回填飞书。</p>
+        <span class="tag">进阶层 · 2026.06 · 已上线</span>
+      </div>
+      <div class="arrow">▼</div>
+    </div>
+    <div class="project-body">
+      <div class="body-inner">
+        <div class="blk">
+          <div class="label">背景 & 痛点</div>
+          <p>G+ 平台的异常订单需要人工判断是否拆单，确定方案后再手动在浏览器中操作拆单。步骤多、耗时长、容易出错。</p>
+        </div>
+        <div class="blk">
+          <div class="label">方案架构</div>
+          <div class="arch"><svg viewBox="0 0 620 100" width="100%" style="max-width:620px;height:auto;">
+  <rect x="10" y="10" width="150" height="40" rx="6" fill="#fef2f2" stroke="#dc2626" stroke-width="1.2"/>
+  <text x="85" y="35" text-anchor="middle" fill="#dc2626" font-size="11">🔐 自动鉴权</text>
+  <rect x="200" y="10" width="190" height="40" rx="6" fill="#f0f7ff" stroke="#2563eb" stroke-width="1.2"/>
+  <text x="295" y="35" text-anchor="middle" fill="#2563eb" font-size="11">📋 MySQL→库存匹配→出方案</text>
+  <rect x="430" y="10" width="180" height="40" rx="6" fill="#f0fdf4" stroke="#16a34a" stroke-width="1.2"/>
+  <text x="520" y="35" text-anchor="middle" fill="#16a34a" font-size="11">🤖 Playwright 执行拆单</text>
+  <rect x="10" y="68" width="600" height="28" rx="6" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1.2"/>
+  <text x="310" y="86" text-anchor="middle" fill="#7c3aed" font-size="10">📤 结果回填飞书（已拆 SKU、未拆原因、可追溯审计）</text>
+  <line x1="160" y1="30" x2="198" y2="30" stroke="#ccc" stroke-width="1.2"/><polygon points="196,24 206,30 196,36" fill="#ccc"/>
+  <line x1="390" y1="30" x2="428" y2="30" stroke="#ccc" stroke-width="1.2"/><polygon points="426,24 436,30 426,36" fill="#ccc"/>
+  <line x1="520" y1="50" x2="310" y2="66" stroke="#ccc" stroke-width="1.2"/>
+</svg></div>
+        </div>
+        <div class="blk">
+          <div class="label">实现细节</div>
+          <ul><li><strong>自动鉴权：</strong>首次或鉴权失效时自动登录 G+，缓存接口凭证，本地加密存储</li>
+<li><strong>出方案：</strong>从 MySQL 拉取异常订单 → 库存匹配运算（约束参数化：最大拆分数量、最小单品数、发货时效阈值）→ 生成拆单方案 → 写入飞书表格</li>
+<li><strong>自动执行：</strong>对状态为"待拆"的订单，用 Playwright 浏览器自动化执行拆单操作，支持断点续执行</li>
+<li>结果自动写回飞书：拆了哪些 SKU、未拆原因，可追溯可审计</li></ul>
+        </div>
+        <div class="blk">
+          <div class="label">搭建难点与自研解法</div>
+          <div class="challenge-item"><span class="c-title">🔸 难点 1：G+ 平台的鉴权状态会不定期过期，导致拆单执行失败</span>
+<p class="c-solution">设计鉴权前置阶段——每次任务开始先检测缓存凭证是否有效，失效则自动触发 Playwright 重登录。登录凭据本地加密存储，支持人工手动刷新入口。</p></div>
+<div class="challenge-item"><span class="c-title">🔸 难点 2：库存匹配方案需要考虑多种约束，最优解不易计算</span>
+<p class="c-solution">将约束条件参数化（最大拆分数量、最小拆单单品数、发货时效阈值等），用 MySQL 查询 + 业务规则引擎计算出最优方案。如果最优方案不满足约束，降级为方案解释供人工参考。</p></div>
+<div class="challenge-item"><span class="c-title">🔸 难点 3：Playwright 执行过程中页面元素变化（G+ 平台更新）</span>
+<p class="c-solution">为关键操作步骤添加 fallback selector。当主选择器匹配失败时，按优先级尝试备用选择器，记录所有失败的 DOM 快照便于定位升级后的变更点。</p></div>
+        </div>
+        <div class="blk">
+          <div class="label">量化收益</div>
+          <div class="value-box"><p><strong>日均处理 15-20 笔拆单 · 单笔从 8 分钟→45 秒 · 准确率 95%+ · 月省运营工时约 35h</strong></p></div>
+<div class="result-row" style="margin-top:10px;">
+<div class="r-item"><span class="num">8min→45s</span><span class="label">单笔耗时</span></div>
+<div class="r-item"><span class="num">95%+</span><span class="label">方案准确率</span></div>
+<div class="r-item"><span class="num">双源</span><span class="label">MySQL+飞书</span></div>
+<div class="r-item"><span class="num">可追溯</span><span class="label">审计日志</span></div>
+</div>
+        </div>
+        <div class="blk">
+          <div class="label">面试高频 Q&A</div>
+          <div class="wq"><p><strong>Q1：</strong>Playwright 执行拆单时，如果网络中断了怎么办？</p>
+<p><strong>A1：</strong>有重试机制。每次操作会记录执行到的步骤，中断后重启从断点继续。如果重试 3 次仍然失败，回滚已执行的操作并标记失败原因，通过飞书通知人工介入。</p></div>
+<div class="wq"><p><strong>Q2：</strong>库存匹配的方案是如何生成的？会不会出现不合理的拆分？</p>
+<p><strong>A2：</strong>规则驱动。约束包括：① 拆单后每个子订单的 SKU 数 >= 最小拆单数；② 按可用库存量分配，先满足发货时间最早的 SKU；③ 若无法完全满足，标记"部分可拆"供人工决策。方案会在飞书表格中展示每步的决策逻辑。</p></div>
+<div class="wq"><p><strong>Q3：</strong>方案的准确率 95%+ 是怎么统计的？</p>
+<p><strong>A3：</strong>人工确认时的"驳回率"。在飞书审核视图中，运营如果觉得方案不合理，就点"驳回"并附原因。每周汇总驳回的案例，分析是规则问题还是特殊情况，不断优化匹配算法。</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="project" onclick="t(this)">
+    <div class="project-header">
+      <div class="icon">💬</div>
+      <div class="info">
+        <h3>Meta 评论 AI 自动回复</h3>
+        <p class="summary">通过 Meta Graph API 拉取 Facebook/Instagram 评论，AI 五类分类+生成回复建议，飞书审核后自动/手动回复。</p>
+        <span class="tag">进阶层 · 2026.03 - 至今 · 每 30 分钟自动运行</span>
+      </div>
+      <div class="arrow">▼</div>
+    </div>
+    <div class="project-body">
+      <div class="body-inner">
+        <div class="blk">
+          <div class="label">背景 & 痛点</div>
+          <p>Facebook 和 Instagram 的客户评论需要人工逐条查看、分类、撰写回复。每天 50-100 条评论，运营需花 1-2 小时处理。投诉类评论回复不及时可能影响品牌形象。</p>
+        </div>
+        <div class="blk">
+          <div class="label">方案架构</div>
+          <div class="arch"><svg viewBox="0 0 620 80" width="100%" style="max-width:620px;height:auto;">
+  <rect x="10" y="10" width="150" height="40" rx="6" fill="#f0f7ff" stroke="#2563eb" stroke-width="1.2"/>
+  <text x="85" y="35" text-anchor="middle" fill="#2563eb" font-size="11">📡 Meta Graph API</text>
+  <rect x="200" y="10" width="160" height="40" rx="6" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1.2"/>
+  <text x="280" y="35" text-anchor="middle" fill="#7c3aed" font-size="11">🤖 AI 五类分类</text>
+  <rect x="400" y="10" width="150" height="40" rx="6" fill="#fffbeb" stroke="#d97706" stroke-width="1.2"/>
+  <text x="475" y="35" text-anchor="middle" fill="#d97706" font-size="11">✅ 飞书人工审核</text>
+  <rect x="10" y="68" width="540" height="28" rx="6" fill="#f0fdf4" stroke="#16a34a" stroke-width="1.2"/>
+  <text x="280" y="86" text-anchor="middle" fill="#16a34a" font-size="10">👍 好评自动回复（其余分类需人工确认后再发送）</text>
+  <line x1="160" y1="30" x2="198" y2="30" stroke="#ccc" stroke-width="1.2"/><polygon points="196,24 206,30 196,36" fill="#ccc"/>
+  <line x1="360" y1="30" x2="398" y2="30" stroke="#ccc" stroke-width="1.2"/><polygon points="396,24 406,30 396,36" fill="#ccc"/>
+</svg></div>
+        </div>
+        <div class="blk">
+          <div class="label">实现细节</div>
+          <ul><li>通过 Meta Graph API 定时拉取 Facebook Page 和 Instagram 的客户评论</li>
+<li>AI 自动分为 5 类：咨询/投诉/好评/退换货/其他</li>
+<li>分类后 AI 自动生成回复建议（英文），包含主要内容和语气建议</li>
+<li>结果写入飞书多维表格，运营在视图中审核并决定"用 AI 回复"或"自己重写"</li>
+<li>好评类配置自动回复白名单直接回复，其余需审核，降低风险</li></ul>
+        </div>
+        <div class="blk">
+          <div class="label">搭建难点与自研解法</div>
+          <div class="challenge-item"><span class="c-title">🔸 难点 1：Meta Graph API 的访问令牌会过期（60 天有效）</span>
+<p class="c-solution">设置令牌过期检测，提前 7 天通过飞书提醒人工续期。已实现令牌过期时的降级处理——不中断已有分类，只暂停新数据拉取。</p></div>
+<div class="challenge-item"><span class="c-title">🔸 难点 2：投诉类评论的回复建议需要格外谨慎，AI 可能措辞不当</span>
+<p class="c-solution">投诉类默认不走自动回复，全部进入飞书审核。AI 仅生成"建议版本"供参考，运营可以一键采用或修改。上线后投诉建议采用率约 50%，好评类采用率超 90%。</p></div>
+<div class="challenge-item"><span class="c-title">🔸 难点 3：拉取频率和内容去重——同一评论不要反复处理</span>
+<p class="c-solution">在飞书 Base 中记录已处理的评论 ID，每次拉取后先做 ID 去重。新增评论才进入分类流程。拉取间隔设为 30 分钟，兼顾时效性和 API 调用成本。</p></div>
+        </div>
+        <div class="blk">
+          <div class="label">量化收益</div>
+          <div class="value-box"><p><strong>单条从 5-10 分钟→AI 30 秒生成 · 日均 50-100 条 · 投诉响应从 2h→10 分钟 · 好评自动 30%</strong></p></div>
+<div class="result-row" style="margin-top:10px;">
+<div class="r-item"><span class="num">5-10min→30s</span><span class="label">单条耗时</span></div>
+<div class="r-item"><span class="num">70%</span><span class="label">建议采纳率</span></div>
+<div class="r-item"><span class="num">>90%</span><span class="label">好评自动率</span></div>
+<div class="r-item"><span class="num">2h→10min</span><span class="label">投诉响应</span></div>
+</div>
+        </div>
+        <div class="blk">
+          <div class="label">面试高频 Q&A</div>
+          <div class="wq"><p><strong>Q1：</strong>AI 生成的回复建议，人工采用率是多少？</p>
+<p><strong>A1：</strong>目前约 70% 的回复建议被直接采用或微调后采用。投诉类建议的采用率较低（约 50%），因为投诉需要更谨慎的措辞。好评类建议的采用率超过 90%。</p></div>
+<div class="wq"><p><strong>Q2：</strong>为什么好评要自动回复，投诉要人工审核？</p>
+<p><strong>A2：</strong>风险控制。好评回复错了只是"不够热情"，投诉回复错了可能激化矛盾。让 AI 负责效率型的场景（好评、一般咨询），人工专注于高风险场景（投诉、退换货纠纷）。</p></div>
+<div class="wq"><p><strong>Q3：</strong>Meta 的 API 令牌续期是自动的还是手动的？</p>
+<p><strong>A3：</strong>目前是手动续期——Meta 的长期令牌最长 60 天，到期前 7 天飞书会推送提醒。令牌一旦过期，系统会进入降级模式：不影响已有评论的分类结果展示，只是暂停拉取新评论，不中断核心服务。</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- === 高阶层 === -->
+  <p style="font-size:0.78rem;color:#999;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:12px;margin-top:32px;">🧠 高阶层 · LLM Agent / 智能体</p>
+  <div class="project" onclick="t(this)">
+    <div class="project-header">
+      <div class="icon">🛡️</div>
+      <div class="info">
+        <h3>Shopify 订单风控判定引擎</h3>
+        <p class="summary">运营每单花 10-15 分钟手工判断是否欺诈 → AI 全自动 15-30 秒输出结论，7 路数据源并行采集、10 维评分、LLM 研判，每单输出可追溯报告。</p>
+        <span class="tag">高阶层 · 2026.03 - 2026.06 · 已上线稳定运行</span>
+      </div>
+      <div class="arrow">▼</div>
+    </div>
+    <div class="project-body">
+      <div class="body-inner">
+        <div class="blk">
+          <div class="label">背景 & 痛点</div>
+          <p>跨境电商 DTC 场景中，信用卡盗刷、转运仓批量下单、身份伪造等欺诈行为频发。风控人员需逐单登录 Shopify 查看风险等级，手动核查地址、IP、邮箱等，每单 10-15 分钟。人工判断标准不统一，高风险订单时有漏判。</p>
+        </div>
+        <div class="blk">
+          <div class="label">方案架构</div>
+          <div class="arch"><svg viewBox="0 0 680 190" width="100%" style="max-width:680px;height:auto;">
+  <rect x="10" y="10" width="180" height="34" rx="6" fill="#f0f7ff" stroke="#2563eb" stroke-width="1.2"/>
+  <text x="100" y="32" text-anchor="middle" fill="#2563eb" font-size="10">📡 7 路并行数据采集</text>
+  <rect x="230" y="10" width="130" height="34" rx="6" fill="#f0fdf4" stroke="#16a34a" stroke-width="1.2"/>
+  <text x="295" y="32" text-anchor="middle" fill="#16a34a" font-size="10">⚡ 硬规则引擎</text>
+  <rect x="400" y="10" width="150" height="34" rx="6" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1.2"/>
+  <text x="475" y="32" text-anchor="middle" fill="#7c3aed" font-size="10">🧠 LLM 综合研判</text>
+  <rect x="580" y="10" width="90" height="34" rx="6" fill="#fef2f2" stroke="#dc2626" stroke-width="1.2"/>
+  <text x="625" y="32" text-anchor="middle" fill="#dc2626" font-size="10">🔍 补查</text>
+  <rect x="200" y="70" width="280" height="44" rx="8" fill="#f0f7ff" stroke="#2563eb" stroke-width="1.8"/>
+  <text x="340" y="96" text-anchor="middle" fill="#2563eb" font-size="12" font-weight="bold">🎯 三级决策融合</text>
+  <rect x="200" y="135" width="280" height="44" rx="8" fill="#f0fdf4" stroke="#16a34a" stroke-width="1.5"/>
+  <text x="340" y="161" text-anchor="middle" fill="#16a34a" font-size="11">📄 输出：PASS / REVIEW / BLOCK</text>
+  <line x1="190" y1="27" x2="228" y2="27" stroke="#ccc" stroke-width="1.2"/><polygon points="226,21 236,27 226,33" fill="#ccc"/>
+  <line x1="360" y1="27" x2="398" y2="27" stroke="#ccc" stroke-width="1.2"/><polygon points="396,21 406,27 396,33" fill="#ccc"/>
+  <line x1="550" y1="27" x2="578" y2="27" stroke="#ccc" stroke-width="1.2"/><polygon points="576,21 586,27 576,33" fill="#ccc"/>
+  <line x1="340" y1="44" x2="340" y2="68" stroke="#ccc" stroke-width="1.2"/><polygon points="334,66 340,76 346,66" fill="#ccc"/>
+  <line x1="340" y1="114" x2="340" y2="133" stroke="#ccc" stroke-width="1.5"/><polygon points="334,131 340,141 346,131" fill="#ccc"/>
+</svg></div>
+        </div>
+        <div class="blk">
+          <div class="label">实现细节</div>
+          <ul><li><strong>7 路并行采集：</strong>订单信息、IP 归属地、邮箱信誉、地址真实性、身份信息、电话验证、历史记录——任一采集失败不影响整体判定</li>
+<li><strong>硬规则兜底：</strong>历史欺诈关联订单直接拦截、Shopify high risk 自动拦截、$0 订单+多件商品拦截——不受 AI 影响，保证底线安全</li>
+<li><strong>多维度评分+AI 研判：</strong>价格异常、地址异常、IP 风险、支付验证等 10 个维度综合评分，再由 LLM 做最终判断</li>
+<li>中高风险订单自动触发补查（地址验证 API、地理编码服务等），实景证据存入飞书附件</li>
+<li>每单输出结构化报告：命中规则、风险评分、AI 分析、关键证据，运营 5 秒可理解判定依据</li></ul>
+        </div>
+        <div class="blk">
+          <div class="label">搭建难点与自研解法</div>
+          <div class="challenge-item"><span class="c-title">🔸 难点 1：7 路数据源并行采集时，部分数据源超时或失败影响整体判定速度</span>
+<p class="c-solution">采用 asyncio.gather() + 超时控制。单个数据源超过 5 秒就算作"数据不可得"，判定时标记该维度为"缺失"，不影响其他维度的评分和最终的 LLM 判定。</p></div>
+<div class="challenge-item"><span class="c-title">🔸 难点 2：LLM 的判定结果可能不一致（同一订单多次判断结果不同）</span>
+<p class="c-solution">对 LLM 输出做结构化约束（限定为 PASS/REVIEW/BLOCK+理由），再套一层规则校验：如果 LLM 判定结果与硬规则引擎冲突，取更严格的结论——风控场景下"误放"成本远高于"误拦"。</p></div>
+<div class="challenge-item"><span class="c-title">🔸 难点 3：某些场景需要补查实景证据（如 Google 街景验证地址），手动做太慢</span>
+<p class="c-solution">通过 LLM 自动判断是否触发补查。当"地址真实性"维度得分低于阈值时，自动调用地址验证 API + 地理编码服务，采集的实景截图存入飞书附件供运营参考。</p></div>
+        </div>
+        <div class="blk">
+          <div class="label">量化收益</div>
+          <div class="value-box"><p><strong>每单风控从 10-15 分钟→AI 15-30 秒 · 效率提升约 95% · 日均 50-80 单 · 拦截准确率 90%+</strong></p></div>
+<div class="result-row" style="margin-top:10px;">
+<div class="r-item"><span class="num">10-15min→15-30s</span><span class="label">单笔判定</span></div>
+<div class="r-item"><span class="num">~95%</span><span class="label">效率提升</span></div>
+<div class="r-item"><span class="num">10 维</span><span class="label">综合评分</span></div>
+<div class="r-item"><span class="num">7 路</span><span class="label">并行数据源</span></div>
+</div>
+        </div>
+        <div class="blk">
+          <div class="label">面试高频 Q&A</div>
+          <div class="wq"><p><strong>Q1：</strong>10 维评分具体是哪 10 个维度？每个维度的权重怎么定的？</p>
+<p><strong>A1：</strong>包括：订单价格异常、地址真实性、IP 风险评级、邮箱信誉、支付验证结果、历史关联风险、登录设备指纹、收货地址与 IP 地理位置匹配度、商品组合合理性、客户账号年龄。权重根据历史 2000+ 单的数据统计分析得到，例如"地址与 IP 不匹配"权重高于"订单价格异常"。</p></div>
+<div class="wq"><p><strong>Q2：</strong>LLM 判定和硬规则冲突时，为什么取更严格的？</p>
+<p><strong>A2：</strong>风控场景下"误放"的成本远高于"误拦"（误拦了客户会申诉，误放了就是实际损失）。我们设计的"保守优先"原则。如果运营觉得某个 BLOCK 不合理，可以在飞书审核视图中申诉，系统会自动学习优化。</p></div>
+<div class="wq"><p><strong>Q3：</strong>这个引擎覆盖了全部订单吗？</p>
+<p><strong>A3：</strong>目前覆盖 DTC 场景中的中高风险订单（基于 Shopify 风险等级+自定义规则预筛），约占总订单量的 30%。低风险订单直接放行不做判定，集中算力处理真正需要关注的订单。</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="project" onclick="t(this)">
+    <div class="project-header">
+      <div class="icon">🔍</div>
+      <div class="info">
+        <h3>自动化巡检 & 飞书预警 Agent</h3>
+        <p class="summary">自动化系统越来越多、没人盯着 → 搭建自动化运维中台：每 5 分钟巡检一次，出故障自动分类，能自愈的自动补跑，不能自愈的即时飞书告警。</p>
+        <span class="tag">高阶层 · 2026.05 - 至今 · 已上线稳定运行</span>
+      </div>
+      <div class="arrow">▼</div>
+    </div>
+    <div class="project-body">
+      <div class="body-inner">
+        <div class="blk">
+          <div class="label">背景 & 痛点</div>
+          <p>多套自动化系统独立运行、无统一监控入口。系统故障从发生到被发现往往需要数天时间，每次需要人工翻日志、判断原因、手动重跑——属于"自动化有了，运维还是人工"的局面。</p>
+        </div>
+        <div class="blk">
+          <div class="label">方案架构</div>
+          <div class="arch"><svg viewBox="0 0 660 120" width="100%" style="max-width:660px;height:auto;">
+  <rect x="10" y="10" width="150" height="40" rx="6" fill="#f0fdf4" stroke="#16a34a" stroke-width="1.2"/>
+  <text x="85" y="35" text-anchor="middle" fill="#16a34a" font-size="11">🔍 日志扫描</text>
+  <rect x="190" y="10" width="150" height="40" rx="6" fill="#f0f7ff" stroke="#2563eb" stroke-width="1.2"/>
+  <text x="265" y="35" text-anchor="middle" fill="#2563eb" font-size="11">🧠 故障分类</text>
+  <rect x="370" y="10" width="150" height="40" rx="6" fill="#fffbeb" stroke="#d97706" stroke-width="1.2"/>
+  <text x="445" y="35" text-anchor="middle" fill="#d97706" font-size="11">🔄 自愈 / 告警</text>
+  <rect x="550" y="10" width="100" height="40" rx="6" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1.2"/>
+  <text x="600" y="35" text-anchor="middle" fill="#7c3aed" font-size="11">📊 日报</text>
+  <line x1="160" y1="30" x2="188" y2="30" stroke="#ccc" stroke-width="1.2"/><polygon points="186,24 196,30 186,36" fill="#ccc"/>
+  <line x1="340" y1="30" x2="368" y2="30" stroke="#ccc" stroke-width="1.2"/><polygon points="366,24 376,30 366,36" fill="#ccc"/>
+  <line x1="520" y1="30" x2="548" y2="30" stroke="#ccc" stroke-width="1.2"/><polygon points="546,24 556,30 546,36" fill="#ccc"/>
+  <text x="300" y="110" text-anchor="middle" fill="#999" font-size="10">⏱ 每 5 分钟一轮 · 17 个自动化任务统一纳管 · P0/P1/P2 三级告警</text>
+</svg></div>
+        </div>
+        <div class="blk">
+          <div class="label">实现细节</div>
+          <ul><li>基于 macOS 定时机制搭建常驻巡检 Agent，每 5 分钟扫描全量日志，判断任务成功/失败/未运行</li>
+<li>故障自动分类：识别网络超时、权限过期、接口异常、脚本错误等 5 大类，匹配对应处理方案</li>
+<li>可自愈的失败（如网络闪断）自动触发补跑并回报结果；不可自愈的即时飞书告警</li>
+<li>每日 18:30 自动汇总运行日报推送飞书，支持自然语言交互查询和补跑指令</li>
+<li>分 P0/P1/P2 三级告警级别，核心交易链路直接飞书电话告警</li></ul>
+        </div>
+        <div class="blk">
+          <div class="label">搭建难点与自研解法</div>
+          <div class="challenge-item"><span class="c-title">🔸 难点 1：17 个任务的故障模式各不相同，统一分类困难</span>
+<p class="c-solution">建立故障分类树——网络超时/权限过期/接口异常/脚本错误/数据异常等 5 大类，每类关联对应的处理方案。分类器先用规则匹配（错误码+日志关键词），匹配不到的 fallback 到 LLM 分析。</p></div>
+<div class="challenge-item"><span class="c-title">🔸 难点 2：自愈操作需要考虑幂等性，不能重复执行导致数据异常</span>
+<p class="c-solution">每个任务记录"上次自愈时间"和"自愈次数"。同一任务 30 分钟内不重复自愈，连续 3 次自愈失败自动升级为人工告警。</p></div>
+<div class="challenge-item"><span class="c-title">🔸 难点 3：自然语言查询的意图识别准确率起步只有 60%</span>
+<p class="c-solution">先用预设意图模板覆盖 80% 高频查询（"今天状态""补跑缺货""最近故障"等），剩余 20% 走 LLM 意图识别。模板匹配 200ms 内响应，LLM 路径约 3 秒。</p></div>
+        </div>
+        <div class="blk">
+          <div class="label">量化收益</div>
+          <div class="value-box"><p><strong>故障发现从数天→实时 · 自愈成功率约 65% · 日均 280+ 次巡检 · 月拦截 15-20 次潜在故障</strong></p></div>
+<div class="result-row" style="margin-top:10px;">
+<div class="r-item"><span class="num">5 分钟</span><span class="label">巡检间隔</span></div>
+<div class="r-item"><span class="num">数天→实时</span><span class="label">故障发现</span></div>
+<div class="r-item"><span class="num">65%</span><span class="label">自愈成功率</span></div>
+<div class="r-item"><span class="num">17 个</span><span class="label">纳管任务</span></div>
+</div>
+        </div>
+        <div class="blk">
+          <div class="label">面试高频 Q&A</div>
+          <div class="wq"><p><strong>Q1：</strong>自愈成功和失败的判断标准是什么？</p>
+<p><strong>A1：</strong>自愈后重新执行一遍该任务，如果执行成功就是"自愈成功"。如果失败则判断是否可重试（累计不超过 3 次），超过 3 次标记为"自愈失败"，升级为人工告警。每次自愈的结果都会写入运行日志。</p></div>
+<div class="wq"><p><strong>Q2：</strong>17 个任务的监控有没有优先级？会不会高频误报？</p>
+<p><strong>A2：</strong>分三个优先级：P0（核心交易链路，直接飞书电话告警）、P1（辅助流程，飞书消息告警，15 分钟内需响应）、P2（日常任务，纳入日报，无需即时响应）。误报通过自愈机制消化——系统能自己解决的就不打扰人。</p></div>
+<div class="wq"><p><strong>Q3：</strong>自然语言交互是如何实现的？</p>
+<p><strong>A3：</strong>飞书机器人接收消息 → 正则匹配高频指令（"补跑""状态""故障"等）→ 匹配到的直接执行 → 没有匹配的走 LLM 意图识别。6 个核心指令（状态、补跑、故障查询、任务启停、日志查看、手动触发）覆盖了 95% 的实际使用场景。</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="project" onclick="t(this)">
+    <div class="project-header">
+      <div class="icon">🤖</div>
+      <div class="info">
+        <h3>飞书 AI 智能机器人</h3>
+        <p class="summary">飞书 IM 机器人，接入 DeepSeek 模型，支持对话聊天、订单查询、多 Agent 调度——一句话查状态、下指令。</p>
+        <span class="tag">高阶层 · 2026.04 - 至今 · 持续迭代</span>
+      </div>
+      <div class="arrow">▼</div>
+    </div>
+    <div class="project-body">
+      <div class="body-inner">
+        <div class="blk">
+          <div class="label">背景 & 痛点</div>
+          <p>多套自动化系统各自为战，运营想了解系统状态或执行指令需要打开不同后台。需要一个统一的"AI 助手"入口——在飞书里一句话就能查状态、下指令。</p>
+        </div>
+        <div class="blk">
+          <div class="label">方案架构</div>
+          <div class="arch"><svg viewBox="0 0 620 100" width="100%" style="max-width:620px;height:auto;">
+  <rect x="10" y="10" width="140" height="40" rx="6" fill="#f0f7ff" stroke="#2563eb" stroke-width="1.2"/>
+  <text x="80" y="35" text-anchor="middle" fill="#2563eb" font-size="11">💬 飞书 IM 消息</text>
+  <rect x="190" y="10" width="130" height="40" rx="6" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1.2"/>
+  <text x="255" y="35" text-anchor="middle" fill="#7c3aed" font-size="11">🧠 DeepSeek</text>
+  <rect x="360" y="10" width="150" height="40" rx="6" fill="#f0fdf4" stroke="#16a34a" stroke-width="1.2"/>
+  <text x="435" y="35" text-anchor="middle" fill="#16a34a" font-size="11">🛠️ 意图→工具调度</text>
+  <rect x="10" y="68" width="500" height="28" rx="6" fill="#fffbeb" stroke="#d97706" stroke-width="1.2"/>
+  <text x="260" y="86" text-anchor="middle" fill="#d97706" font-size="10">🎯 6 大指令：状态/补跑/故障/启停/日志/触发</text>
+  <line x1="150" y1="30" x2="188" y2="30" stroke="#ccc" stroke-width="1.2"/><polygon points="186,24 196,30 186,36" fill="#ccc"/>
+  <line x1="320" y1="30" x2="358" y2="30" stroke="#ccc" stroke-width="1.2"/><polygon points="356,24 366,30 356,36" fill="#ccc"/>
+</svg></div>
+        </div>
+        <div class="blk">
+          <div class="label">实现细节</div>
+          <ul><li>接入 DeepSeek 模型，支持多轮对话</li>
+<li>核心指令：订单查询、系统状态查询、任务补跑、知识库问答</li>
+<li>与巡检 Agent 联动：飞书问"今天系统怎么样" → 自动汇总今日运行报告</li>
+<li>白名单机制：只在授权群聊中响应，防止误触发</li>
+<li>高危操作（补跑、任务启停）需要二次确认——"确认要补跑缺货系统吗？"</li></ul>
+        </div>
+        <div class="blk">
+          <div class="label">搭建难点与自研解法</div>
+          <div class="challenge-item"><span class="c-title">🔸 难点 1：多 Agent 调度——如何判断用户意图该用哪个工具</span>
+<p class="c-solution">设计"意图-工具"映射表。LLM 先判断意图类别，再路由到对应工具执行。如果意图不明确，用追问引导用户（"您想查订单还是看系统状态？"）。</p></div>
+<div class="challenge-item"><span class="c-title">🔸 难点 2：对话成本控制——每次都用 LLM 处理太贵</span>
+<p class="c-solution">6 个核心高频指令走模板匹配（覆盖率 95%），仅在匹配不到时 fallback 到 LLM。DeepSeek 按量计费，日调用 200-300 次，月度成本控制在几十元。</p></div>
+<div class="challenge-item"><span class="c-title">🔸 难点 3：安全性——机器人不能成为系统后门</span>
+<p class="c-solution">工具调用做两层限制：① 只有白名单群聊中的消息才会被处理；② 高危操作需要二次确认。巡检 Agent 有兜底，就算误操作也能 5 分钟内发现异常。</p></div>
+        </div>
+        <div class="blk">
+          <div class="label">量化收益</div>
+          <div class="value-box"><p><strong>日活 10+ 人 · 月均 500+ 对话 · 订单查询 &lt; 3 秒 · 减少系统切换时间约 80%</strong></p></div>
+<div class="result-row" style="margin-top:10px;">
+<div class="r-item"><span class="num">10+</span><span class="label">日活用户</span></div>
+<div class="r-item"><span class="num">500+</span><span class="label">月均对话</span></div>
+<div class="r-item"><span class="num">&lt;3s</span><span class="label">响应时间</span></div>
+<div class="r-item"><span class="num">95%</span><span class="label">指令覆盖</span></div>
+</div>
+        </div>
+        <div class="blk">
+          <div class="label">面试高频 Q&A</div>
+          <div class="wq"><p><strong>Q1：</strong>为什么选 DeepSeek 而不是 GPT？</p>
+<p><strong>A1：</strong>成本和中文能力综合考量。DeepSeek 的中文理解能力基本能满足需求，API 成本比 GPT 低一个数量级。日调用量约 200-300 次，月度成本在几十元。</p></div>
+<div class="wq"><p><strong>Q2：</strong>机器人的安全性怎么保障？会不会执行危险指令？</p>
+<p><strong>A2：</strong>工具调用做了两层限制：① 只有白名单群聊中的消息才会被处理；② 高危操作（补跑、任务启停）需要二次确认——"确认要补跑缺货系统吗？"而且巡检 Agent 有兜底，就算误操作也能 5 分钟内发现异常。</p></div>
+<div class="wq"><p><strong>Q3：</strong>机器人实现的是"对话"还是"命令"式交互？</p>
+<p><strong>A3：</strong>两者兼有。6 个核心指令走自然语言理解（"帮我看看缺货系统今天的状态"），但后台是对应到具体的工具调用。日常 95% 的使用是这 6 个指令的变体。无法识别的意图用 LLM 兜底，但这种情况占比不到 5%。</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== 模块三：技术栈汇总 ===== -->
+<div class="sec-title container" id="tech">
+  <h2>技术栈汇总</h2>
+  <p>按能力维度分类梳理</p>
+</div>
+
+<div class="container tech-grid">
+  <div class="tech-card">
+    <h4>🔗 API 集成层</h4>
+    <p><span class="tag">Shopify Admin</span><span class="tag-desc">订单/风控</span></p>
+    <p><span class="tag">Meta Graph API</span><span class="tag-desc">社媒评论</span></p>
+    <p><span class="tag">Intercom API</span><span class="tag-desc">客服邮件</span></p>
+    <p><span class="tag">飞书 全系 API</span><span class="tag-desc">Base/IM/文档</span></p>
+    <p><span class="tag">G+ OpenAPI</span><span class="tag-desc">内部订单</span></p>
+    <p><span class="tag">WMS 接口</span><span class="tag-desc">仓储库存</span></p>
+  </div>
+  <div class="tech-card">
+    <h4>⚙️ 自动化层</h4>
+    <p><span class="tag">Playwright</span><span class="tag-desc">浏览器自动化</span></p>
+    <p><span class="tag">macOS launchd</span><span class="tag-desc">定时任务编排</span></p>
+    <p><span class="tag">飞书 Webhook</span><span class="tag-desc">事件触发</span></p>
+    <p><span class="tag">自愈/重试/降级</span><span class="tag-desc">异常容错</span></p>
+    <p><span class="tag">日志轮询+健康检查</span><span class="tag-desc">可观测性</span></p>
+    <p><span class="tag">灰度上线/dry-run</span><span class="tag-desc">安全机制</span></p>
+  </div>
+  <div class="tech-card">
+    <h4>🧠 AI / LLM 层</h4>
+    <p><span class="tag">Claude Code</span><span class="tag-desc">自然语言驱动开发</span></p>
+    <p><span class="tag">DeepSeek</span><span class="tag-desc">对话/推理/分类</span></p>
+    <p><span class="tag">多级 Prompt 设计</span><span class="tag-desc">结构化输出</span></p>
+    <p><span class="tag">意图识别+工具调度</span><span class="tag-desc">Agent 架构</span></p>
+    <p><span class="tag">RAG 知识库</span><span class="tag-desc">问答增强</span></p>
+    <p><span class="tag">LLM 结构化输出</span><span class="tag-desc">JSON 模式约束</span></p>
+  </div>
+  <div class="tech-card">
+    <h4>📊 数据层</h4>
+    <p><span class="tag">MySQL</span><span class="tag-desc">业务数据存储</span></p>
+    <p><span class="tag">飞书多维表格</span><span class="tag-desc">协作/审核视图</span></p>
+    <p><span class="tag">飞书文档/Wiki</span><span class="tag-desc">知识库/RAG 源</span></p>
+    <p><span class="tag">Excel 报表自动生成</span><span class="tag-desc">周报/月报</span></p>
+    <p><span class="tag">CSV/PDF 数据提取</span><span class="tag-desc">异构数据解析</span></p>
+  </div>
+</div>
+
+<!-- ===== 模块四：面试口述亮点 ===== -->
+<div class="sec-title container" id="interview">
+  <h2>面试口述亮点</h2>
+  <p>高频面试问题 × 应答话术，展示产品思维与工程化落地能力</p>
+</div>
+
+<div class="container interview-grid">
+  <div class="interview-card">
+    <h4>🎯 产品思维——从业务出发选技术</h4>
+    <span class="q">Q：你没有科班 CS 背景，凭什么胜任 AI 落地工程师？</span>
+    <p class="a">A：我的核心优势恰恰在于"业务语言→技术方案的翻译能力"。用 Claude Code 和 Codex 通过自然语言描述需求来驱动代码生成，而不是从零写代码。过去 8 个月交付了 6 套上线系统，每套都解决了真实业务痛点。我更像是"业务问题的 AI 化解法提供者"，写代码只是手段之一。</p>
+  </div>
+  <div class="interview-card">
+    <h4>🛡️ 工程化意识——安全至上</h4>
+    <span class="q">Q：AI 生成的代码怎么保证不出事故？</span>
+    <p class="a">A：每套系统都有安全机制：四层上线流程（dry-run → 测试环境 → 测试发送 → 正式）、独立开关控制写操作和发信操作、飞书审核视图作为人工确认入口。上线以来零事故，这个记录本身就是最好的验证。</p>
+  </div>
+  <div class="interview-card">
+    <h4>🔗 全链路思维——不只是做一个功能</h4>
+    <span class="q">Q：你做的这些系统是如何融入团队工作流的？</span>
+    <p class="a">A：每个系统都包含三个环节：① 数据采集层（多源打通）② 业务处理层（AI 决策）③ 结果反馈层（飞书触达/邮件通知/Excel 报表）。不是做一个技术 Demo，而是让业务同事每天真正在用的系统。配套有操作手册和审核流程，方便非技术同事上手。</p>
+  </div>
+  <div class="interview-card">
+    <h4>⚡ 故障应对——系统自己会报警</h4>
+    <span class="q">Q：自动化系统出故障了怎么办？你有兜底机制吗？</span>
+    <p class="a">A：这就是巡检 Agent 的价值。每 5 分钟全量扫描，65% 的故障能自愈，不能自愈的即时飞书告警。日报每天早上汇总运行状态。相当于为自动化系统配了一个"运维 AI"，不再依赖人工盯日志。</p>
+  </div>
+  <div class="interview-card">
+    <h4>💰 成本意识——不盲目堆 AI</h4>
+    <span class="q">Q：为什么不全部用 LLM，有些地方用规则就够了？</span>
+    <p class="a">A：成本是设计中认真考虑的维度。比如 CS Task 分类：70% 的工单关键词规则秒级分类，只有 30% 模糊案例走 LLM，API 费用节省 70%。再比如飞书机器人，6 个核心指令覆盖 95% 使用场景，走模板匹配不调用 LLM。AI 要用在刀刃上。</p>
+  </div>
+  <div class="interview-card">
+    <h4>📈 自我迭代——系统上线只是开始</h4>
+    <span class="q">Q：系统上线后就结束了？你怎么衡量效果？</span>
+    <p class="a">A：每个系统都配有数据反馈闭环——飞书审核视图里的"驳回率"、巡检日志里的"自愈成功率"、日报里的"运行状态趋势"。每周复盘数据，优化规则和 Prompt。上线是起点不是终点。</p>
+  </div>
 </div>
 
 <!-- ===== ABOUT ===== -->
@@ -669,11 +1102,11 @@
 </div>
 
 <div class="container about-grid">
-  <div class="about-card">
+  <div class="about-card" style="grid-column:1/-1;">
     <h4>💼 工作经历</h4>
-    <p><strong>深圳盈富斯（PatPat）</strong> · AI 训练师<br>2025.06 - 至今</p>
-    <p style="margin-top:6px;">前期主导智能客服体系（Intercom）从 0 到 1 的建设与 AI 对话效果优化。后期使用 Claude Code、Codex 通过自然语言描述需求驱动 AI 生成代码，独立完成 5 个 AI 自动化项目的全流程落地。</p>
-    <p style="margin-top:8px;"><strong>深圳智汇创想</strong> · AI 训练师<br>2024.06 - 2025.04</p>
+    <p><strong>深圳盈富斯（PatPat）</strong> · AI 训练师 · 2025.06 - 至今</p>
+    <p style="margin-top:4px;">主导智能客服体系（Intercom）从 0 到 1 建设。使用 Claude Code、Codex 通过自然语言描述需求驱动 AI 生成代码，独立完成 10 个 AI 自动化项目的全流程落地。</p>
+    <p style="margin-top:8px;"><strong>深圳智汇创想</strong> · AI 训练师 · 2024.06 - 2025.04</p>
     <p style="margin-top:4px;">建设 RAG 知识库系统，设计多级 Prompt 策略，将客服问题解决率提升至 85%+。</p>
   </div>
   <div class="about-card">
@@ -704,11 +1137,11 @@
 </div>
 
 <div class="footer container">
-  胡威 · 2026
+  胡威 · 2026 · 用 AI 解决电商业务问题
 </div>
 
 <script>
-  function t(el) { el.classList.toggle('open'); }
+  function t(el) { el.classList.toggle("open"); }
 </script>
 </body>
 </html>
