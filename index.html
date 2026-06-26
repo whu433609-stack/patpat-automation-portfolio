@@ -17,6 +17,7 @@
     }
     .container { max-width: 860px; margin: 0 auto; padding: 0 24px; }
 
+    /* ===== Nav ===== */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
       background: rgba(255,255,255,0.92); backdrop-filter: blur(16px);
@@ -40,6 +41,7 @@
     }
     nav .contact-btn:hover { opacity: 0.92; color: #fff !important; box-shadow: 0 2px 8px rgba(26,86,219,0.3); }
 
+    /* ===== Hero ===== */
     .hero {
       padding: 80px 0 0; text-align: center;
       background: linear-gradient(180deg, #f0f5ff 0%, #fafbfc 100%);
@@ -67,6 +69,7 @@
       padding: 6px 16px; border-radius: 20px; background: #f0f5ff; color: #1a56db; font-weight: 500;
     }
 
+    /* ===== Stats ===== */
     .stats {
       display: flex; justify-content: center; gap: 24px;
       padding: 32px 0; flex-wrap: wrap;
@@ -79,10 +82,12 @@
     .stats .item .num { font-size: 1.6rem; font-weight: 700; color: #1a56db; display: block; }
     .stats .item .label { font-size: 0.8rem; color: #889096; margin-top: 2px; }
 
-    .sec-title { padding: 56px 0 28px; text-align: center; scroll-margin-top: 80px; }
+    /* ===== Section ===== */
+    .sec-title { padding: 56px 0 28px; text-align: center; }
     .sec-title h2 { font-size: 1.4rem; font-weight: 700; }
     .sec-title p { font-size: 0.88rem; color: #889096; margin-top: 4px; }
 
+    /* ===== Project ===== */
     .project {
       background: #fff; border: 1px solid #e8ecf0; border-radius: 12px;
       margin-bottom: 16px; overflow: hidden; cursor: pointer;
@@ -130,12 +135,14 @@
     .body-inner .blk ul li { font-size: 0.88rem; color: #444; line-height: 1.75; margin-bottom: 6px; }
     .body-inner .blk strong { color: #111; }
 
+    /* ===== Arch Diagram ===== */
     .arch {
       margin-top: 8px; padding: 16px; background: #f8f9fa; border-radius: 10px;
       border: 1px solid #e8ecf0; overflow-x: auto;
     }
     .arch svg { display: block; margin: 0 auto; }
 
+    /* ===== Value highlight ===== */
     .value-box {
       margin-top: 10px; padding: 14px 18px; background: #f0f5ff; border-radius: 8px;
       border-left: 3px solid #1a56db;
@@ -143,12 +150,15 @@
     .value-box p { font-size: 0.88rem !important; color: #1a56db !important; }
     .value-box strong { color: #1e3a8a; }
 
+    /* ===== Results ===== */
     .result-row {
       display: flex; gap: 28px; flex-wrap: wrap; margin-top: 10px;
     }
+    .result-row .r-item { }
     .result-row .r-item .num { font-size: 1.2rem; font-weight: 700; color: #1a56db; display: block; }
     .result-row .r-item .label { font-size: 0.78rem; color: #889096; }
 
+    /* ===== Tier header ===== */
     .tier-header {
       font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em;
       color: #889096; margin-bottom: 14px; padding-top: 32px;
@@ -156,6 +166,7 @@
     }
     .tier-header:first-of-type { border-top: none; padding-top: 0; }
 
+    /* ===== About ===== */
     .about-grid {
       display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px;
     }
@@ -175,6 +186,7 @@
       font-size: 0.82rem; color: #d0d4d8; margin-top: 56px;
     }
 
+    /* ===== Tech Stack Grid ===== */
     .tech-grid {
       display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;
     }
@@ -196,6 +208,7 @@
     }
     .tech-card p { font-size: 0.82rem; color: #5a626a; line-height: 1.6; margin-top: 8px; }
 
+    /* ===== Challenge Box ===== */
     .challenge-item {
       padding: 12px 16px; margin-bottom: 8px;
       background: #fffbf0; border-radius: 8px;
@@ -208,6 +221,9 @@
     .challenge-item .c-solution {
       font-size: 0.82rem; color: #666; line-height: 1.65;
     }
+
+    /* ===== Section scroll offset ===== */
+    .sec-title { scroll-margin-top: 80px; }
 
     @media (max-width: 640px) {
       .hero { padding: 80px 20px 40px; }
